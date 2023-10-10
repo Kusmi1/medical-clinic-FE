@@ -1,0 +1,50 @@
+// Theme Specific Variables
+$primaryColor: #007f32;
+$primaryDarkColor: #006428;
+$primaryDarkerColor: #006428;
+$primaryTextColor: #2f3146;
+
+// Mandatory Designer Variables
+/*@import './variables/general';*/
+/*@import './variables/form';*/
+/*@import './variables/button';*/
+/*@import './variables/panel';*/
+/*@import './variables/_data';*/
+/*@import './variables/_overlay';*/
+/*@import './variables/_message';*/
+/*@import './variables/_menu';*/
+/*@import './variables/_media';*/
+/*@import './variables/_misc';*/
+
+:root {
+  --blue: #2592e0;
+  --blue-light: #ebf5fc;
+  --red: #ff3366;
+  --white: #ffffff;
+  --gray: #adadb9;
+  --beige: #e9e4dc;
+  --pink: #feebe8;
+  --green-light: #effaec;
+  --text-color: #2f3146;
+  --text-body: #595a68;
+  --text-headlines: #2f3142;
+  --disabled-color: #b9bac5;
+  --primary-color: #{$primaryColor};
+  --primary-light-color: #83bc8a;
+  --primary-lighter-color: #d6eed3;
+  --primary-dark-color: #19562b;
+  --secondary-color: #fbf9f9;
+  --alert-error: #e83968;
+  --alert-info: #328ecd;
+  --background-bg-2: #fbf9f9;
+  --background-bg-3: #e8e8e9;
+  --background-bg-6: #e3e6e8;
+  --font-family: 'Montserrat', 'Lato', Roboto, Helvetica, Arial, sans-serif;
+  --content-padding: #{$panelContentPadding};
+  --inline-spacing: #{$inlineSpacing};
+  --border-radius: #{$borderRadius};
+  --maskbg: #{$maskBg};
+  --box-shadow: 0 10px 10px 0 rgba(193, 187, 177, 0.05), 0 30px 40px 0 rgba(207, 200, 188, 0.1),
+  0 20px 20px 0 rgba(200, 193, 182, 0.05);
+  color-scheme: light;
+}

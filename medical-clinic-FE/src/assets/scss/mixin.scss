@@ -1,0 +1,70 @@
+$break-point-4k: 3840px;
+$break-point-2k: 2560px;
+$break-point-full-hd: 1920px;
+$break-point-tablet: 1024px;
+$break-point-mobile: 768px;
+$break-point-small-mobile: 320px;
+
+:root {
+  --break-point-4k: #{$break-point-4k};
+  --break-point-2k: #{$break-point-2k};
+  --break-point-full-hd: #{$break-point-full-hd};
+  --break-point-tablet: #{$break-point-tablet};
+  --break-point-mobile: #{$break-point-mobile};
+  --break-point-small-mobile: #{$break-point-small-mobile};
+}
+
+@mixin height-100 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+@mixin GT($width) {
+  @media screen and (min-width: #{$width + 1}) {
+    @content;
+  }
+}
+
+@mixin LT($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin app-scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-light-green);
+    border-radius: 1.875rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--background-bg-3);
+  }
+}
+
+@mixin light-green-container {
+  padding: 1rem;
+  background-color: var(--primary-lighter-color);
+  border-radius: 8px;
+  @content;
+}
+
+@mixin lighter-green-container {
+  padding: 1rem;
+  background-color: var(--green-light);
+  border-radius: 8px;
+  @content;
+}
+
+@mixin white-box {
+  padding: 1rem;
+  background: var(--white);
+  border-radius: 8px;
+  @content;
+}
