@@ -1,0 +1,63 @@
+$login-width: 70%;
+$login-background-color: white;
+$login-button-color: #3b80af;
+.login {
+  display: grid;
+  background-color: $login-background-color;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: $login-width;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+
+  &__field {
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 1rem !important;
+    margin: 0;
+    padding: 0;
+  }
+  &__header {
+    font-size: 1.5rem;
+  }
+
+  &__button {
+    background-color: $login-button-color !important;
+    border-radius: 0.2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    &:disabled {
+      background-color: #817f7f;
+      color: #0e0101;
+      cursor: auto;
+      text-decoration: line-through;
+    }
+    &:hover {
+      background-color: $login-background-color;
+      color: black;
+    }
+  }
+  &__icon {
+    &:disabled {
+      visibility: hidden;
+    }
+  }
+
+  &__text--font {
+    font-size: 1.2rem;
+  }
+  &__error {
+    margin-top: 0;
+
+    //margin-bottom: 1.3rem !important;
+    color: red !important;
+  }
+  &__text {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
