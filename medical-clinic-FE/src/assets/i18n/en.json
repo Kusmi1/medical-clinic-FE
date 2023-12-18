@@ -1,0 +1,97 @@
+{
+  "main": {
+    "title": "Translation angular",
+    "text": "Please insert value in the field Hero Name to unlock submit",
+    "mainTittle": "Tour of Heroes"
+  },
+  "heroEditor": {
+    "title": "Details",
+    "heroName": "Hero Name:",
+    "heroid": "Hero ID:",
+    "angerLevel": "Hero Anger Level:",
+    "FormValue": "Form value: ",
+    "FormStatus": "Form status:",
+    "heroesTittle": "My Heroes",
+    "selected": "Select language:",
+    "mess": "Messages"
+
+  },
+  "button": {
+    "subButon": "Edit Hero",
+    "clearMess": "Clear Messages",
+    "delete": "delete",
+    "back": "Go back",
+    "add":"Add new Hero",
+    "logout": "Log out"
+  },
+
+
+  "angerList": {
+    "ANGRY": "anger",
+    "KIND": "kind",
+    "HUNGRY": "hungry",
+    "WITHOUTENERGY": "withoutEnergy"
+  },
+  "messages": {
+    "listHero": "Heroes uploaded",
+    "addHero": "Hero  Added",
+    "addHeroID": "Hero  with this ID exist",
+    "editHero": "Hero  Edited",
+    "updateHero": "Hero  updated",
+    "language": "language changed",
+    "details": "Fetched hero",
+    "deleted":"Hero deleted",
+    "found": "found heroes",
+    "notfound": "no heroes matching"
+  },
+
+  "hint": {
+    "insert": "insert ",
+    "name": "name!"
+  },
+  "nav": {
+    "menu": "Login",
+    "dash": "DashBoard",
+    "list": "Hero List",
+    "regButton": "Sign up"
+  },
+  "register": {
+    "email": "Email",
+    "title": "User registration",
+    "fName": "First Name",
+    "lName": "Last Name",
+    "password": "Password",
+    "confpassword": "Confirm your password",
+    "button": "Sign up"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "logbutton": "Log in",
+    "request":" If You don't have an account yet, please",
+    "reglink": "REGISTER HERE",
+    "button": "Log in",
+    "message": "You are logged in"
+  },
+  "errors": {
+    "name": "name is ",
+    "ID": "ID is ",
+    "required": "required",
+    "email": {
+      "required": "Email is required",
+      "minlength": "Email is too short minimum 6 characters ",
+      "maxlength": "Email is too long maximum 40 characters ",
+      "pattern": "Please enter a valid email address."
+
+    },
+    "password":{
+      "required": "Password is required",
+      "minlength": "Password is too short minimum 6 characters ",
+      "maxlength": "Password too long maximum 40 characters ",
+      "pattern": "Password must have at least: one upper case letter, one lower case letter, one digit and one special character",
+      "match": "the passwords are not identical"
+    },
+    "fNamerequired":"First Name is required.",
+    "lNamerequired":"Last Name is required."
+  }
+}
