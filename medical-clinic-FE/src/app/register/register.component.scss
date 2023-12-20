@@ -1,0 +1,67 @@
+$register-width: 80%;
+$register-background-color: white;
+$register-button-color: var(--primary-green);
+.register {
+  display: grid;
+  background-color: $register-background-color;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 400px;
+  max-width: 400px;
+  //background-color: #0e0101;
+  //height: $register-height;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  border: 1px solid var(--primary-color);
+  box-shadow: var(--box-shadow);
+
+  &__header {
+    font-size: 1.5rem;
+  }
+  &__field {
+    width: 100%;
+    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+    &-sName {
+      margin-bottom: 1rem;
+    }
+  }
+  &__header {
+    font-size: 1.5rem;
+  }
+
+  &__button {
+    background-color: var(--primary-color);
+    border-radius: 0.2rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 2rem;
+    &:disabled {
+      background-color: #817f7f;
+      color: #0e0101;
+      cursor: auto;
+      text-decoration: line-through;
+    }
+    &:hover {
+      background-color: $register-background-color;
+      color: black;
+    }
+  }
+  &__icon {
+    &:disabled {
+      visibility: hidden;
+    }
+  }
+
+  &__text--font {
+    font-size: 1.2rem;
+  }
+  &__error {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: red;
+  }
+}

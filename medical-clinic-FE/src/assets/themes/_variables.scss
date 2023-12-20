@@ -40,11 +40,7 @@ $primaryTextColor: #2f3146;
   --background-bg-3: #e8e8e9;
   --background-bg-6: #e3e6e8;
   --font-family: 'Montserrat', 'Lato', Roboto, Helvetica, Arial, sans-serif;
-  --content-padding: #{$panelContentPadding};
-  --inline-spacing: #{$inlineSpacing};
-  --border-radius: #{$borderRadius};
-  --maskbg: #{$maskBg};
   --box-shadow: 0 10px 10px 0 rgba(193, 187, 177, 0.05), 0 30px 40px 0 rgba(207, 200, 188, 0.1),
-  0 20px 20px 0 rgba(200, 193, 182, 0.05);
+    0 20px 20px 0 rgba(200, 193, 182, 0.05);
   color-scheme: light;
 }

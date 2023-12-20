@@ -1,0 +1,46 @@
+::ng-deep .navbar {
+  display: flex;
+  //flex-flow: row;
+  background-color: var(--primary-color);
+  //justify-content: center;
+  padding: 1rem;
+
+  &__container {
+    display: flex;
+    flex-flow: row;
+    //justify-content: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    list-style: none;
+    gap: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  &__language {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  //.mdc-text-field--filled {
+  //  background-color: var(--white);
+  //  color: red;
+  //  //color: var(--black);
+  //}
+  //.mat-label .mdc-text-field .mdc-text-field--disabled {
+  //  color: var(--black);
+  //}
+
+  .mat-option {
+    background-color: var(--white);
+    color: var(--black);
+  }
+}

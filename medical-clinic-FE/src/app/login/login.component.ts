@@ -1,26 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { TokenStorageService } from '../services/auth/token-storage.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { ErrorStateMatcher } from '@angular/material/core';
+import { CustomErrorStateMatcher } from './CustomErrorStateMatcher';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  providers: [
+    {
+      provide: ErrorStateMatcher,
+      useClass: CustomErrorStateMatcher,
+    },
+  ],
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    username: null,
-    password: null,
-  };
+  loginForm: FormGroup;
+  matcher: CustomErrorStateMatcher = new CustomErrorStateMatcher();
+  hide = true;
+  // form: any = {
+  //   username: null,
+  //   password: null,
+  // };
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
 
+  errorMessages = {
+    username: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'minlength', message: 'Email length.' },
+      { type: 'maxlength', message: 'Email length.' },
+      { type: 'pattern', message: 'please enter a valid email address.' },
+    ],
+
+    password: [
+      { type: 'required', message: 'password is required.' },
+      { type: 'minlength', message: 'password is too short min 6.' },
+      { type: 'maxlength', message: 'password length.' },
+    ],
+  };
   constructor(
     private authService: AuthService,
-    private tokenStorage: TokenStorageService
-  ) {}
+    private tokenStorage: TokenStorageService,
+    private formBuilder: FormBuilder
+  ) {
+    this.loginForm = this.formBuilder.group({
+      username: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(30)])
+      ),
+      password: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(30)])
+      ),
+    });
+  }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -30,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, password } = this.form;
+    const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe({
       next: data => {

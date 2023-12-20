@@ -1,0 +1,65 @@
+{
+
+  "button": {
+    "delete": "Usuń",
+    "back": "Cofnij",
+    "logout": "Wyloguj"
+  },
+
+
+  "hint": {
+    "insert": "insert ",
+    "name": "name!"
+  },
+  "nav": {
+    "menu": "Login",
+    "regButton": "Zarejestruj"
+  },
+  "register": {
+    "email": "Email",
+    "title": "formularz rejestracji",
+    "fName": "Imię",
+    "sName": "Drugie imię",
+    "userName": "nazwa użytkownika",
+    "lName": "Nazwisko",
+    "password": "Hasło",
+    "confpassword": "Potwierdź swoje hasło",
+    "button": "Zarejestruj"
+  },
+  "login": {
+    "username": "Nazwa użytkownika",
+    "password": "Hasło",
+    "logbutton": "Zaloguj",
+    "request":" Jeśli nie masz jeszcze konta, kliknij",
+    "reglink": "Zarejestruj się tutaj",
+    "button": "Zaloguj",
+    "message": "Zostałeś zalogowany"
+  },
+  "errors": {
+    "name": "name is ",
+    "ID": "ID is ",
+    "required": "required",
+    "email": {
+      "required": "Email jest wymagany",
+      "minlength": "Email jest zbyt krótki, minimum znaków to 6",
+      "maxlength": "Email zbyt długi, maks znaków to 40",
+      "pattern": " Proszę wprowadź poprawny e-mail"
+
+    },
+    "password":{
+      "required": "Hasło jest wymagane",
+      "minlength": "Hasło jest zbyt krótkie, minimum znaków to 6",
+      "maxlength": "Hasło jest zbyt długie, maks znaków to 40",
+      "pattern": "Hasło musi zawierać conajmniej jedną dużą literę, liczbę oraz znak specjaln",
+      "match": "Hasła są różne"
+    },
+    "username":{
+      "required": "Nazwa użytkownika jest wymagane",
+      "minlength": "Nazwa użytkownika jest zbyt krótka, minimum znaków to 6",
+      "maxlength": "Nazwa użytkownika jest zbyt długa, maks znaków to 40"
+    },
+    "fNamerequired":"Imię jest wymagane",
+    "lNamerequired":"Nazwisko jest wymagane",
+    "userNamerequired":"Nazwa użytkownika jest wymagana"
+  }
+}

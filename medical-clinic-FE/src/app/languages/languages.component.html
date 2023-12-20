@@ -1,0 +1,11 @@
+<mat-form-field color="accent" appearance="fill">
+  <mat-label>Language</mat-label>
+  <mat-select
+    #selectedLang
+    [value]="translate.currentLang"
+    (selectionChange)="useLanguage(selectedLang.value)">
+    <mat-option color="accent" *ngFor="let language of languages" [value]="language">
+      {{ language }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
