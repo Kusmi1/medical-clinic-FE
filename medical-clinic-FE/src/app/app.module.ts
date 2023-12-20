@@ -10,10 +10,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './interceptor/auth.interceptor';
 import { BoardUserComponent } from './board-user/board-user.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { LanguagesComponent } from './languages/languages.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -22,11 +28,13 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent,
+    // LoginComponent,
     MainPageComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
+    NavBarComponent,
+    LanguagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +49,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     FormsModule,
+    MatMenuModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
