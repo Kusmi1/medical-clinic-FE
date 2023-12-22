@@ -131,9 +131,11 @@
       type="submit"
       mat-raised-button
       class="register__button"
-      [disabled]="!registrationForm.valid">
+      [disabled]="!registrationForm.valid"
+      (click)="goToLogin()">
       {{ 'register.button' | translate }}
     </button>
   </div>
   <div *ngIf="registrationForm.valid && isSignUpFailed">Login failed: {{ errorMessage }}</div>
+  <div *ngIf="registrationMessage">{{ registrationMessage }}</div>
 </form>

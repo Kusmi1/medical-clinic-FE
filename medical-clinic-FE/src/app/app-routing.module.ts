@@ -16,10 +16,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
+  // { path: 'vi', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
+    path: 'visit',
+    loadChildren: () =>
+      import('./appointments/appointments.module').then(m => m.AppointmentsModule),
   },
 ];
 

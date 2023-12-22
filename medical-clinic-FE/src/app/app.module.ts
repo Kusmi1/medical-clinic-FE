@@ -20,6 +20,9 @@ import { LanguagesComponent } from './languages/languages.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { ProfileComponent } from './profile/profile.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -28,15 +31,17 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     RegisterComponent,
-    // LoginComponent,
+    LoginComponent,
     MainPageComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
     NavBarComponent,
     LanguagesComponent,
+    ProfileComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -48,12 +53,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    FormsModule,
+    MatNativeDateModule,
+    // MatMomentDateModule,
     MatMenuModule,
     MatInputModule,
     MatSelectModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatButtonModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

@@ -12,6 +12,9 @@ export class NavBarComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  id?: string;
+  firstName?: string;
+  lastName?: string;
 
   constructor(private tokenStorageService: TokenStorageService) {}
 
@@ -20,17 +23,26 @@ export class NavBarComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
+
       this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
+      this.id = user.id;
+      this.firstName = user.firstName;
+      this.lastName = user.lastName;
+      console.log('id ', user.id);
     }
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  userId() {
+    console.log(this.tokenStorageService.getUserId());
   }
 }

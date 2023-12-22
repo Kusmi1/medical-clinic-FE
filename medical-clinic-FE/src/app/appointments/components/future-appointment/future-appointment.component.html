@@ -1,0 +1,10 @@
+<h2>Twoje Przyszłe wizyty</h2>
+<div class="future-appointments" *ngFor="let visit of futureVisits">
+  <app-appointments-card
+    [specialization]="visit.specialization"
+    [doctorName]="visit.doctorName"
+    [doctorSurname]="visit.doctorSurname"
+    [date]="visit.date"
+    [hour]="visit.hour"
+    [isFutureDate]="true"></app-appointments-card>
+</div>

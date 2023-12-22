@@ -1,0 +1,30 @@
+.new-appointment {
+  //display: flex;
+  //flex-flow: column;
+
+  &__container {
+    display: flex;
+    flex-flow: column;
+    box-shadow: var(--box-shadow);
+    //min-width: 70% !important;
+    padding: 1.5rem;
+    min-width: 600px;
+    max-width: 70%;
+  }
+
+  &__specialization {
+    width: 100%;
+  }
+  &__choose-doctor {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+
+    &-hour {
+      overflow: scroll;
+    }
+  }
+
+  &__button-toggle {
+  }
+}

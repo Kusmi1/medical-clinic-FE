@@ -1,19 +1,22 @@
 {
-
   "button": {
     "delete": "Usuń",
     "back": "Cofnij",
-    "logout": "Wyloguj"
+    "logout": "Wyloguj",
+    "book-again": "Umów Ponownie",
+    "cancel": "Anuluj Wizytę"
   },
-
-
   "hint": {
     "insert": "insert ",
     "name": "name!"
   },
   "nav": {
     "menu": "Login",
-    "regButton": "Zarejestruj"
+    "regButton": "Zarejestruj",
+    "recent-appointment": "Twoje wizyty",
+    "add-appointment": "Dodaj Wizytę",
+    "make-appointment": "Umów Wizytę",
+    "main-page": "Główna Strona"
   },
   "register": {
     "email": "Email",
@@ -30,10 +33,14 @@
     "username": "Nazwa użytkownika",
     "password": "Hasło",
     "logbutton": "Zaloguj",
-    "request":" Jeśli nie masz jeszcze konta, kliknij",
+    "request": " Jeśli nie masz jeszcze konta, kliknij",
     "reglink": "Zarejestruj się tutaj",
     "button": "Zaloguj",
     "message": "Zostałeś zalogowany"
+  },
+  "appointment":{
+  "tittle": "lek",
+    "hour": "godz:"
   },
   "errors": {
     "name": "name is ",

@@ -1,6 +1,6 @@
 $login-width: 70%;
 $login-background-color: white;
-$login-button-color: #3b80af;
+$login-button-color: var(--primary-color);
 .login {
   display: grid;
   background-color: $login-background-color;
@@ -37,7 +37,7 @@ $login-button-color: #3b80af;
       text-decoration: line-through;
     }
     &:hover {
-      background-color: $login-background-color;
+      background-color: var(--primary-dark-color);
       color: black;
     }
   }
@@ -52,8 +52,6 @@ $login-button-color: #3b80af;
   }
   &__error {
     margin-top: 0;
-
-    //margin-bottom: 1.3rem !important;
     color: red !important;
   }
   &__text {
