@@ -25,8 +25,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="visit/recent">{{ 'nav.recent-appointment' | translate }}</a>
       </li>
-      <li *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">{{
+      <!--      <li *ngIf="showDoctorBoard">-->
+      <!--        <a href="/admin" class="nav-link" routerLink="admin">{{-->
+      <!--          'nav.add-appointment' | translate-->
+      <!--        }}</a>-->
+      <!--      </li>-->
+      <li *ngIf="showNurseBoard">
+        <a href="visit/add" class="nav-link" routerLink="visit/add">{{
           'nav.add-appointment' | translate
         }}</a>
       </li>

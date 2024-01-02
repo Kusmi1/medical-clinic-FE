@@ -1,0 +1,26 @@
+<form [formGroup]="visitForm">
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Wybierz specjalizację</mat-label>
+      <input
+        type="text"
+        placeholder="Wybierz datę"
+        matInput
+        formControlName="specialization"
+        [matAutocomplete]="auto"
+        (click)="clearResult()" />
+      <mat-autocomplete class="new-appointment" #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Wybierz datę</mat-label>
+      <input formControlName="chosenDate" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
+    </mat-form-field>
+  </div>
+</form>

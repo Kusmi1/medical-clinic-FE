@@ -4,13 +4,14 @@
       <mat-label>Wybierz specjalizację</mat-label>
       <input
         type="text"
-        placeholder="Wybierz datę"
+        placeholder="Wybierz specjalizację"
         matInput
         formControlName="specialization"
-        [matAutocomplete]="auto" />
+        [matAutocomplete]="auto"
+        (click)="clearResult()" />
       <mat-autocomplete class="new-appointment" #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{ option }}
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+          {{ option.name }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -22,24 +23,69 @@
       <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
 
-    <div *ngFor="let visit of availableVisits" class="new-appointment__choose-doctor">
-      <span>{{ visit.doctorName + '' + visit.doctorSurname }}</span>
-      <div class="new-appointment__choose-doctor-hour">
-        <mat-button-toggle-group
-          formControlName="chosenHour"
-          class="new-appointment__button-toggle">
-          <mat-button-toggle *ngFor="let hour of AvailableHour" value="{{ hour }}">{{
-            hour
-          }}</mat-button-toggle>
-        </mat-button-toggle-group>
+    <div
+      *ngIf="
+        availableVisits &&
+          availableVisits.length > 0 &&
+          visitForm.get('specialization')?.valid &&
+          visitForm.get('specialization')?.value !== '';
+        else noVisits
+      ">
+      <div *ngFor="let visit of availableVisits" class="new-appointment__choose-visit">
+        <div>
+          <p class="new-appointment__choose-visit-text">
+            {{ visit.doctorName + ' ' + visit.doctorSurname }}
+          </p>
+          <span>{{ visit.date }}</span>
+        </div>
+        <div class="new-appointment__choose-doctor-hour">
+          <mat-button-toggle-group
+            formGroupName="chosenHour"
+            class="new-appointment__button-toggle">
+            <mat-button-toggle
+              class="new-appointment__button-toggle"
+              (click)="toggleButtonState(data)"
+              [checked]="data.isSelected!"
+              *ngFor="let data of visit.hours"
+              value="{{ data.hour }}"
+              >{{ data.hour }}</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </div>
       </div>
     </div>
+    <p class="new-appointment__error" *ngIf="visitForm.get('specialization')?.invalid">
+      Specjalizacja jest wymagana!
+    </p>
+
+    <ng-template #noVisits>
+      <!-- Error message for no available visits -->
+      <p class="new-appointment__error" *ngIf="visitForm.get('chosenDate')?.value; else noData">
+        Brak dostępnych wizyt dnia {{ visitForm.get('chosenDate')!.value | date: 'yyyy-MM-dd' }}
+      </p>
+      <ng-template #noData>
+        <p class="new-appointment__error">Brak dostępnych wizyt dnia {{ currentDate }}</p>
+      </ng-template>
+    </ng-template>
   </div>
-  <div class="new-appointment__buttons-container">
-    <button (click)="cancelClicked()">Anuluj</button>
-    <button (click)="clickNext()">Przechodzę Dalej</button>
+
+  <div class="new-appointment__button-container">
+    <button class="new-appointment__button" mat-button (click)="cancelClicked()">Anuluj</button>
+    <button
+      disabled="{{ visitForm.invalid }}"
+      class="new-appointment__button"
+      mat-button
+      (click)="clickNext()">
+      Przechodzę Dalej
+    </button>
   </div>
 </form>
-<div>Chosen Value: {{ visitForm.get('specialization')?.value }}</div>
+<div>Chosen specialization: {{ visitForm.get('specialization')?.value }}</div>
 <div>Chosen Date: {{ visitForm.get('chosenDate')?.value | date }}</div>
+<div>Chosen Date: {{ visitForm.get('date')?.value | date }}</div>
 <div>Chosen Hour: {{ visitForm.get('chosenHour')?.value }}</div>
+
+<div>
+  Chosen Hour: {{ visitForm.get('chosenHour.visitId')?.value }} -
+  {{ visitForm.get('chosenHour.hour')?.value }}
+</div>

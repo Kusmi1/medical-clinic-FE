@@ -31,13 +31,16 @@
       <p class="appointments-card__container-address">ul.Poznańska 18, 04-100 Warszawa</p>
     </div>
     <div class="appointments-card__button-container">
-      <!--      (click)="cancelAppointment()"-->
-      <button class="appointments-card__button-red" *ngIf="isFutureDate; else pastAppointment">
+      <button
+        (click)="cancelAppointment()"
+        class="appointments-card__button-red"
+        *ngIf="isFutureDate; else pastAppointment">
         {{ 'button.cancel' | translate }}
       </button>
       <ng-template #pastAppointment>
-        <!--        (click)="againMakeAppointment()"-->
-        <button class="appointments-card__button">{{ 'button.book-again' | translate }}</button>
+        <button (click)="againMakeAppointment()" class="appointments-card__button">
+          {{ 'button.book-again' | translate }}
+        </button>
       </ng-template>
     </div>
   </div>

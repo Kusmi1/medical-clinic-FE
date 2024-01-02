@@ -6,5 +6,10 @@
     [doctorSurname]="visit.doctorSurname"
     [date]="visit.date"
     [hour]="visit.hour"
-    [isFutureDate]="true"></app-appointments-card>
+    [isFutureDate]="true"
+    (click)="deleteVisit(visit)"></app-appointments-card>
+  <div *ngFor="let hour of visit.hours">
+    {{ hour.hour }}
+    {{ hour.visitId }}
+  </div>
 </div>

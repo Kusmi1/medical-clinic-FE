@@ -28,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ChooseDoctorComponent } from './components/choose-doctor/choose-doctor.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     RecentAppointmentsComponent,
@@ -50,6 +51,8 @@ import { FutureAppointmentComponent } from './components/future-appointment/futu
     MatAutocompleteModule,
     MatButtonToggleModule,
     MatDatepickerModule,
+    MatButtonModule,
+    MatSnackBarModule,
   ],
 })
 export class AppointmentsModule {}

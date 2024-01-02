@@ -5,6 +5,7 @@ import { RecentAppointmentsComponent } from './components/recent-appointments/re
 import { NewAppointmentComponent } from './components/new-appointment/new-appointment.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
+import { BoardNurseComponent } from './components/board-nurse/board-nurse.component';
 
 const routes: Routes = [
   {
@@ -16,11 +17,20 @@ const routes: Routes = [
         path: 'future-visit',
         component: FutureAppointmentComponent,
       },
+
       {
         path: 'new-visit',
         component: NewAppointmentComponent,
+        data: { title: 'New Visit' },
       },
-      { path: 'summary', component: SummaryComponent },
+      {
+        path: 'summary/:visitId',
+        component: SummaryComponent,
+      },
+      {
+        path: 'add',
+        component: BoardNurseComponent,
+      },
     ],
   },
 ];

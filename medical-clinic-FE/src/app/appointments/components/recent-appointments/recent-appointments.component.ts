@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
 import { VisitModel } from '../../../models/visit.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recent-appointments',
@@ -9,7 +10,10 @@ import { VisitModel } from '../../../models/visit.model';
 })
 export class RecentAppointmentsComponent implements OnInit {
   pastVisits: VisitModel[] | undefined;
-  constructor(private appointmentsService: AppointmentsService) {}
+  constructor(
+    private appointmentsService: AppointmentsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadPastVisits();
@@ -22,5 +26,11 @@ export class RecentAppointmentsComponent implements OnInit {
     if (!this.pastVisits) {
       return;
     }
+  }
+
+  navigateToNewVisit(specializationName: string): void {
+    this.router.navigate(['visit', 'new-visit'], {
+      queryParams: { specialization: specializationName },
+    });
   }
 }

@@ -16,7 +16,8 @@
     "recent-appointment": "Twoje wizyty",
     "add-appointment": "Dodaj Wizytę",
     "make-appointment": "Umów Wizytę",
-    "main-page": "Główna Strona"
+    "main-page": "Główna Strona",
+    "all-visits": "Wszystkie wizyty"
   },
   "register": {
     "email": "Email",

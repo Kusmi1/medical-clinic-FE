@@ -1,10 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { map, Observable, startWith, switchMap } from 'rxjs';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { VisitModel } from '../../../models/visit.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  catchError,
+  combineLatest,
+  filter,
+  map,
+  Observable,
+  of,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { formatDate, Location } from '@angular/common';
+import { HoursModel, VisitModel } from '../../../models/visit.model';
 import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
+import { SpecializationModel } from '../../../models/specialization.model';
 
 @Component({
   selector: 'app-new-appointment',
@@ -13,29 +24,39 @@ import { AppointmentsService } from '../../../services/appointments-services/app
 })
 export class NewAppointmentComponent implements OnInit {
   visitForm: FormGroup;
-  // specialization = new FormControl('');
-  options: string[] = ['Kardiolog', 'Internista', 'Pediatra'];
-  AvailableHour: string[] = ['18:00', '19:00', '20:30', '21:00'];
-  visits: string[] = ['lek. Jan Kowalski', 'lek. Kamil Nowak'];
-  filteredOptions: Observable<string[]> | undefined;
-  // filteredVisits: Observable<string[]> | undefined;
+  options: SpecializationModel[] = [];
+  filteredOptions: Observable<SpecializationModel[]> | undefined;
   startDate: Date = new Date();
   availableVisits: VisitModel[] = [];
+  specializationFromRoute = '';
+  currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'pl');
   constructor(
     private fb: FormBuilder,
     private readonly location: Location,
     private router: Router,
-    private appointmentsService: AppointmentsService
+    private appointmentsService: AppointmentsService,
+    private route: ActivatedRoute
   ) {
     this.visitForm = this.fb.group({
-      specialization: [''],
+      specialization: ['', Validators.required],
       visit: [''],
       chosenDate: [''],
-      chosenHour: [''],
+      chosenHour: this.fb.group({
+        visitId: [null, Validators.required],
+        hour: ['', Validators.required],
+      }),
     });
     this.startDate.setDate(this.startDate.getDate() + 1);
   }
+
   ngOnInit() {
+    this.specializationFromRoute = this.route.snapshot.queryParams['specialization'];
+    if (this.specializationFromRoute) {
+      this.visitForm.get('specialization')?.setValue(this.specializationFromRoute);
+      this.filteredOptions = of([{ id: 0, name: this.specializationFromRoute }]);
+    }
+
+    this.loadSpecializations();
     this.filteredOptions = this.visitForm.controls['specialization'].valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || ''))
@@ -43,28 +64,10 @@ export class NewAppointmentComponent implements OnInit {
     this.setupSpecializationListener();
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): SpecializationModel[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  private _filterVisit(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.visits.filter(visit => visit.toLowerCase().includes(filterValue));
-  }
-
-  setupSpecializationListener(): void {
-    this.visitForm
-      .get('specialization')
-      ?.valueChanges.pipe(
-        switchMap(specialization =>
-          this.appointmentsService.getAvailableVisitsBySpecialization(specialization)
-        )
-      )
-      .subscribe(visits => {
-        this.availableVisits = visits;
-      });
+    return this.options!.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
   cancelClicked() {
@@ -72,10 +75,93 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   clickNext() {
-    this.router.navigate(['visit', 'summary']);
+    const visitId = this.visitForm.get('chosenHour.visitId')!.value;
+
+    if (visitId) {
+      this.appointmentsService.visitId = visitId;
+      this.router.navigate(['visit', 'summary', visitId]);
+      // this.router.navigate(['visit', 'summary']);
+    }
+    // this.router.navigate(['visit', 'summary']);
   }
 
-  get searchSelectedSpecializationControl(): FormControl {
+  clearResult() {
+    this.visitForm.get('specialization')?.setValue('');
+  }
+
+  loadSpecializations() {
+    this.appointmentsService.getAllSpecializations().subscribe(
+      specializations => {
+        this.options = specializations;
+      },
+      error => {
+        console.error('Error fetching specializations', error);
+      }
+    );
+  }
+
+  private setupSpecializationListener(): void {
+    if (this.specializationFromRoute) {
+      console.log('this.specializationFromRoute ', this.specializationFromRoute);
+      this.specializationControl.setValue(this.specializationFromRoute, { emitEvent: false });
+
+      this.getVisits(this.specializationFromRoute).subscribe(visits => {
+        this.availableVisits = visits;
+      });
+    }
+
+    combineLatest([
+      this.dateControl.valueChanges.pipe(startWith(this.dateControl.value)),
+      this.specializationControl.valueChanges.pipe(startWith(this.specializationControl.value)),
+    ])
+      .pipe(
+        filter(([date, specialization]) => specialization != ''),
+        switchMap(() => this.getVisits())
+      )
+      .subscribe(visits => {
+        this.availableVisits = visits;
+      });
+  }
+
+  private getVisits(specializationRoute?: string): Observable<any[]> {
+    const date: string | null = this.dateControl.value
+      ? formatDate(this.dateControl.value, 'yyyy-MM-dd', 'pl')
+      : null;
+    let specialization = this.specializationControl.value;
+    if (specializationRoute) {
+      specialization = specializationRoute;
+    }
+
+    console.log('specialization ', specialization, ' date: ', date);
+
+    return this.appointmentsService.getAvailableVisitsBySpecialization(specialization, date!).pipe(
+      map(visits => {
+        return visits;
+      })
+    );
+  }
+
+  ///////////////////////////////
+  get dateControl(): FormControl {
+    return this.visitForm.get('chosenDate') as FormControl;
+  }
+
+  get specializationControl(): FormControl {
     return this.visitForm.get('specialization') as FormControl;
+  }
+
+  toggleButtonState(selectedHour: HoursModel): void {
+    this.availableVisits.forEach(visit => {
+      visit.hours.forEach(hour => {
+        hour.isSelected = false;
+      });
+    });
+    this.visitForm.get('chosenHour')?.patchValue({
+      visitId: selectedHour.visitId,
+      hour: selectedHour.hour,
+    });
+
+    selectedHour.isSelected = true;
+    console.log(' visitId hour ', this.visitForm.get('chosenHour')?.value);
   }
 }

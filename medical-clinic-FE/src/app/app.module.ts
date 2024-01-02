@@ -4,10 +4,10 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardNurseComponent } from './appointments/components/board-nurse/board-nurse.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core';
@@ -23,6 +23,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './profile/profile.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import '@angular/common/locales/global/pl';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -33,7 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegisterComponent,
     LoginComponent,
     MainPageComponent,
-    BoardAdminComponent,
+    BoardNurseComponent,
     BoardModeratorComponent,
     BoardUserComponent,
     NavBarComponent,
@@ -61,8 +65,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, { provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
