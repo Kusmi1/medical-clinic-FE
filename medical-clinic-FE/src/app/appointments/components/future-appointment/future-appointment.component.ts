@@ -49,7 +49,7 @@ export class FutureAppointmentComponent {
     );
     console.log('visitId2 ', visitId);
   }
-  getVisitIdFromHours(hours: HoursModel[]): number | null {
+  getVisitIdFromHours(hours: HoursModel[]): string | null {
     if (hours && hours.length > 0) {
       return hours[0].visitId;
     }

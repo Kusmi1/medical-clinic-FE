@@ -13,6 +13,7 @@ import { SnackbarService } from '../../../guard/snackbar.service';
 export class SummaryComponent implements OnInit {
   visitDetails: any;
   visitId = 0;
+  visitIdString = '';
   constructor(
     private route: ActivatedRoute,
     private appointmentsService: AppointmentsService,
@@ -24,15 +25,17 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const visitIdString = params.get('visitId');
-      if (visitIdString) {
-        this.visitId = Number(visitIdString);
-        this.loadVisitById(this.visitId);
+      this.visitIdString = params.get('visitId')!;
+      // const visitIdString = params.get('visitId');
+      if (this.visitIdString) {
+        // this.visitId = Number(visitIdString);
+        this.loadVisitById(this.visitIdString);
+        // this.loadVisitById(this.visitId);
       }
     });
   }
 
-  loadVisitById(visitId: number): void {
+  loadVisitById(visitId: string): void {
     this.appointmentsService.getVisitById(visitId).subscribe(
       details => {
         this.visitDetails = details;
@@ -48,7 +51,7 @@ export class SummaryComponent implements OnInit {
   }
 
   bookVisit() {
-    this.appointmentsService.bookVisit(this.visitId).subscribe(
+    this.appointmentsService.bookVisit(this.visitIdString).subscribe(
       response => {
         console.log(response); // Log the response if needed
 

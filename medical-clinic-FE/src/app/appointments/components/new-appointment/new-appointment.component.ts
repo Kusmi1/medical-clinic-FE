@@ -75,14 +75,11 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   clickNext() {
-    const visitId = this.visitForm.get('chosenHour.visitId')!.value;
+    const visitId: string = this.visitForm.get('chosenHour.visitId')!.value;
 
     if (visitId) {
-      this.appointmentsService.visitId = visitId;
       this.router.navigate(['visit', 'summary', visitId]);
-      // this.router.navigate(['visit', 'summary']);
     }
-    // this.router.navigate(['visit', 'summary']);
   }
 
   clearResult() {
@@ -141,7 +138,6 @@ export class NewAppointmentComponent implements OnInit {
     );
   }
 
-  ///////////////////////////////
   get dateControl(): FormControl {
     return this.visitForm.get('chosenDate') as FormControl;
   }

@@ -2,10 +2,11 @@ export interface BookVisitRequestModel {
   visitId: string;
 }
 
-interface Patient {
+export interface UserModel {
+  id: number;
   name: string;
   surname: string;
-  pesel: string;
+  // pesel: string;
 }
 
 // interface Address {

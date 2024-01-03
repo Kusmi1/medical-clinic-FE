@@ -1,20 +1,23 @@
 export interface VisitModel {
-  id: number;
+  id: string;
   specialization: string;
   doctorName: string;
   doctorSurname: string;
+  userName: string;
+  userSurname: string;
   date: string;
   hour: string;
   hours: HoursModel[];
+  user: User;
 }
 
 export interface HoursModel {
-  visitId: number;
+  visitId: string;
   hour: string;
   isSelected?: boolean;
 }
 
-interface Patient {
+interface User {
   id: number;
   name: string;
   secondName: string;

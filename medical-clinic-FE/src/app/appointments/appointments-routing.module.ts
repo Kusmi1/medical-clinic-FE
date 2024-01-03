@@ -6,6 +6,7 @@ import { NewAppointmentComponent } from './components/new-appointment/new-appoin
 import { SummaryComponent } from './components/summary/summary.component';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
 import { BoardNurseComponent } from './components/board-nurse/board-nurse.component';
+import { ManageAppointmentsComponent } from './components/manage-appointments/manage-appointments.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'add',
         component: BoardNurseComponent,
+      },
+      {
+        path: 'manage-appointments',
+        component: ManageAppointmentsComponent,
       },
     ],
   },

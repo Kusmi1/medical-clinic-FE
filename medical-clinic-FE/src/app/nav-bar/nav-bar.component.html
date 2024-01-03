@@ -35,6 +35,14 @@
           'nav.add-appointment' | translate
         }}</a>
       </li>
+      <li *ngIf="showNurseBoard">
+        <a
+          href="visit/manage-appointments"
+          class="nav-link"
+          routerLink="visit/manage-appointments"
+          >{{ 'nav.manage-appointments' | translate }}</a
+        >
+      </li>
       <li class="nav-item">
         <a class="nav-link" (click)="userId()">{{ username }}</a>
       </li>

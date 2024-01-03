@@ -27,6 +27,7 @@ import '@angular/common/locales/global/pl';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatRadioModule,
   ],
   providers: [authInterceptorProviders, { provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent],

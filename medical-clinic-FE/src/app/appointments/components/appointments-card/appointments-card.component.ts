@@ -12,8 +12,8 @@ export class AppointmentsCardComponent {
   @Input() date = '';
   @Input() hour = '';
   @Input() address = '';
-
   @Input() isFutureDate = false;
+  @Input() user = '';
 
   @Output() clickAgainMakeAppointmentButton: EventEmitter<void> = new EventEmitter<void>();
   @Output() clickCancelButton: EventEmitter<void> = new EventEmitter<void>();

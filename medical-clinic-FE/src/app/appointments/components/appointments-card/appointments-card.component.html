@@ -30,6 +30,7 @@
     <div class="appointments-card__container">
       <p class="appointments-card__container-address">ul.Poznańska 18, 04-100 Warszawa</p>
     </div>
+    <div class="appointments-card__container-text" *ngIf="user !== ''">Pacjent: {{ user }}</div>
     <div class="appointments-card__button-container">
       <button
         (click)="cancelAppointment()"

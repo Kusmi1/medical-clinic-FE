@@ -5,8 +5,12 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SpecializationModel } from '../../models/specialization.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DoctorModel } from '../../models/doctor.model';
+import { UserModel } from '../../models/book-visit.model';
 
-const AUTH_API = 'http://localhost:8080/api/visit';
+const VISIT_API = 'http://localhost:8080/api/visit';
+const USER_API = 'http://localhost:8080/api/user';
+const DOCTOR_API = 'http://localhost:8080/api/doctor';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -18,20 +22,23 @@ const httpOptionsString = {
   providedIn: 'root',
 })
 export class AppointmentsService {
-  visitId = 0;
+  // visitId:string = 0;
   constructor(
     private http: HttpClient,
     private tokenStorageService: TokenStorageService
   ) {}
 
+  getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${USER_API}/all`);
+  }
   getPastBookedVisits(): Observable<VisitModel[]> {
     const userId = this.tokenStorageService.getUserId();
-    return this.http.get<VisitModel[]>(`${AUTH_API}/past-visit/user/${userId}`, httpOptions);
+    return this.http.get<VisitModel[]>(`${VISIT_API}/past-visit/user/${userId}`, httpOptions);
   }
 
   getFutureBookedVisits(): Observable<VisitModel[]> {
     const userId = this.tokenStorageService.getUserId();
-    return this.http.get<VisitModel[]>(`${AUTH_API}/future-visit/user/${userId}`, httpOptions);
+    return this.http.get<VisitModel[]>(`${VISIT_API}/future-visit/user/${userId}`, httpOptions);
   }
 
   getAvailableVisitsBySpecialization(
@@ -43,7 +50,7 @@ export class AppointmentsService {
       params = params.append('visitDate', date);
     }
 
-    const url = `${AUTH_API}/${specializationName}`;
+    const url = `${VISIT_API}/${specializationName}`;
     return this.http.get<VisitModel[]>(url, { params });
   }
 
@@ -52,19 +59,58 @@ export class AppointmentsService {
     return this.http.get<SpecializationModel[]>(url, httpOptions);
   }
 
-  getVisitById(visitId: number): Observable<any> {
-    const url = `${AUTH_API}/byId/${visitId}`;
+  getVisitById(visitId: string): Observable<any> {
+    const url = `${VISIT_API}/byId/${visitId}`;
     return this.http.get<VisitModel[]>(url);
   }
 
-  bookVisit(visitId: number): Observable<string> {
+  bookVisit(visitId: string): Observable<string> {
     const userId = this.tokenStorageService.getUserId();
-    const url = `${AUTH_API}/visitId/${visitId}/user/${userId}`;
+    const url = `${VISIT_API}/visitId/${visitId}/user/${userId}`;
     return this.http.post<string>(url, null, httpOptionsString);
   }
 
-  deleteVisit(visitId: number): Observable<any> {
-    const url = `${AUTH_API}/visitId/${visitId}`;
+  deleteVisit(visitId: string): Observable<any> {
+    const url = `${VISIT_API}/visitId/${visitId}`;
     return this.http.put(url, null, httpOptionsString);
+  }
+
+  getDoctorsBySpecialization(specializationName: string): Observable<DoctorModel[]> {
+    const url = `${DOCTOR_API}/specialization/${specializationName}`;
+    return this.http.get<DoctorModel[]>(url);
+  }
+
+  addVisit(visitDate: string, doctorId: number, hours: string, price: number): Observable<any> {
+    const url = `${VISIT_API}/add-visit`;
+    const params = new HttpParams()
+      .set('visitDate', visitDate)
+      .set('doctorId', doctorId)
+      .set('hours', hours)
+      .set('price', price);
+
+    const httpOptionsParams = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      params: params,
+      responseType: 'text' as 'json',
+    };
+
+    return this.http.post<string>(url, null, httpOptionsParams);
+  }
+
+  getAllFutureBookedVisits(doctorId?: number, userId?: number): Observable<any> {
+    const url = `${VISIT_API}/all-future-visits`;
+
+    let params = new HttpParams();
+
+    if (userId !== undefined && userId !== null) {
+      console.log('userId ', userId);
+      params = params.set('userId', userId!.toString());
+    }
+
+    if (doctorId !== undefined && doctorId !== null) {
+      params = params.set('doctorId', doctorId!.toString());
+    }
+
+    return this.http.get<any>(url, { params });
   }
 }
