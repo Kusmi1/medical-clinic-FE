@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterComponent {
   errorMessage = '';
   hidePassword = true;
   hideconfirmPassword = true;
+  public registrationMessage: string | null = null;
   registrationForm: FormGroup;
   errorMessages = {
     firstName: [{ type: 'required', message: 'First Name is required.' }],
@@ -41,7 +43,8 @@ export class RegisterComponent {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.registrationForm = this.formBuilder.group(
       {
@@ -90,7 +93,6 @@ export class RegisterComponent {
     const { firstName, secondName, lastName, userName, email, password } =
       this.registrationForm.value;
 
-    console.log(firstName, secondName, lastName, userName, email, password);
     this.authService
       .register(firstName, lastName, userName, email, password, secondName)
       .subscribe({
@@ -105,20 +107,6 @@ export class RegisterComponent {
           this.isSignUpFailed = true;
         },
       });
-    console.log(
-      'fN ',
-      this.registrationForm.controls['firstName'].value,
-      ' SN ',
-      this.registrationForm.controls['secondName'].value,
-      ' LN ',
-      this.registrationForm.controls['lastName'].value,
-      ' UN ',
-      this.registrationForm.controls['userName'].value,
-      ' EM ',
-      this.registrationForm.controls['email'].value,
-      ' PASS ',
-      this.registrationForm.controls['password'].value
-    );
   }
 
   mustMatch(password: any, confirmpassword: any) {
@@ -139,5 +127,15 @@ export class RegisterComponent {
 
   get f() {
     return this.registrationForm.controls;
+  }
+
+  goToLogin() {
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 3000);
+
+    if (!this.isSignUpFailed) {
+      this.registrationMessage = 'User registered successfully!';
+    }
   }
 }

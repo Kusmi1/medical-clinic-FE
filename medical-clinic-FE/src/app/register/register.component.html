@@ -82,7 +82,11 @@
 
     <mat-form-field class="register__field">
       <mat-label class="register__label">{{ 'register.password' | translate }}</mat-label>
-      <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" />
+      <input
+        tabindex="0"
+        matInput
+        formControlName="password"
+        [type]="hidePassword ? 'password' : 'text'" />
       <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
@@ -103,6 +107,7 @@
     <mat-form-field class="register__field">
       <mat-label>{{ 'register.confpassword' | translate }}</mat-label>
       <input
+        tabindex="1"
         formControlName="confirmpassword"
         matInput
         [type]="hideconfirmPassword ? 'password' : 'text'" />
@@ -131,9 +136,11 @@
       type="submit"
       mat-raised-button
       class="register__button"
-      [disabled]="!registrationForm.valid">
+      [disabled]="!registrationForm.valid"
+      (click)="goToLogin()">
       {{ 'register.button' | translate }}
     </button>
   </div>
   <div *ngIf="registrationForm.valid && isSignUpFailed">Login failed: {{ errorMessage }}</div>
+  <div *ngIf="registrationMessage">{{ registrationMessage }}</div>
 </form>

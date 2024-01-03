@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-const TOKEN_KEY = 'auth-token';
+const TOKEN_KEY = 'Authorization';
+// const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
 @Injectable({
@@ -31,5 +32,10 @@ export class TokenStorageService {
     }
 
     return {};
+  }
+
+  public getUserId(): number | null {
+    const user = this.getUser();
+    return user ? user.id : null;
   }
 }

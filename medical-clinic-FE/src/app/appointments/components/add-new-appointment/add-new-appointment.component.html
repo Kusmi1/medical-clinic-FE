@@ -1,0 +1,65 @@
+<form class="nurse" [formGroup]="visitForm">
+  <div class="nurse__container">
+    <mat-form-field>
+      <mat-label>Wybierz datę</mat-label>
+      <input formControlName="chosenDate" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Godzina</mat-label>
+      <input formControlName="hour" matInput type="time" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Cena</mat-label>
+      <input formControlName="price" matInput type="number" />
+    </mat-form-field>
+
+    <mat-form-field formGroupName="medicalClinic">
+      <mat-label>Wybierz Przychodnię</mat-label>
+      <mat-select required>
+        <mat-option
+          (click)="setClinicId(clinic)"
+          *ngFor="let clinic of clinicList"
+          [value]="clinic.name"
+          >{{ clinic.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Wybierz specjalizację</mat-label>
+      <input
+        type="text"
+        placeholder="Wybierz specjalizację"
+        matInput
+        formControlName="specialization"
+        [matAutocomplete]="auto"
+        (click)="clearResult()" />
+      <mat-autocomplete class="new-appointment" #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-radio-group class="nurse__list-doctor" formGroupName="doctor" aria-label="Select a doctor">
+      <mat-radio-button
+        (click)="setDoctorId(doctor)"
+        *ngFor="let doctor of doctors"
+        [value]="doctor.id">
+        {{ doctor.name }} {{ doctor.surname }}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <span class="nurse__error" *ngIf="doctorUnavailable">Lekarz w tym dniu jest niedostępny</span>
+    <div class="nurse__button-container">
+      <button class="nurse__button" mat-button (click)="cancelClicked()">Anuluj</button>
+      <button
+        disabled="{{ visitForm.invalid }}"
+        class="nurse__button"
+        mat-button
+        (click)="addVisit()">
+        Dodaj wizytę
+      </button>
+    </div>
+  </div>
+</form>

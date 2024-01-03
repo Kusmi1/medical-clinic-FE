@@ -1,10 +1,10 @@
 {
-
-
   "button": {
     "delete": "delete",
     "back": "Go back",
-    "logout": "Log out"
+    "logout": "Log out",
+    "book-again": "Book again",
+    "cancel": "Cancel appointment"
   },
 
   "angerList": {
@@ -19,7 +19,11 @@
     "menu": "Login",
     "dash": "DashBoard",
     "list": "Hero List",
-    "regButton": "Sign up"
+    "regButton": "Sign up",
+    "recent-appointment": "Your appointments",
+    "add-appointment": "Add appointment",
+    "make-appointment": "Make appointment",
+    "main-page": "Main Page"
   },
   "register": {
     "email": "Email",
@@ -40,6 +44,11 @@
     "reglink": "REGISTER HERE",
     "button": "Log in",
     "message": "You are logged in"
+  },
+
+  "appointment":{
+    "tittle": "doc",
+    "hour": "hour:"
   },
   "errors": {
     "name": "name is ",

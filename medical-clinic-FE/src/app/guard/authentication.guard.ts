@@ -25,14 +25,9 @@ export class AuthenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // if () {
-    //  if (this.tokenService.IsloggedIn()) {
-    //   return true;
-    // } else {
     this.router.parseUrl('/login');
 
     this.snackBarService.authError('You must be logged in!');
     return false;
-    // }
   }
 }

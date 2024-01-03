@@ -1,42 +1,56 @@
 <nav class="navbar">
   <div class="navbar__container">
     <!--    <a href="#" class="navbar-brand">medical-clinic</a>-->
-    <ul class="navbar__list" routerLinkActive="active">
+    <ul class="navbar__list" routerLinkActive="active" *ngIf="!isLoggedIn">
       <li><a href="#" class="navbar-brand">medical-clinic</a></li>
-      <li *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Dodaj nowe wizyty</a>
-      </li>
 
-      <li class="nav-item" *ngIf="!isLoggedIn">
+      <li class="nav-item">
         <a routerLink="/register" class="nav-link">Sign Up</a>
       </li>
-      <li class="nav-item" *ngIf="!isLoggedIn">
+      <li class="nav-item">
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+    </ul>
+    <ul class="navbar__list" routerLinkActive="active" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" href="visit" routerLink="visit/future-visit">{{
+          'nav.main-page' | translate
+        }}</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a href class="nav-link" (click)="logout()">Wyloguj</a>
+      <li class="nav-item">
+        <a class="nav-link" href="visit/new-visit" routerLink="visit/new-visit">{{
+          'nav.make-appointment' | translate
+        }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="visit/recent">{{ 'nav.recent-appointment' | translate }}</a>
+      </li>
+      <!--      <li *ngIf="showDoctorBoard">-->
+      <!--        <a href="/admin" class="nav-link" routerLink="admin">{{-->
+      <!--          'nav.add-appointment' | translate-->
+      <!--        }}</a>-->
+      <!--      </li>-->
+      <li *ngIf="showNurseBoard">
+        <a href="visit/add" class="nav-link" routerLink="visit/add">{{
+          'nav.add-appointment' | translate
+        }}</a>
+      </li>
+      <li *ngIf="showNurseBoard">
+        <a
+          href="visit/manage-appointments"
+          class="nav-link"
+          routerLink="visit/manage-appointments"
+          >{{ 'nav.manage-appointments' | translate }}</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="userId()">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">{{ 'button.logout' | translate }}</a>
       </li>
     </ul>
-    <!--    <ul class="navbar__list" *ngIf="!isLoggedIn">-->
-    <!--      <li class="nav-item" *ngIf="!isLoggedIn">-->
-    <!--        <a routerLink="/register" class="nav-link">Sign Up</a>-->
-    <!--      </li>-->
-    <!--      <li class="nav-item" *ngIf="!isLoggedIn">-->
-    <!--        <a href="/login" class="nav-link" routerLink="login">Login</a>-->
-    <!--      </li>-->
-    <!--    </ul>-->
 
-    <!--    <ul class="navbar__list" *ngIf="isLoggedIn">-->
-    <!--      <li class="nav-item">-->
-    <!--        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>-->
-    <!--      </li>-->
-    <!--      <li class="nav-item">-->
-    <!--        <a href class="nav-link" (click)="logout()">LogOut</a>-->
-    <!--      </li>-->
-    <!--    </ul>-->
     <div class="navbar__language"><app-languages></app-languages></div>
   </div>
 
