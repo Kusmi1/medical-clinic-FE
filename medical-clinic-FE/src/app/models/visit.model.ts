@@ -24,3 +24,14 @@ interface User {
   surname: string;
   pesel: string;
 }
+
+export interface MedicalClinic {
+  id: number;
+  name: string;
+  street: string;
+  cityName: string;
+  houseNo: string;
+  flatNo?: string;
+  postCode: string;
+  city: string;
+}

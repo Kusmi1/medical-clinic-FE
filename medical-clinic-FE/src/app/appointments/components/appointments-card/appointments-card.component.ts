@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-appointments-card',
@@ -18,6 +20,7 @@ export class AppointmentsCardComponent {
   @Output() clickAgainMakeAppointmentButton: EventEmitter<void> = new EventEmitter<void>();
   @Output() clickCancelButton: EventEmitter<void> = new EventEmitter<void>();
 
+  constructor(private snackBar: MatSnackBar) {}
   againMakeAppointment(): void {
     this.clickAgainMakeAppointmentButton.emit();
   }

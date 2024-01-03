@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { VisitModel } from '../../models/visit.model';
+import { MedicalClinic, VisitModel } from '../../models/visit.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SpecializationModel } from '../../models/specialization.model';
@@ -22,7 +22,6 @@ const httpOptionsString = {
   providedIn: 'root',
 })
 export class AppointmentsService {
-  // visitId:string = 0;
   constructor(
     private http: HttpClient,
     private tokenStorageService: TokenStorageService
@@ -30,6 +29,10 @@ export class AppointmentsService {
 
   getAllUsers(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(`${USER_API}/all`);
+  }
+  getAllMedicalClinics(): Observable<MedicalClinic[]> {
+    const url = 'http://localhost:8080/api/medicalClinics/all-clinics';
+    return this.http.get<MedicalClinic[]>(url);
   }
   getPastBookedVisits(): Observable<VisitModel[]> {
     const userId = this.tokenStorageService.getUserId();
@@ -80,13 +83,20 @@ export class AppointmentsService {
     return this.http.get<DoctorModel[]>(url);
   }
 
-  addVisit(visitDate: string, doctorId: number, hours: string, price: number): Observable<any> {
+  addVisit(
+    visitDate: string,
+    doctorId: number,
+    hours: string,
+    price: number,
+    clinicId: number
+  ): Observable<any> {
     const url = `${VISIT_API}/add-visit`;
     const params = new HttpParams()
       .set('visitDate', visitDate)
       .set('doctorId', doctorId)
       .set('hours', hours)
-      .set('price', price);
+      .set('price', price)
+      .set('clinicId', clinicId);
 
     const httpOptionsParams = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

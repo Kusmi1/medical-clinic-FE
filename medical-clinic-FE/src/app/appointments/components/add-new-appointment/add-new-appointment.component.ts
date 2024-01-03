@@ -4,20 +4,22 @@ import { filter, map, Observable, startWith, switchMap } from 'rxjs';
 import { SpecializationModel } from '../../../models/specialization.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctorModel } from '../../../models/doctor.model';
-import { HoursModel } from '../../../models/visit.model';
+import { HoursModel, MedicalClinic } from '../../../models/visit.model';
 import { SnackbarService } from '../../../guard/snackbar.service';
 import { Router } from '@angular/router';
 import { formatDate, Location } from '@angular/common';
 
 @Component({
-  selector: 'app-board-nurse',
-  templateUrl: './board-nurse.component.html',
-  styleUrls: ['./board-nurse.component.scss'],
+  selector: 'app-add-new-appointment',
+  templateUrl: './add-new-appointment.component.html',
+  styleUrls: ['./add-new-appointment.component.scss'],
 })
-export class BoardNurseComponent implements OnInit {
+export class AddNewAppointmentComponent implements OnInit {
   filteredOptions: Observable<SpecializationModel[]> | undefined;
+  filteredClinics: Observable<MedicalClinic[]> | undefined;
   visitForm: FormGroup;
   options: SpecializationModel[] = [];
+  clinicList: MedicalClinic[] = [];
   startDate: Date = new Date();
   doctors: DoctorModel[] = [];
   doctorUnavailable = false;
@@ -41,17 +43,35 @@ export class BoardNurseComponent implements OnInit {
         name: [''],
         surname: [''],
       }),
+
+      medicalClinic: this.fb.group({
+        id: [null],
+        name: [''],
+        street: [''],
+        cityName: [''],
+        houseNo: [''],
+        flatNo: [''],
+        postCode: [''],
+      }),
     });
   }
 
   ngOnInit(): void {
     this.loadSpecializations();
+    this.loadMedicalClinic();
     this.filteredOptions = this.visitForm.controls['specialization'].valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || ''))
     );
+
+    this.filteredClinics = this.visitForm
+      .get('medicalClinic')
+      ?.get('name')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map(value => this.filterClinics(value || ''))
+      );
     this.allDoctors();
-    console.log;
   }
 
   private _filter(value: string): SpecializationModel[] {
@@ -59,9 +79,16 @@ export class BoardNurseComponent implements OnInit {
 
     return this.options!.filter(option => option.name.toLowerCase().includes(filterValue));
   }
+
+  private filterClinics(value: string): MedicalClinic[] {
+    const filterValue = value.toLowerCase();
+
+    return this.clinicList!.filter(option => option.name.toLowerCase().includes(filterValue));
+  }
   clearResult() {
     this.visitForm.get('specialization')?.setValue('');
   }
+
   loadSpecializations() {
     this.appointmentsService.getAllSpecializations().subscribe(
       specializations => {
@@ -71,6 +98,18 @@ export class BoardNurseComponent implements OnInit {
         console.error('Error fetching specializations', error);
       }
     );
+  }
+  loadMedicalClinic() {
+    this.appointmentsService.getAllMedicalClinics().subscribe(
+      clinics => {
+        this.clinicList = clinics;
+        console.log('this.clinicList ', this.clinicList);
+      },
+      error => {
+        console.error('Error fetching clinics', error);
+      }
+    );
+    console.log(' this.clinicList ', this.clinicList);
   }
 
   allDoctors() {
@@ -100,14 +139,22 @@ export class BoardNurseComponent implements OnInit {
     });
     console.log('doctorId', this.visitForm.get('doctor')?.value);
   }
-
+  setClinicId(selectedClinic: MedicalClinic) {
+    this.visitForm.get('medicalClinic')?.patchValue({
+      id: selectedClinic.id,
+      name: selectedClinic.name,
+      surname: selectedClinic.city,
+    });
+    console.log('doctorId', this.visitForm.get('medicalClinic')?.value);
+  }
   addVisit(): void {
     const visitDate = formatDate(this.visitForm.get('chosenDate')?.value, 'yyy-MM-dd', 'pl');
     const doctorId = this.visitForm.get('doctor.id')?.value;
-    const hours = this.visitForm.get('hour')?.value; // Replace with actual hours
-    const price = this.visitForm.get('price')?.value; // Replace with actual price
+    const hours = this.visitForm.get('hour')?.value;
+    const price = this.visitForm.get('price')?.value;
+    const clinicId = this.visitForm.get('medicalClinic.id')?.value;
 
-    this.appointmentsService.addVisit(visitDate, doctorId, hours, price).subscribe(
+    this.appointmentsService.addVisit(visitDate, doctorId, hours, price, clinicId).subscribe(
       () => {
         this.snackBarService.snackMessage('Wizyta dodana poprawnie');
         this.doctorUnavailable = false;
@@ -127,6 +174,7 @@ export class BoardNurseComponent implements OnInit {
   cancelClicked() {
     this.location.back();
   }
+
   resetForm() {
     this.visitForm.reset({
       specialization: '',

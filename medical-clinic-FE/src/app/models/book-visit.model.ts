@@ -8,12 +8,3 @@ export interface UserModel {
   surname: string;
   // pesel: string;
 }
-
-// interface Address {
-//   country: string;
-//   street: string;
-//   cityName: string;
-//   houseNo: string;
-//   flatNo?: string;
-//   postCode: string;
-// }

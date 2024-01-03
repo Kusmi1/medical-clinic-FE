@@ -9,7 +9,7 @@ export class SnackbarService {
 
   authError(message: string) {
     this.snackBar.open(message, 'OK', {
-      duration: 5000,
+      duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       panelClass: ['blue-snackbar'],
@@ -17,7 +17,7 @@ export class SnackbarService {
   }
   registerInfo(message: string) {
     this.snackBar.open(message, 'OK', {
-      duration: 5000,
+      duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       panelClass: ['blue-snackbar'],
@@ -26,7 +26,7 @@ export class SnackbarService {
 
   snackMessage(message: string) {
     this.snackBar.open(message, 'OK', {
-      duration: 2000,
+      duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       // panelClass: ['blue-snackbar'],

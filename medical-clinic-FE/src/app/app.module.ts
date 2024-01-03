@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { BoardNurseComponent } from './appointments/components/board-nurse/board-nurse.component';
+import { AddNewAppointmentComponent } from './appointments/components/add-new-appointment/add-new-appointment.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -38,7 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegisterComponent,
     LoginComponent,
     MainPageComponent,
-    BoardNurseComponent,
+    AddNewAppointmentComponent,
     BoardModeratorComponent,
     BoardUserComponent,
     NavBarComponent,

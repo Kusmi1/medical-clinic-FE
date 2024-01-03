@@ -30,6 +30,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ManageAppointmentsComponent } from './components/manage-appointments/manage-appointments.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     RecentAppointmentsComponent,
@@ -40,6 +42,7 @@ import { ManageAppointmentsComponent } from './components/manage-appointments/ma
     ChooseDoctorComponent,
     FutureAppointmentComponent,
     ManageAppointmentsComponent,
+    ConfirmDialogComponent,
   ],
   exports: [NewAppointmentComponent],
   imports: [
@@ -56,6 +59,7 @@ import { ManageAppointmentsComponent } from './components/manage-appointments/ma
     MatButtonModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatDialogModule,
   ],
 })
 export class AppointmentsModule {}

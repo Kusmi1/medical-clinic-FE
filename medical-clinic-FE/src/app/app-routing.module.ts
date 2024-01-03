@@ -5,7 +5,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardNurseComponent } from './appointments/components/board-nurse/board-nurse.component';
+import { AddNewAppointmentComponent } from './appointments/components/add-new-appointment/add-new-appointment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
