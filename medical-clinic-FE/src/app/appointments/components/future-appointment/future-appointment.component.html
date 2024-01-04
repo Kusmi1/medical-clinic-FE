@@ -7,5 +7,6 @@
     [date]="visit.date"
     [hour]="visit.hour"
     [isFutureDate]="true"
-    (click)="deleteVisit(visit)"></app-appointments-card>
+    [clinic]="visit.medicalClinic"
+    (clickCancelButton)="deleteVisit(visit)"></app-appointments-card>
 </div>

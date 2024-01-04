@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MedicalClinic, VisitModel } from '../../../models/visit.model';
 
 @Component({
   selector: 'app-appointments-card',
@@ -13,19 +13,12 @@ export class AppointmentsCardComponent {
   @Input() doctorSurname = '';
   @Input() date = '';
   @Input() hour = '';
-  @Input() address = '';
+  @Input() clinic: MedicalClinic | undefined;
   @Input() isFutureDate = false;
+  @Input() showDetailsButton = false;
   @Input() user = '';
 
-  @Output() clickAgainMakeAppointmentButton: EventEmitter<void> = new EventEmitter<void>();
-  @Output() clickCancelButton: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor(private snackBar: MatSnackBar) {}
-  againMakeAppointment(): void {
-    this.clickAgainMakeAppointmentButton.emit();
-  }
-
-  cancelAppointment(): void {
-    this.clickCancelButton.emit();
-  }
+  @Output() clickAgainMakeAppointmentButton: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() clickCancelButton: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() clickDetailsButton: EventEmitter<Event> = new EventEmitter<Event>();
 }

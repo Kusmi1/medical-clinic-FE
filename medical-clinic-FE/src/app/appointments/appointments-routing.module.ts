@@ -5,8 +5,9 @@ import { RecentAppointmentsComponent } from './components/recent-appointments/re
 import { NewAppointmentComponent } from './components/new-appointment/new-appointment.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
-import { AddNewAppointmentComponent } from './components/add-new-appointment/add-new-appointment.component';
-import { ManageAppointmentsComponent } from './components/manage-appointments/manage-appointments.component';
+import { AddNewAppointmentComponent } from './components/nurse/add-new-appointment/add-new-appointment.component';
+import { ManageAppointmentsComponent } from './components/nurse/manage-appointments/manage-appointments.component';
+import { AppointmentsPreviewComponent } from './components/doctor/appointments-preview/appointments-preview.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
       {
         path: 'manage-appointments',
         component: ManageAppointmentsComponent,
+      },
+      {
+        path: 'preview-appointments',
+        component: AppointmentsPreviewComponent,
       },
     ],
   },

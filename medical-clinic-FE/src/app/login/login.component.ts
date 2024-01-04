@@ -21,10 +21,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   matcher: CustomErrorStateMatcher = new CustomErrorStateMatcher();
   hide = true;
-  // form: any = {
-  //   username: null,
-  //   password: null,
-  // };
+
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';

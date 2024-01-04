@@ -28,20 +28,37 @@
     </div>
 
     <div class="appointments-card__container">
-      <p class="appointments-card__container-address">ul.Poznańska 18, 04-100 Warszawa</p>
+      {{ clinic?.name }}, ul.{{ clinic?.street }} {{ clinic?.houseNo
+      }}<span *ngIf="clinic?.flatNo">/{{ clinic?.flatNo }}</span
+      >, {{ clinic?.postalCode }} {{ clinic?.city }}
     </div>
     <div class="appointments-card__container-text" *ngIf="user !== ''">Pacjent: {{ user }}</div>
-    <div class="appointments-card__button-container">
-      <button
-        (click)="cancelAppointment()"
-        class="appointments-card__button-red"
-        *ngIf="isFutureDate; else pastAppointment">
-        {{ 'button.cancel' | translate }}
-      </button>
-      <ng-template #pastAppointment>
-        <button (click)="againMakeAppointment()" class="appointments-card__button">
-          {{ 'button.book-again' | translate }}
+    <div>
+      <div class="appointments-card__button-container" *ngIf="isFutureDate; else pastAppointment">
+        <button
+          (click)="clickCancelButton.emit($event)"
+          class="appointments-card__button appointments-card__button-red">
+          {{ 'button.cancel' | translate }}
         </button>
+
+        <button
+          *ngIf="showDetailsButton"
+          (click)="clickDetailsButton.emit($event)"
+          class="appointments-card__button">
+          {{ 'button.show-details' | translate }}
+        </button>
+      </div>
+      <ng-template #pastAppointment>
+        <div class="appointments-card__button-container">
+          <button
+            (click)="clickAgainMakeAppointmentButton.emit($event)"
+            class="appointments-card__button">
+            {{ 'button.book-again' | translate }}
+          </button>
+          <button (click)="clickDetailsButton.emit($event)" class="appointments-card__button">
+            {{ 'button.show-details' | translate }}
+          </button>
+        </div>
       </ng-template>
     </div>
   </div>

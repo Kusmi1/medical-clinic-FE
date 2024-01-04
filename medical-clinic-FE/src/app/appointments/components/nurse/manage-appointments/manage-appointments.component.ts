@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest, filter, map, Observable, of, startWith, switchMap } from 'rxjs';
-import { SpecializationModel } from '../../../models/specialization.model';
+import {
+  combineLatest,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  Observable,
+  of,
+  startWith,
+  switchMap,
+} from 'rxjs';
+import { SpecializationModel } from '../../../../models/specialization.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DoctorModel } from '../../../models/doctor.model';
-import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
-import { SnackbarService } from '../../../guard/snackbar.service';
+import { DoctorModel } from '../../../../models/doctor.model';
+import { AppointmentsService } from '../../../../services/appointments-services/appointments.service';
+import { SnackbarService } from '../../../../guard/snackbar.service';
 import { formatDate, Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { HoursModel, VisitModel } from '../../../models/visit.model';
-import { UserModel } from '../../../models/book-visit.model';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { HoursModel, VisitModel } from '../../../../models/visit.model';
+import { UserModel } from '../../../../models/book-visit.model';
+import { ConfirmDialogComponent } from '../../popup-window/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -23,9 +33,10 @@ export class ManageAppointmentsComponent implements OnInit {
   visitForm: FormGroup;
   options: SpecializationModel[] = [];
   doctors: DoctorModel[] = [];
-
+  filteredUsersByTerm: UserModel[] = [];
   userList: UserModel[] = [];
-  filteredUser: Observable<UserModel[]> | undefined;
+  userSearchControl = new FormControl();
+
   constructor(
     private appointmentsService: AppointmentsService,
     private fb: FormBuilder,
@@ -35,6 +46,7 @@ export class ManageAppointmentsComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.visitForm = this.fb.group({
+      userSearchControl: new FormControl(),
       specialization: [''],
       userSearch: [''],
       user: this.fb.group({
@@ -52,14 +64,18 @@ export class ManageAppointmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSpecializations();
+    this.allDoctors();
+    this.allUsers();
+    this.loadFutureVisits();
+    this.userSearchControl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(searchTerm => {
+        this.filteredUsersByTerm = this.filterUsersBySeachTerm(searchTerm);
+      });
     this.filteredOptions = this.visitForm.controls['specialization'].valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || ''))
     );
-
-    this.allDoctors();
-    this.allUsers();
-    this.loadFutureVisits();
   }
 
   private _filter(value: string): SpecializationModel[] {
@@ -83,28 +99,26 @@ export class ManageAppointmentsComponent implements OnInit {
     );
   }
 
-  allUsers() {
-    this.filteredUser = this.visitForm.get('userSearch')?.valueChanges.pipe(
-      startWith(''),
-      map(value => this.filterUsers(value))
-    );
+  filterUsersBySeachTerm(searchTerm: string): UserModel[] {
+    console.log('searchTerm', searchTerm);
+    if (searchTerm != '') {
+      return this.filteredUsersByTerm.filter(
+        user =>
+          user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.surname.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else console.log('else searchTerm', searchTerm);
+    return this.filteredUsersByTerm;
+  }
 
+  allUsers() {
     this.appointmentsService.getAllUsers().subscribe(
       users => {
-        this.userList = users;
-        this.filteredUser = of(this.userList);
+        this.filteredUsersByTerm = users;
       },
       error => {
         console.error('Error fetching users', error);
       }
-    );
-    console.log('userSearch', this.visitForm.get('userSearch')?.value);
-  }
-
-  filterUsers(value: string): UserModel[] {
-    const filterValue = value.toLowerCase();
-    return this.userList.filter(user =>
-      (user.name.toLowerCase() + ' ' + user.surname.toLowerCase()).includes(filterValue)
     );
   }
 
@@ -215,7 +229,7 @@ export class ManageAppointmentsComponent implements OnInit {
   resetForm() {
     this.visitForm.reset({
       specialization: '',
-      userSearch: '',
+      userSearchControl: '',
       user: {
         id: null,
         name: '',
@@ -227,5 +241,6 @@ export class ManageAppointmentsComponent implements OnInit {
         surname: '',
       },
     });
+    this.allUsers();
   }
 }

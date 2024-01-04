@@ -1,6 +1,5 @@
 .appointments-card {
   display: grid;
-  //flex-flow: column;
   grid-template-columns: 1fr 1fr;
   background-color: var(--white);
   box-shadow: var(--box-shadow);
@@ -46,7 +45,6 @@
 
     &-text {
       font-size: 1.125rem;
-      //padding: 0.25rem;
     }
     &-hour {
       font-weight: 500;
@@ -58,6 +56,11 @@
       font-size: 0.875rem;
       margin-top: 0.5rem;
     }
+  }
+  &__button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   &__image {
@@ -76,20 +79,12 @@
     font-size: 1rem;
 
     &:hover {
-      padding: 0.75rem;
+      cursor: pointer;
     }
 
     &-red {
-      margin-top: 0.75rem;
       background-color: var(--alert-error);
-      padding: 0.5rem;
       border: 1px solid var(--alert-error);
-      border-radius: 0.5rem;
-      font-size: 1rem;
-
-      &:hover {
-        padding: 0.75rem;
-      }
     }
   }
 }

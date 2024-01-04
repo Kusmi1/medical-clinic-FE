@@ -4,7 +4,8 @@
     "back": "Cofnij",
     "logout": "Wyloguj",
     "book-again": "Umów Ponownie",
-    "cancel": "Anuluj Wizytę"
+    "cancel": "Anuluj Wizytę",
+    "show-details": "Pokaż szczegóły"
   },
   "hint": {
     "insert": "insert ",
@@ -13,12 +14,13 @@
   "nav": {
     "menu": "Login",
     "regButton": "Zarejestruj",
-    "recent-appointment": "Twoje wizyty",
+    "recent-appointment": "Odbyte wizyty",
     "add-appointment": "Dodaj Wizytę",
     "make-appointment": "Umów Wizytę",
     "main-page": "Główna Strona",
     "all-visits": "Wszystkie wizyty",
-    "manage-appointments": "Zarządzaj wizytami"
+    "manage-appointments": "Zarządzaj wizytami",
+    "show-appointments": "Podgląd wizyt"
   },
   "register": {
     "email": "Email",

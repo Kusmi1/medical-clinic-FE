@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MedicalClinic, VisitModel } from '../../models/visit.model';
+import { MedicalClinic, VisitDetails, VisitModel } from '../../models/visit.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SpecializationModel } from '../../models/specialization.model';
@@ -11,6 +11,7 @@ import { UserModel } from '../../models/book-visit.model';
 const VISIT_API = 'http://localhost:8080/api/visit';
 const USER_API = 'http://localhost:8080/api/user';
 const DOCTOR_API = 'http://localhost:8080/api/doctor';
+const VISIT_DETAILS_API = 'http://localhost:8080/api/visit-details';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -29,6 +30,11 @@ export class AppointmentsService {
 
   getAllUsers(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(`${USER_API}/all`);
+  }
+
+  getUser(): Observable<UserModel> {
+    const userId = this.tokenStorageService.getUserId();
+    return this.http.get<UserModel>(`${USER_API}/${userId}`);
   }
   getAllMedicalClinics(): Observable<MedicalClinic[]> {
     const url = 'http://localhost:8080/api/medicalClinics/all-clinics';
@@ -122,5 +128,12 @@ export class AppointmentsService {
     }
 
     return this.http.get<any>(url, { params });
+  }
+
+  addVisitDetails(visitId: string, visitDetailsDto: VisitDetails): Observable<any> {
+    return this.http.post(`${VISIT_DETAILS_API}/add/${visitId}`, visitDetailsDto);
+  }
+  getVisitDetailsByVisitId(visitId: string): Observable<VisitDetails> {
+    return this.http.get<VisitDetails>(`${VISIT_DETAILS_API}/${visitId}`);
   }
 }

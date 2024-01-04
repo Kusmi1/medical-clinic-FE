@@ -1,0 +1,33 @@
+.dialog {
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+  .mat-h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__input {
+    height: 200px;
+  }
+  &__textarea {
+    height: 140px;
+    overflow-y: auto;
+  }
+  &__button {
+    background-color: var(--primary-color);
+    padding: 0.5rem;
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__detail {
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}

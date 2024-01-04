@@ -32,11 +32,18 @@
   <div class="manage__container">
     <mat-form-field class="example-full-width">
       <mat-label>Wybierz Pacjenta</mat-label>
-      <input type="text" placeholder="Wybierz Pacjenta" matInput formControlName="userSearch" />
+      <input
+        type="text"
+        placeholder="Wybierz Pacjenta"
+        matInput
+        [formControl]="userSearchControl" />
     </mat-form-field>
 
-    <mat-radio-group class="manage__list-doctor" formGroupName="user" aria-label="Select a user">
-      <mat-radio-button (click)="setUserId(user)" *ngFor="let user of userList" [value]="user.id">
+    <mat-radio-group class="manage__list-doctor" aria-label="Select a user">
+      <mat-radio-button
+        (click)="setUserId(user)"
+        *ngFor="let user of filteredUsersByTerm"
+        [value]="user.id">
         {{ user.name }} {{ user.surname }}
       </mat-radio-button>
     </mat-radio-group>
@@ -53,7 +60,8 @@
       [date]="visit.date"
       [hour]="visit.hour"
       [isFutureDate]="true"
-      (click)="deleteVisit(visit)"
+      (clickCancelButton)="deleteVisit(visit)"
+      [clinic]="visit.medicalClinic"
       [user]="visit.userName + ' ' + visit.userSurname"></app-appointments-card>
   </div>
 </form>

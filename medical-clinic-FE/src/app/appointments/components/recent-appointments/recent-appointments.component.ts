@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
-import { VisitModel } from '../../../models/visit.model';
+import { VisitDetails, VisitModel } from '../../../models/visit.model';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AppointmentDetailsPopupComponent } from '../popup-window/appointment-details-popup/appointment-details-popup.component';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-recent-appointments',
@@ -10,13 +13,16 @@ import { Router } from '@angular/router';
 })
 export class RecentAppointmentsComponent implements OnInit {
   pastVisits: VisitModel[] | undefined;
+
   constructor(
     private appointmentsService: AppointmentsService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.loadPastVisits();
+    console.log('this.pastVisits ', this.pastVisits);
   }
 
   loadPastVisits(): void {
@@ -32,5 +38,28 @@ export class RecentAppointmentsComponent implements OnInit {
     this.router.navigate(['visit', 'new-visit'], {
       queryParams: { specialization: specializationName },
     });
+  }
+
+  openUpdateDialog(visitId: string) {
+    this.getDetailsOfVisit(visitId).subscribe(visitDetails => {
+      this.dialog.open(AppointmentDetailsPopupComponent, {
+        width: '500px',
+        height: '600px',
+        data: {
+          medicines: visitDetails.medicines,
+          description: visitDetails.description,
+        },
+      });
+      console.log('visitDetails', visitDetails.medicines, visitDetails.description);
+    });
+  }
+  getDetailsOfVisit(visitId: string): Observable<VisitDetails> {
+    return this.appointmentsService.getVisitDetailsByVisitId(visitId).pipe(
+      tap(visitDetails => console.log('Visit Details retrieved successfully', visitDetails)),
+      catchError(error => {
+        console.error('There was an error retrieving the visit details', error);
+        return throwError(error);
+      })
+    );
   }
 }

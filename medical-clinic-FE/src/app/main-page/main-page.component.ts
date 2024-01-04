@@ -8,19 +8,3 @@ import { TokenStorageService } from '../services/auth/token-storage.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent {}
-
-//   content?: string;
-//
-//   constructor(private userService: UserService) {}
-//
-//   ngOnInit(): void {
-//     this.userService.getPublicContent().subscribe({
-//       next: data => {
-//         this.content = data;
-//       },
-//       error: err => {
-//         this.content = JSON.parse(err.error).message;
-//       },
-//     });
-//   }
-// }
