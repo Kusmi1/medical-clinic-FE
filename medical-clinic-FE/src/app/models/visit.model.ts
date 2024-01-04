@@ -1,5 +1,5 @@
 export interface VisitModel {
-  id: string;
+  visitId: string;
   specialization: string;
   doctorName: string;
   doctorSurname: string;
@@ -9,6 +9,7 @@ export interface VisitModel {
   hour: string;
   hours: HoursModel[];
   user: User;
+  medicalClinic: MedicalClinic;
 }
 
 export interface HoursModel {
@@ -32,6 +33,11 @@ export interface MedicalClinic {
   cityName: string;
   houseNo: string;
   flatNo?: string;
-  postCode: string;
+  postalCode: string;
   city: string;
+}
+
+export interface VisitDetails {
+  medicines: string;
+  description: string;
 }

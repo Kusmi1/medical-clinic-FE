@@ -27,6 +27,7 @@ export class TokenStorageService {
 
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
+
     if (user) {
       return JSON.parse(user);
     }
@@ -37,5 +38,12 @@ export class TokenStorageService {
   public getUserId(): number | null {
     const user = this.getUser();
     return user ? user.id : null;
+  }
+  public getUserData() {
+    const user = this.getUser();
+    if (user) {
+      return user.name;
+    }
+    return null;
   }
 }

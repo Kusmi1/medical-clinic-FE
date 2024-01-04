@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
+import { AppointmentsService } from '../../../../services/appointments-services/appointments.service';
 import { filter, map, Observable, startWith, switchMap } from 'rxjs';
-import { SpecializationModel } from '../../../models/specialization.model';
+import { SpecializationModel } from '../../../../models/specialization.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DoctorModel } from '../../../models/doctor.model';
-import { HoursModel, MedicalClinic } from '../../../models/visit.model';
-import { SnackbarService } from '../../../guard/snackbar.service';
+import { DoctorModel } from '../../../../models/doctor.model';
+import { HoursModel, MedicalClinic } from '../../../../models/visit.model';
+import { SnackbarService } from '../../../../guard/snackbar.service';
 import { Router } from '@angular/router';
 import { formatDate, Location } from '@angular/common';
 
@@ -137,15 +137,11 @@ export class AddNewAppointmentComponent implements OnInit {
       name: selectedDoctor.name,
       surname: selectedDoctor.surname,
     });
-    console.log('doctorId', this.visitForm.get('doctor')?.value);
   }
   setClinicId(selectedClinic: MedicalClinic) {
     this.visitForm.get('medicalClinic')?.patchValue({
       id: selectedClinic.id,
-      name: selectedClinic.name,
-      surname: selectedClinic.city,
     });
-    console.log('doctorId', this.visitForm.get('medicalClinic')?.value);
   }
   addVisit(): void {
     const visitDate = formatDate(this.visitForm.get('chosenDate')?.value, 'yyy-MM-dd', 'pl');
@@ -159,8 +155,8 @@ export class AddNewAppointmentComponent implements OnInit {
         this.snackBarService.snackMessage('Wizyta dodana poprawnie');
         this.doctorUnavailable = false;
         setTimeout(() => {
-          this.resetForm();
-        }, 2500);
+          window.location.reload();
+        }, 1000);
       },
 
       error => {

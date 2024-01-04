@@ -6,6 +6,8 @@
     [doctorSurname]="visit.doctorSurname"
     [date]="visit.date"
     [hour]="visit.hour"
+    [clinic]="visit.medicalClinic"
+    (clickDetailsButton)="openUpdateDialog(visit.visitId)"
     (clickAgainMakeAppointmentButton)="
       navigateToNewVisit(visit.specialization)
     "></app-appointments-card>

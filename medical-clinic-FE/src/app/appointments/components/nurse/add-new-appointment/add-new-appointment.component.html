@@ -22,8 +22,10 @@
           (click)="setClinicId(clinic)"
           *ngFor="let clinic of clinicList"
           [value]="clinic.name"
-          >{{ clinic.name }}</mat-option
-        >
+          >{{ clinic.name }}, ul.{{ clinic.street }} {{ clinic.houseNo
+          }}<span *ngIf="clinic.flatNo">/{{ clinic.flatNo }}</span
+          >, {{ clinic.postalCode }} {{ clinic.city }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width">

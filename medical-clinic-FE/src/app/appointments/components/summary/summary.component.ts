@@ -26,11 +26,8 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.visitIdString = params.get('visitId')!;
-      // const visitIdString = params.get('visitId');
       if (this.visitIdString) {
-        // this.visitId = Number(visitIdString);
         this.loadVisitById(this.visitIdString);
-        // this.loadVisitById(this.visitId);
       }
     });
   }

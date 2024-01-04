@@ -29,9 +29,12 @@ import { ChooseDoctorComponent } from './components/choose-doctor/choose-doctor.
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ManageAppointmentsComponent } from './components/manage-appointments/manage-appointments.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ManageAppointmentsComponent } from './components/nurse/manage-appointments/manage-appointments.component';
+import { ConfirmDialogComponent } from './components/popup-window/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AppointmentsPreviewComponent } from './components/doctor/appointments-preview/appointments-preview.component';
+import { InputDialogComponent } from './components/popup-window/input-dialog/input-dialog.component';
+import { AppointmentDetailsPopupComponent } from './components/popup-window/appointment-details-popup/appointment-details-popup.component';
 @NgModule({
   declarations: [
     RecentAppointmentsComponent,
@@ -43,6 +46,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     FutureAppointmentComponent,
     ManageAppointmentsComponent,
     ConfirmDialogComponent,
+    AppointmentsPreviewComponent,
+    InputDialogComponent,
+    AppointmentDetailsPopupComponent,
   ],
   exports: [NewAppointmentComponent],
   imports: [

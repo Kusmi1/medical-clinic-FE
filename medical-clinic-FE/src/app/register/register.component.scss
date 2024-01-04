@@ -1,6 +1,7 @@
 $register-width: 80%;
 $register-background-color: white;
 $register-button-color: var(--primary-green);
+
 .register {
   display: grid;
   background-color: $register-background-color;
@@ -8,8 +9,6 @@ $register-button-color: var(--primary-green);
   border-radius: 0.5rem;
   width: 400px;
   max-width: 400px;
-  //background-color: #0e0101;
-  //height: $register-height;
   display: block;
   margin-left: auto;
   margin-right: auto;

@@ -1,0 +1,25 @@
+.popup {
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+  &__button {
+    background-color: var(--alert-error);
+    padding: 1rem;
+    margin-left: 1rem;
+  }
+  &__detail {
+    //display: flex;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  &__value {
+    width: 100%;
+    height: 60%;
+    resize: none;
+    border: none;
+    background: transparent;
+    overflow-y: scroll;
+    white-space: pre-wrap;
+  }
+}

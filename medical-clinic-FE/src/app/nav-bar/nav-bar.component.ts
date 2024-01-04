@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../services/auth/token-storage.service';
+import { AppointmentsService } from '../services/appointments-services/appointments.service';
+import { of } from 'rxjs';
+import { UserModel } from '../models/book-visit.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,27 +16,33 @@ export class NavBarComponent implements OnInit {
   showNurseBoard = false;
   username?: string;
   id?: string;
-  firstName?: string;
-  lastName?: string;
+  userRole?: string;
+  userList: UserModel | undefined;
 
-  constructor(private tokenStorageService: TokenStorageService) {}
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private appointmentsService: AppointmentsService
+  ) {}
 
   ngOnInit(): void {
     console.log('showNurseBoard ', this.showNurseBoard);
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
+      console.log('userList 2 ', this.userList);
       const user = this.tokenStorageService.getUser();
-
+      this.mapRole(user.roles);
+      this.getUserById();
       this.roles = user.roles;
-
       this.showDoctorBoard = this.roles.includes('ROLE_DOCTOR');
       this.showNurseBoard = this.roles.includes('ROLE_NURSE');
+      // if (this.roles[0] != 'ROLE_USER') {
+      //   this.userRole = user.roles;
+      // }
 
       this.username = user.username;
+      // this.username = this.firstName;
       this.id = user.id;
-      this.firstName = user.firstName;
-      this.lastName = user.lastName;
       console.log('id ', user.id);
     }
   }
@@ -45,5 +54,21 @@ export class NavBarComponent implements OnInit {
 
   userId() {
     console.log(this.tokenStorageService.getUserId());
+  }
+  getUserById() {
+    this.appointmentsService.getUser().subscribe(user => {
+      this.userList = user;
+
+      console.log('this.surname in method ', this.userList);
+    });
+  }
+  mapRole(roles: string[]) {
+    if (this.roles[0] != 'ROLE_USER') {
+      if (roles.includes('ROLE_DOCTOR')) {
+        this.userRole = 'Lekarz';
+      } else if (roles.includes('ROLE_NURSE')) {
+        this.userRole = 'Pielęgniarka';
+      }
+    }
   }
 }

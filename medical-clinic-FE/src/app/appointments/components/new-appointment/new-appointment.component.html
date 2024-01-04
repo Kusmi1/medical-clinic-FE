@@ -59,7 +59,6 @@
     </p>
 
     <ng-template #noVisits>
-      <!-- Error message for no available visits -->
       <p class="new-appointment__error" *ngIf="visitForm.get('chosenDate')?.value; else noData">
         Brak dostępnych wizyt dnia {{ visitForm.get('chosenDate')!.value | date: 'yyyy-MM-dd' }}
       </p>

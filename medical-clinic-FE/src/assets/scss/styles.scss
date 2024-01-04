@@ -106,3 +106,8 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+.big-snackbar {
+  font-size: 20px; /* Adjust font size as needed */
+  height: 500px; /* Set a larger height */
+  line-height: 500px; /* Align text vertically */
+}
