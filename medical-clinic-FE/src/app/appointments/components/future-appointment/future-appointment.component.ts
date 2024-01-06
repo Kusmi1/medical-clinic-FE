@@ -30,7 +30,6 @@ export class FutureAppointmentComponent {
 
   loadFutureVisits(): void {
     this.appointmentsService.getFutureBookedVisits().subscribe(visits => {
-      console.log('Received visits:', visits);
       this.futureVisits = visits;
     });
   }
@@ -44,7 +43,6 @@ export class FutureAppointmentComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const visitId = this.getVisitIdFromHours(visit.hours);
-        console.log('visitId ', visitId);
 
         this.appointmentsService.deleteVisit(visitId!).subscribe(
           () => {

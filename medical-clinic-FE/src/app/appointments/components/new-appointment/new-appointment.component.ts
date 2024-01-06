@@ -99,7 +99,6 @@ export class NewAppointmentComponent implements OnInit {
 
   private setupSpecializationListener(): void {
     if (this.specializationFromRoute) {
-      console.log('this.specializationFromRoute ', this.specializationFromRoute);
       this.specializationControl.setValue(this.specializationFromRoute, { emitEvent: false });
 
       this.getVisits(this.specializationFromRoute).subscribe(visits => {
@@ -128,9 +127,6 @@ export class NewAppointmentComponent implements OnInit {
     if (specializationRoute) {
       specialization = specializationRoute;
     }
-
-    console.log('specialization ', specialization, ' date: ', date);
-
     return this.appointmentsService.getAvailableVisitsBySpecialization(specialization, date!).pipe(
       map(visits => {
         return visits;
@@ -156,8 +152,6 @@ export class NewAppointmentComponent implements OnInit {
       visitId: selectedHour.visitId,
       hour: selectedHour.hour,
     });
-
     selectedHour.isSelected = true;
-    console.log(' visitId hour ', this.visitForm.get('chosenHour')?.value);
   }
 }

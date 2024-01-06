@@ -1,0 +1,84 @@
+<form [formGroup]="userForm" class="user" (ngSubmit)="(userForm.valid)">
+  <h2 class="form__header">
+    {{ 'user.title' | translate }}
+  </h2>
+  <div>
+    <mat-form-field class="user__field">
+      <mat-label class="user__label"> {{ 'user.fName' | translate }}</mat-label>
+      <input matInput formControlName="name" type="text" />
+    </mat-form-field>
+
+    <div class="user__error">
+      <ng-container *ngFor="let error of errorMessages.password">
+        <div
+          *ngIf="
+            userForm.get('name')?.hasError(error.type) &&
+            (userForm.get('name')?.dirty || userForm.get('name')?.touched)
+          ">
+          {{ 'errors.fName' + error.type | translate }}
+        </div>
+      </ng-container>
+    </div>
+
+    <mat-form-field class="user__field user__field-sName">
+      <mat-label class="user__label"> {{ 'user.sName' | translate }}</mat-label>
+      <input matInput formControlName="secondName" type="text" />
+    </mat-form-field>
+
+    <mat-form-field class="user__field">
+      <mat-label class="user__label">{{ 'user.lName' | translate }}</mat-label>
+      <input matInput formControlName="lastname" type="text" />
+    </mat-form-field>
+
+    <div class="user__error">
+      <ng-container *ngFor="let error of errorMessages.lastName">
+        <div
+          *ngIf="
+            userForm.get('lastname')?.hasError(error.type) &&
+            (userForm.get('lastname')?.dirty || userForm.get('lastname')?.touched)
+          ">
+          {{ 'errors.lName' + error.type | translate }}
+        </div>
+      </ng-container>
+    </div>
+
+    <mat-form-field class="user__field">
+      <mat-label class="user__label">{{ 'user.userName' | translate }}</mat-label>
+      <input matInput formControlName="userName" type="text" />
+    </mat-form-field>
+
+    <div class="user__error">
+      <ng-container *ngFor="let error of errorMessages.userName">
+        <div
+          *ngIf="
+            userForm.get('userName')?.hasError(error.type) &&
+            (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)
+          ">
+          {{ 'errors.userName' + error.type | translate }}
+        </div>
+      </ng-container>
+    </div>
+    <mat-form-field class="user__field">
+      <mat-label class="user__label">
+        {{ 'user.email' | translate }}
+      </mat-label>
+      <input matInput formControlName="email" type="text" />
+    </mat-form-field>
+
+    <div class="user__error">
+      <ng-container *ngFor="let error of errorMessages.email">
+        <div
+          *ngIf="
+            userForm.get('email')?.hasError(error.type) &&
+            (userForm.get('email')?.dirty || userForm.get('email')?.touched)
+          ">
+          {{ 'errors.email.' + error.type | translate }}
+        </div>
+      </ng-container>
+    </div>
+
+    <button class="user__button" (click)="UpdateUserData()">
+      {{ 'user.button' | translate }}
+    </button>
+  </div>
+</form>

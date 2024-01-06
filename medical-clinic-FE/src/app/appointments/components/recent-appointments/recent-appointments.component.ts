@@ -22,7 +22,6 @@ export class RecentAppointmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPastVisits();
-    console.log('this.pastVisits ', this.pastVisits);
   }
 
   loadPastVisits(): void {

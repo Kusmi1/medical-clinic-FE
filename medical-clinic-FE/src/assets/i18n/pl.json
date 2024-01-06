@@ -22,6 +22,21 @@
     "manage-appointments": "Zarządzaj wizytami",
     "show-appointments": "Podgląd wizyt"
   },
+  "user": {
+    "email": "Email",
+    "title": "Modyfikuj swoje dane",
+    "fName": "Imię",
+    "sName": "Drugie imię",
+    "userName": "nazwa użytkownika",
+    "lName": "Nazwisko",
+    "password": "Hasło",
+    "confpassword": "Potwierdź swoje hasło",
+    "pesel": "pesel",
+    "post-code": "kod pocztowy",
+    "city": "miasto",
+    "street": "ulica",
+    "button": "Zmień dane"
+  },
   "register": {
     "email": "Email",
     "title": "formularz rejestracji",
@@ -31,6 +46,10 @@
     "lName": "Nazwisko",
     "password": "Hasło",
     "confpassword": "Potwierdź swoje hasło",
+    "pesel": "pesel",
+    "post-code": "kod pocztowy",
+    "city": "miasto",
+    "street": "ulica",
     "button": "Zarejestruj"
   },
   "login": {
@@ -56,6 +75,12 @@
       "maxlength": "Email zbyt długi, maks znaków to 40",
       "pattern": " Proszę wprowadź poprawny e-mail"
 
+    },
+
+    "pesel": {
+      "required": "pesel jest wymagany",
+      "minlength": "pesel  jest zbyt krótki, minimum znaków to 6",
+      "maxlength": "pesel  zbyt długi, maks znaków to 40"
     },
     "password":{
       "required": "Hasło jest wymagane",

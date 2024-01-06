@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../services/auth/token-storage.service';
 import { AppointmentsService } from '../services/appointments-services/appointments.service';
-import { of } from 'rxjs';
-import { UserModel } from '../models/book-visit.model';
+import { UserModel } from '../models/user.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,25 +24,17 @@ export class NavBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('showNurseBoard ', this.showNurseBoard);
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
-      console.log('userList 2 ', this.userList);
       const user = this.tokenStorageService.getUser();
       this.mapRole(user.roles);
       this.getUserById();
       this.roles = user.roles;
       this.showDoctorBoard = this.roles.includes('ROLE_DOCTOR');
       this.showNurseBoard = this.roles.includes('ROLE_NURSE');
-      // if (this.roles[0] != 'ROLE_USER') {
-      //   this.userRole = user.roles;
-      // }
-
       this.username = user.username;
-      // this.username = this.firstName;
       this.id = user.id;
-      console.log('id ', user.id);
     }
   }
 
@@ -52,14 +43,9 @@ export class NavBarComponent implements OnInit {
     window.location.reload();
   }
 
-  userId() {
-    console.log(this.tokenStorageService.getUserId());
-  }
   getUserById() {
     this.appointmentsService.getUser().subscribe(user => {
       this.userList = user;
-
-      console.log('this.surname in method ', this.userList);
     });
   }
   mapRole(roles: string[]) {

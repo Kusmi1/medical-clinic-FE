@@ -20,7 +20,6 @@ import { LanguagesComponent } from './languages/languages.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { ProfileComponent } from './profile/profile.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import '@angular/common/locales/global/pl';
@@ -28,6 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
+import { PatientDataComponent } from './patient-data/patient-data.component';
+import { OnlyNumberInputDirective } from './directives/only-number-input.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BoardUserComponent,
     NavBarComponent,
     LanguagesComponent,
-    ProfileComponent,
+    PatientDataComponent,
+    OnlyNumberInputDirective,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -59,7 +61,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     MatNativeDateModule,
-    // MatMomentDateModule,
     MatMenuModule,
     MatInputModule,
     MatSelectModule,

@@ -103,13 +103,11 @@ export class AddNewAppointmentComponent implements OnInit {
     this.appointmentsService.getAllMedicalClinics().subscribe(
       clinics => {
         this.clinicList = clinics;
-        console.log('this.clinicList ', this.clinicList);
       },
       error => {
         console.error('Error fetching clinics', error);
       }
     );
-    console.log(' this.clinicList ', this.clinicList);
   }
 
   allDoctors() {
@@ -164,7 +162,6 @@ export class AddNewAppointmentComponent implements OnInit {
         this.doctorUnavailable = true;
       }
     );
-    console.log('visitDate', visitDate);
   }
 
   cancelClicked() {

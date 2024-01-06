@@ -3,8 +3,10 @@
     display: flex;
     justify-content: space-between;
   }
+
   &__button {
     background-color: var(--primary-color);
+
     &-cancel {
       background-color: var(--alert-error);
     }

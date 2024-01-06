@@ -7,14 +7,18 @@
     padding-right: 0;
     justify-content: center;
     align-items: center;
+    max-height: 50px;
   }
+
   .mat-button-toggle-group-appearance-standard {
     border: 0;
   }
+
   .mat-button-toggle-checked {
     border: 1px solid #c5c0c7;
     background-color: green;
   }
+
   &__container {
     display: flex;
     flex-flow: column;
@@ -29,12 +33,14 @@
   }
   &__choose-visit {
     display: grid;
-    grid-template-columns: 0.6fr 1fr;
+    grid-template-columns: 0.65fr 1fr;
     gap: 1rem;
     font-size: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--primary-color);
     margin-bottom: 1rem;
+    align-items: center;
+
     &-hour {
       overflow: scroll;
     }
@@ -43,6 +49,7 @@
       margin-bottom: 0.5rem;
     }
   }
+
   &__choose-doctor-hour {
     display: flex;
     gap: 1rem;

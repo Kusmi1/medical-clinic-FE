@@ -18,7 +18,7 @@ import { SnackbarService } from '../../../../guard/snackbar.service';
 import { formatDate, Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { HoursModel, VisitModel } from '../../../../models/visit.model';
-import { UserModel } from '../../../../models/book-visit.model';
+import { UserModel } from '../../../../models/user.model';
 import { ConfirmDialogComponent } from '../../popup-window/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -100,12 +100,11 @@ export class ManageAppointmentsComponent implements OnInit {
   }
 
   filterUsersBySeachTerm(searchTerm: string): UserModel[] {
-    console.log('searchTerm', searchTerm);
     if (searchTerm != '') {
       return this.filteredUsersByTerm.filter(
         user =>
           user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.surname.toLowerCase().includes(searchTerm.toLowerCase())
+          user.lastname.toLowerCase().includes(searchTerm.toLowerCase())
       );
     } else console.log('else searchTerm', searchTerm);
     return this.filteredUsersByTerm;
@@ -150,8 +149,6 @@ export class ManageAppointmentsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const visitId = this.getVisitIdFromHours(visit.hours);
-        console.log('visitId ', visitId);
-
         this.appointmentsService.deleteVisit(visitId!).subscribe(
           () => {
             this.snackBarService.snackMessage('Wizyta usunięta poprawnie');
@@ -189,10 +186,6 @@ export class ManageAppointmentsComponent implements OnInit {
   private getVisits(): Observable<any[]> {
     const userId = this.userControl.value;
     const doctorId = this.doctorControl.value;
-
-    console.log('doctorId ', doctorId);
-    console.log('userId ', userId);
-
     return this.appointmentsService.getAllFutureBookedVisits(doctorId, userId).pipe(
       map(visits => {
         return visits;
@@ -214,16 +207,14 @@ export class ManageAppointmentsComponent implements OnInit {
       name: selectedDoctor.name,
       surname: selectedDoctor.surname,
     });
-    console.log('doctor ', this.visitForm.get('doctor')?.value);
   }
 
-  setUserId(selectedUser: DoctorModel) {
+  setUserId(selectedUser: UserModel) {
     this.visitForm.get('user')?.patchValue({
       id: selectedUser.id,
       name: selectedUser.name,
-      surname: selectedUser.surname,
+      surname: selectedUser.lastname,
     });
-    console.log('user ', this.visitForm.get('user')?.value);
   }
 
   resetForm() {
