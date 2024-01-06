@@ -51,13 +51,11 @@ export class PatientDataComponent implements OnInit {
     private snackBar: SnackbarService
   ) {
     this.userForm = this.formBuilder.group({
-      name: new FormControl('', Validators.compose([Validators.required])),
+      firstName: new FormControl('', Validators.compose([Validators.required])),
       secondName: new FormControl(''),
-      lastname: new FormControl('', Validators.compose([Validators.required])),
-      // userName: new FormControl(''),
+      lastName: new FormControl('', Validators.compose([Validators.required])),
       userName: new FormControl({ value: '', disabled: true }),
       pesel: new FormControl({ value: '', disabled: true }),
-      // pesel: new FormControl('', Validators.required),
 
       email: new FormControl(
         '',
@@ -101,30 +99,13 @@ export class PatientDataComponent implements OnInit {
   }
 
   setUserId(userData: UserModel) {
-    // this.userForm.get('email')?.setValue('userData.email');
-    this.userForm.get('name')?.setValue(userData.name);
+    this.userForm.get('firstName')?.setValue(userData.name);
     this.userForm.get('email')?.setValue(userData.email);
     this.userForm.get('pesel')?.setValue(userData.pesel);
     this.userForm.get('userName')?.setValue(userData.userName);
-    this.userForm.get('lastname')?.setValue(userData.lastname);
+    this.userForm.get('lastName')?.setValue(userData.lastname);
     this.userForm.get('password')?.setValue(userData.password);
-
-    console.log('userForm ', this.userForm.get('email')?.value);
-    console.log('password ', this.userForm.get('password')?.value);
-    console.log('firstName', this.userForm.get('firstName')?.valid);
   }
-
-  // onSubmit(): void {
-  //   const newUserData = {
-  //     name: this.userForm.get('name')?.value,
-  //     lastname: this.userForm.get('lastname')?.value,
-  //     secondName: this.userForm.get('secondName')?.value,
-  //     email: this.userForm.get('email')?.value,
-  //     pesel: this.userForm.get('pesel')?.value,
-  //   };
-  //   console.log('newUserData', newUserData);
-  //   this.appointmentService.UpdateUser(newUserData);
-  // }
 
   get f() {
     return this.userForm.controls;
@@ -139,16 +120,15 @@ export class PatientDataComponent implements OnInit {
       email: this.userForm.get('email')?.value,
       pesel: this.userForm.get('pesel')?.value,
     };
-    console.log('newUserData', newUserData);
     this.appointmentService.UpdateUser(newUserData).subscribe(
       response => {
-        this.snackBar.snackMessage('Poprawnie zmieniono dane');
+        this.snackBar.snackMessage('added-data-correctly');
         setTimeout(() => {
           this.router.navigate(['/visit/future-visit']);
         }, 1000);
       },
       error => {
-        this.snackBar.snackMessage('Błąd nie zmieniono danych');
+        this.snackBar.snackMessage('added-data-wrong');
       }
     );
   }

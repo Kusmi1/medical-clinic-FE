@@ -115,12 +115,10 @@ export class RegisterComponent {
   onSubmit(): void {
     const { firstName, lastName, userName, email, pesel, password, secondName } =
       this.registrationForm.value;
-    console.log('pese; ', this.registrationForm.get('pesel')?.value);
     this.authService
       .register(firstName, lastName, userName, email, pesel, password, secondName)
       .subscribe({
         next: data => {
-          console.log('inside', data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
         },
@@ -129,7 +127,6 @@ export class RegisterComponent {
           this.isSignUpFailed = true;
         },
       });
-    console.log('this.registrationForm ', this.registrationForm);
   }
 
   mustMatch(password: any, confirmpassword: any) {

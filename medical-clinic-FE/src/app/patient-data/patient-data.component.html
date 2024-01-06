@@ -5,7 +5,7 @@
   <div>
     <mat-form-field class="user__field">
       <mat-label class="user__label"> {{ 'user.fName' | translate }}</mat-label>
-      <input matInput formControlName="name" type="text" />
+      <input matInput formControlName="firstName" type="text" />
     </mat-form-field>
 
     <div class="user__error">
@@ -27,7 +27,7 @@
 
     <mat-form-field class="user__field">
       <mat-label class="user__label">{{ 'user.lName' | translate }}</mat-label>
-      <input matInput formControlName="lastname" type="text" />
+      <input matInput formControlName="lastName" type="text" />
     </mat-form-field>
 
     <div class="user__error">
@@ -76,6 +76,10 @@
         </div>
       </ng-container>
     </div>
+    <mat-form-field class="user__field">
+      <mat-label class="user__label">{{ 'user.pesel' | translate }}</mat-label>
+      <input matInput formControlName="pesel" type="text" />
+    </mat-form-field>
 
     <button class="user__button" (click)="UpdateUserData()">
       {{ 'user.button' | translate }}

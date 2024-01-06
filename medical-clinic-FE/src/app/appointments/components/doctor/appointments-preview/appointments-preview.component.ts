@@ -93,8 +93,8 @@ export class AppointmentsPreviewComponent implements OnInit {
 
   deleteVisit(visit: VisitModel) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { message: 'Chcesz usunąć tą wizytę?' },
+      width: '300px',
+      data: { message: 'delete-visit' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -103,7 +103,7 @@ export class AppointmentsPreviewComponent implements OnInit {
 
         this.appointmentsService.deleteVisit(visitId!).subscribe(
           () => {
-            this.snackBarService.snackMessage('Wizyta usunięta poprawnie');
+            this.snackBarService.snackMessage('deleted-correctly');
             window.location.reload();
             setTimeout(() => {
               this.loadFutureVisits();

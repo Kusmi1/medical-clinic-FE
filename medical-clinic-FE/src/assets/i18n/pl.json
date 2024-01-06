@@ -4,9 +4,40 @@
     "back": "Cofnij",
     "logout": "Wyloguj",
     "book-again": "Umów Ponownie",
-    "cancel": "Anuluj Wizytę",
-    "show-details": "Pokaż szczegóły"
+    "cancel-visit": "Anuluj Wizytę",
+    "cancel": "Anuluj",
+    "next": "Przechodzę dalej",
+    "show-details": "Pokaż szczegóły",
+    "all-visits": "Pokaż wszystkie wizyty",
+    "confirm": "Potwierdź"
   },
+
+  "headers": {
+    "specialization": "Wybierz specjalizację",
+    "date": "Wybierz datę",
+    "hour": "Godzina",
+    "price": "Cena",
+    "clinic": "Wybierz Przychodnię",
+    "doctor-unavailable": "Lekarz w tym dniu jest niedostępny",
+    "street": "ul",
+    "nurse": "Pielęgniarka",
+    "doctor": "Lekarz",
+    "future-visit":"Twoje Przyszłe wizyty",
+    "recent-visit":"Twoje Odbyte wizyty",
+    "select-patient": "Wybierz Pacjenta",
+    "no-visits": "Brak wizyt",
+    "no-available-visits": "Brak dostępnych wizyt dnia",
+    "spec-needed": "Specjalizacja jest wymagana!",
+    "confirm": "Potwierdzenie",
+    "delete-visit": "Chcesz usunąć tę wizytę?",
+    "deleted-correctly": "Wizyta usunieta Poprawnie",
+    "added-correctly": "Wizyta dodana poprawnie",
+    "added-data-correctly": "Dane zmieniono poprawnie",
+    "added-data-wrong": "Błąd, nie zmieniono danych",
+    "made-appointment":"Wizyta umówiona poprawnie",
+    "undefined": ""
+  },
+
   "hint": {
     "insert": "insert ",
     "name": "name!"
@@ -59,12 +90,53 @@
     "request": " Jeśli nie masz jeszcze konta, kliknij",
     "reglink": "Zarejestruj się tutaj",
     "button": "Zaloguj",
-    "message": "Zostałeś zalogowany"
+    "message": "Zostałeś zalogowany",
+    "failed": "Logowanie nie powiodło się"
   },
   "appointment":{
   "tittle": "lek",
+  "patient": "Pacjent:",
     "hour": "godz:"
   },
+
+"popup":{
+  "insert-value": "Wprowadź szczegóły wizyty",
+  "medicines": "Leki:",
+  "medicines-add": "Wprowadź leki:",
+  "description": "Opis:",
+  "description-add": "Wprowadź opis",
+  "close": "Zamknij",
+  "confirm": "zatwierdź"
+},
+  "patient": {
+    "user-data": "Dane osobowe",
+    "visit-data": "Dane wizyty",
+    "name": "Imię Nazwisko",
+    "pesel": "Pesel",
+    "email": "e-mail",
+    "doctor": "Lekarz",
+    "address": "Adres Przychodni",
+    "date": "Data",
+    "hour": "Godzina",
+    "correct-data": "Czy dane są poprawne?",
+    "book-again": "Nie, Umów nową wizytę",
+    "correct-book": "Tak, umawiam wizytę"
+  },
+
+  "specialization": {
+    "Chirurg" : "Chirurg",
+    "Kardiolog":"Kardiolog",
+    "Dermatolog":"Dermatolog",
+    "Pediatra":"Pediatra",
+    "Ortopeda":"Ortopeda",
+    "Ginekolog":"Ginekolog",
+    "Neurolog":"Neurolog",
+    "Okulista":"Okulista",
+    "Psychiatra":"Psychiatra",
+    "Urolog":"Urolog",
+    "Internista":"Internista"
+  },
+
   "errors": {
     "name": "name is ",
     "ID": "ID is ",

@@ -1,20 +1,22 @@
-<h2 mat-dialog-title>Wprowadź szczegóły wizyty</h2>
+<h2 mat-dialog-title>{{ 'popup.insert-value' | translate }}</h2>
 <mat-dialog-content class="dialog">
   <mat-form-field class="dialog__input">
-    <mat-label>Wprowadź leki</mat-label>
+    <mat-label>{{ 'popup.medicines-add' | translate }}</mat-label>
     <textarea class="dialog__textarea" matInput [(ngModel)]="medicines"></textarea>
   </mat-form-field>
   <mat-form-field class="dialog__input">
-    <mat-label>Wprowadź opis</mat-label>
+    <mat-label>{{ 'popup.description-add' | translate }}</mat-label>
     <textarea class="dialog__textarea" matInput [(ngModel)]="description"></textarea>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions class="dialog__button-container">
-  <button class="dialog__button" mat-button [mat-dialog-close]="">zamknij</button>
+  <button class="dialog__button" mat-button [mat-dialog-close]="">
+    {{ 'popup.close' | translate }}
+  </button>
   <button
     class="dialog__button"
     mat-button
     [mat-dialog-close]="{ medicines: medicines, description: description }">
-    Zatwierdź
+    {{ 'popup.confirm' | translate }}
   </button>
 </mat-dialog-actions>

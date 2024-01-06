@@ -49,7 +49,6 @@ export class RecentAppointmentsComponent implements OnInit {
           description: visitDetails.description,
         },
       });
-      console.log('visitDetails', visitDetails.medicines, visitDetails.description);
     });
   }
   getDetailsOfVisit(visitId: string): Observable<VisitDetails> {

@@ -51,9 +51,9 @@ export class NavBarComponent implements OnInit {
   mapRole(roles: string[]) {
     if (this.roles[0] != 'ROLE_USER') {
       if (roles.includes('ROLE_DOCTOR')) {
-        this.userRole = 'Lekarz';
+        this.userRole = 'doctor';
       } else if (roles.includes('ROLE_NURSE')) {
-        this.userRole = 'Pielęgniarka';
+        this.userRole = 'nurse';
       }
     }
   }

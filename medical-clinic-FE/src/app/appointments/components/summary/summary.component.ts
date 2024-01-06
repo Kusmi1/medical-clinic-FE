@@ -51,7 +51,7 @@ export class SummaryComponent implements OnInit {
     this.appointmentsService.bookVisit(this.visitIdString).subscribe(
       response => {
         console.log(response);
-        this.snackBarService.snackMessage('Wizyta umówiona poprawnie');
+        this.snackBarService.snackMessage('made-appointment');
         setTimeout(() => {
           this.router.navigate(['/visit/future-visit']);
         }, 1500);

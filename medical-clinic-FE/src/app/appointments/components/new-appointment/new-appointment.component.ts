@@ -16,6 +16,7 @@ import { formatDate, Location } from '@angular/common';
 import { HoursModel, VisitModel } from '../../../models/visit.model';
 import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
 import { SpecializationModel } from '../../../models/specialization.model';
+import { specializationMapping } from '../../../shared/specialization-mapping';
 
 @Component({
   selector: 'app-new-appointment',
@@ -30,6 +31,7 @@ export class NewAppointmentComponent implements OnInit {
   availableVisits: VisitModel[] = [];
   specializationFromRoute = '';
   currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'pl');
+
   constructor(
     private fb: FormBuilder,
     private readonly location: Location,
@@ -127,11 +129,16 @@ export class NewAppointmentComponent implements OnInit {
     if (specializationRoute) {
       specialization = specializationRoute;
     }
-    return this.appointmentsService.getAvailableVisitsBySpecialization(specialization, date!).pipe(
-      map(visits => {
-        return visits;
-      })
-    );
+
+    const polishSpecialization = specializationMapping[specialization] || specialization;
+
+    return this.appointmentsService
+      .getAvailableVisitsBySpecialization(polishSpecialization, date!)
+      .pipe(
+        map(visits => {
+          return visits;
+        })
+      );
   }
 
   get dateControl(): FormControl {

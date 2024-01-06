@@ -1,7 +1,7 @@
-<h2>Twoje Przyszłe wizyty</h2>
+<h2>{{ 'headers.future-visit' | translate }}</h2>
 <div class="future-appointments" *ngFor="let visit of futureVisits">
   <app-appointments-card
-    [specialization]="visit.specialization"
+    [specialization]="'specialization.' + visit.specialization | translate"
     [doctorName]="visit.doctorName"
     [doctorSurname]="visit.doctorSurname"
     [date]="visit.date"

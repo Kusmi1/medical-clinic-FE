@@ -21,6 +21,7 @@ import { HoursModel, VisitModel } from '../../../../models/visit.model';
 import { UserModel } from '../../../../models/user.model';
 import { ConfirmDialogComponent } from '../../popup-window/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { specializationMapping } from '../../../../shared/specialization-mapping';
 
 @Component({
   selector: 'app-manage-appointments',
@@ -127,7 +128,8 @@ export class ManageAppointmentsComponent implements OnInit {
       ?.valueChanges.pipe(
         filter(specialization => specialization != ''),
         switchMap(specialization => {
-          return this.appointmentsService.getDoctorsBySpecialization(specialization);
+          const polishSpecialization = specializationMapping[specialization] || specialization;
+          return this.appointmentsService.getDoctorsBySpecialization(polishSpecialization);
         })
       )
       .subscribe(
@@ -142,8 +144,8 @@ export class ManageAppointmentsComponent implements OnInit {
 
   deleteVisit(visit: VisitModel) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { message: 'Chcesz usunąć tą wizytę?' },
+      width: '300px',
+      data: { message: 'delete-visit' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -151,7 +153,7 @@ export class ManageAppointmentsComponent implements OnInit {
         const visitId = this.getVisitIdFromHours(visit.hours);
         this.appointmentsService.deleteVisit(visitId!).subscribe(
           () => {
-            this.snackBarService.snackMessage('Wizyta usunięta poprawnie');
+            this.snackBarService.snackMessage('delete-visit');
             window.location.reload();
             setTimeout(() => {
               this.loadFutureVisits();

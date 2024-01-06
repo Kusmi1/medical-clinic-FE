@@ -36,8 +36,8 @@ export class FutureAppointmentComponent {
 
   deleteVisit(visit: VisitModel) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { message: 'Chcesz usunąć tą wizytę?' },
+      width: '300px',
+      data: { message: 'delete-visit' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -46,7 +46,7 @@ export class FutureAppointmentComponent {
 
         this.appointmentsService.deleteVisit(visitId!).subscribe(
           () => {
-            this.snackBarService.snackMessage('Wizyta usunięta poprawnie');
+            this.snackBarService.snackMessage('deleted-correctly');
             window.location.reload();
             setTimeout(() => {
               this.loadFutureVisits();
@@ -59,6 +59,7 @@ export class FutureAppointmentComponent {
       }
     });
   }
+
   getVisitIdFromHours(hours: HoursModel[]): string | null {
     if (hours && hours.length > 0) {
       return hours[0].visitId;
