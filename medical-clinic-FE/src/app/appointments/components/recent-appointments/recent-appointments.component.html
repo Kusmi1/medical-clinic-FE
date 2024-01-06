@@ -1,7 +1,7 @@
-<h2>Twoje Odbyte wizyty</h2>
+<h2>{{ 'headers.recent-visit' | translate }}</h2>
 <div class="recent-appointments" *ngFor="let visit of pastVisits">
   <app-appointments-card
-    [specialization]="visit.specialization"
+    [specialization]="'specialization.' + visit.specialization | translate"
     [doctorName]="visit.doctorName"
     [doctorSurname]="visit.doctorSurname"
     [date]="visit.date"

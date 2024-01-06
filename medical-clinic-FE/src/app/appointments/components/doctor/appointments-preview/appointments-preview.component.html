@@ -14,17 +14,17 @@
         (click)="setUserId(user)"
         *ngFor="let user of filteredUsersByTerm"
         [value]="user.id">
-        {{ user.name }} {{ user.surname }}
+        {{ user.name }} {{ user.lastname }}
       </mat-radio-button>
     </mat-radio-group>
   </div>
   <button class="preview__button-clear" mat-button (click)="resetForm()">
-    Pokaż wszystkie wizyty
+    {{ 'button.all-visits' | translate }}
   </button>
 
   <div class="preview__visits" *ngFor="let visit of futureVisits">
     <app-appointments-card
-      [specialization]="visit.specialization"
+      [specialization]="'specialization.' + visit.specialization | translate"
       [doctorName]="visit.doctorName"
       [doctorSurname]="visit.doctorSurname"
       [date]="visit.date"

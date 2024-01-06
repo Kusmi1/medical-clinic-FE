@@ -54,6 +54,8 @@
 
     <a routerLink="/register">{{ 'login.reglink' | translate }}</a>
   </p>
-  <div *ngIf="loginForm.valid && isLoginFailed">Login failed: {{ errorMessage }}</div>
+  <div *ngIf="loginForm.valid && isLoginFailed">
+    {{ 'login.failed' | translate }} {{ errorMessage }}
+  </div>
 </form>
 <p class="login__text" *ngIf="isLoggedIn">{{ 'login.message' | translate }}</p>

@@ -30,6 +30,7 @@ export class AuthService {
     lastName: string,
     userName: string,
     email: string,
+    pesel: string,
     password: string,
     secondName?: string
   ): Observable<any> {
@@ -37,11 +38,12 @@ export class AuthService {
       AUTH_API + 'signup',
       {
         firstName,
-        secondName,
         lastName,
         userName,
         email,
+        pesel,
         password,
+        secondName,
       },
       httpOptions
     );

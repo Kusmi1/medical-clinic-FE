@@ -23,6 +23,7 @@ interface User {
   name: string;
   secondName: string;
   surname: string;
+  email: string;
   pesel: string;
 }
 

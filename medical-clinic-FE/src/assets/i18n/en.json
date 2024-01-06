@@ -4,7 +4,36 @@
     "back": "Go back",
     "logout": "Log out",
     "book-again": "Book again",
-    "cancel": "Cancel appointment"
+    "cancel-visit": "Cancel appointment",
+    "cancel": "Cancel",
+    "next": "Continue",
+    "show-details": "Show Details",
+    "all-visits": "Show all visits",
+    "confirm": "Confirmation"
+  },
+  "headers": {
+    "specialization": "Choose specialization",
+    "date": "Select date",
+    "hour": "Hour",
+    "price": "Price",
+    "clinic": "Select a clinic",
+    "select-patient": "Select patient",
+    "doctor-unavailable": "The doctor is unavailable on this day",
+    "street": "street",
+    "nurse": "Nurse",
+    "doctor": "Doctor",
+    "future-visit":"Your appointments",
+    "recent-visit":"Your appointments completed",
+    "no-visits": "no appointments",
+    "no-available-visits": "No appointments available on",
+    "spec-needed": "Specialization required!",
+    "confirm": "Confirmation",
+    "delete-visit": "Do you want to delete this visit?",
+    "deleted-correctly": "Appointment deleted Correct",
+    "added-correctly": "The appointment was added correctly",
+    "made-appointment":"The appointment was scheduled correctly",
+    "added-data-correctly": "Data changed correctly",
+    "added-data-wrong": "Error, data not changed"
   },
 
   "angerList": {
@@ -23,7 +52,24 @@
     "recent-appointment": "Your appointments",
     "add-appointment": "Add appointment",
     "make-appointment": "Make appointment",
-    "main-page": "Main Page"
+    "main-page": "Main Page",
+    "all-visits": "All Appointments",
+    "manage-appointments": "Manage Appointments",
+    "show-appointments": "Visit preview",
+    "failed": "Login failed:"
+  },
+
+  "user": {
+    "email": "Email",
+    "title": "Modify your data",
+    "fName": "First Name",
+    "sName": "Second Name",
+    "userName": "userName",
+    "lName": "Last Name",
+    "password": "Password",
+    "confpassword": "Confirm your password",
+    "button": "Modify data"
+
   },
   "register": {
     "email": "Email",
@@ -48,8 +94,47 @@
 
   "appointment":{
     "tittle": "doc",
-    "hour": "hour:"
+    "hour": "hour:",
+    "patient": "Patient:"
   },
+  "popup":{
+    "insert-value": "Enter your visit details",
+    "medicines": "Medicines:",
+    "medicines-add": "Add medicines:",
+    "description": "Description:",
+    "description-add": "Add description",
+    "close": "Close",
+    "confirm": "Confirm"
+  },
+
+  "patient": {
+    "user-data": "Personal data",
+    "visit-data": "Appointments data",
+    "name": "Firstname LastName",
+    "pesel": "Pesel",
+    "email": "e-mail",
+    "doctor": "Doctor",
+    "address": "Clinic address",
+    "date": "Date",
+    "hour": "Hour",
+    "correct-data": "Is the data correct?",
+    "book-again": "No, make a new appointment",
+    "correct-book": "Yes, I'm making an appointment"
+  },
+  "specialization": {
+    "Chirurg": "Surgeon",
+    "Kardiolog": "Cardiologist",
+    "Dermatolog": "Dermatologist",
+    "Pediatra": "Pediatrician",
+    "Ortopeda": "Orthopedist",
+    "Ginekolog": "Gynecologist",
+    "Neurolog": "Neurologist",
+    "Okulista": "Ophthalmologist",
+    "Psychiatra": "Psychiatrist",
+    "Urolog": "Urologist",
+    "Internista": "Internist"
+  },
+
   "errors": {
     "name": "name is ",
     "ID": "ID is ",

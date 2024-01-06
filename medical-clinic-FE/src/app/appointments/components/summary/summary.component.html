@@ -1,42 +1,51 @@
 <div class="summary" *ngIf="visitDetails">
   <div class="summary__box">
-    <h3>Dane osobowe</h3>
+    <h3>{{ 'patient.user-data' | translate }}</h3>
     <div class="summary__row">
-      <span class="summary__row-text">Imię Nazwisko</span>
+      <span class="summary__row-text">{{ 'patient.name' | translate }}</span>
       <span class="summary__row-definition">Jan Kowalski</span>
     </div>
+
     <div class="summary__row">
-      <span class="summary__row-text">e-mail</span>
+      <span class="summary__row-text">{{ 'patient.pesel' | translate }}</span>
+      <span class="summary__row-definition">999999999</span>
+    </div>
+    <div class="summary__row">
+      <span class="summary__row-text">{{ 'patient.email' | translate }}</span>
       <span class="summary__row-definition">janek@wp.pl</span>
     </div>
   </div>
 
   <div class="summary__box">
-    <h3>Dane wizyty</h3>
+    <h3>{{ 'patient.visit-data' | translate }}</h3>
     <div class="summary__row">
-      <span class="summary__row-text">Lekarz:</span>
+      <span class="summary__row-text">{{ 'patient.doctor' | translate }}</span>
       <span class="summary__row-definition"
         >{{ visitDetails.doctorName }} {{ visitDetails.doctorSurname }}</span
       >
     </div>
     <div class="summary__row">
-      <span class="summary__row-text">adres:</span>
+      <span class="summary__row-text">{{ 'patient.address' | translate }}</span>
       <span class="summary__row-definition">janek@wp.pl</span>
     </div>
     <div class="summary__row">
-      <span class="summary__row-text">data:</span>
+      <span class="summary__row-text">{{ 'patient.date' | translate }}</span>
       <span class="summary__row-definition">{{ visitDetails.date }}</span>
     </div>
     <div class="summary__row">
-      <span class="summary__row-text">godzina:</span>
+      <span class="summary__row-text">{{ 'patient.hour' | translate }}</span>
       <span class="summary__row-definition">{{ visitDetails.hour }}</span>
     </div>
   </div>
   <div class="summary__bottom">
-    <p class="summary__bottom-text">Czy dane są poprawne?</p>
+    <p class="summary__bottom-text">{{ 'patient.correct-data' | translate }}</p>
     <div class="summary__button-container">
-      <button class="summary__button" mat-button (click)="goBack()">Nie, Umów nową wizytę</button>
-      <button class="summary__button" mat-button (click)="bookVisit()">Tak, umawiam wizytę</button>
+      <button class="summary__button" mat-button (click)="goBack()">
+        {{ 'patient.book-again' | translate }}
+      </button>
+      <button class="summary__button" mat-button (click)="bookVisit()">
+        {{ 'patient.correct-book' | translate }}
+      </button>
     </div>
   </div>
 </div>

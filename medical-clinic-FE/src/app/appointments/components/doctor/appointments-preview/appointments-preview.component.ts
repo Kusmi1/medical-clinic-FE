@@ -16,7 +16,7 @@ import {
 } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DoctorModel } from '../../../../models/doctor.model';
-import { UserModel } from '../../../../models/book-visit.model';
+import { UserModel } from '../../../../models/user.model';
 import { AppointmentsService } from '../../../../services/appointments-services/appointments.service';
 import { SnackbarService } from '../../../../guard/snackbar.service';
 import { Location } from '@angular/common';
@@ -70,15 +70,13 @@ export class AppointmentsPreviewComponent implements OnInit {
       .subscribe(searchTerm => {
         this.filteredUsersByTerm = this.filterUsersBySeachTerm(searchTerm);
       });
-    console.log('this.userList2', this.userList);
   }
 
   filterUsersBySeachTerm(searchTerm: string): UserModel[] {
-    console.log('searchTerm', searchTerm);
     return this.filteredUsersByTerm.filter(
       user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.surname.toLowerCase().includes(searchTerm.toLowerCase())
+        user.lastname.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
 
@@ -95,18 +93,17 @@ export class AppointmentsPreviewComponent implements OnInit {
 
   deleteVisit(visit: VisitModel) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { message: 'Chcesz usunąć tą wizytę?' },
+      width: '300px',
+      data: { message: 'delete-visit' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const visitId = this.getVisitIdFromHours(visit.hours);
-        console.log('visitId ', visitId);
 
         this.appointmentsService.deleteVisit(visitId!).subscribe(
           () => {
-            this.snackBarService.snackMessage('Wizyta usunięta poprawnie');
+            this.snackBarService.snackMessage('deleted-correctly');
             window.location.reload();
             setTimeout(() => {
               this.loadFutureVisits();
@@ -142,9 +139,6 @@ export class AppointmentsPreviewComponent implements OnInit {
     const userId = this.userControl.value;
     const doctorId = this.tokenStorageService.getUserId();
 
-    console.log('doctorId ', doctorId);
-    console.log('userId ', userId);
-
     return this.appointmentsService.getAllFutureBookedVisits(doctorId!, userId).pipe(
       map(visits => {
         return visits;
@@ -160,13 +154,12 @@ export class AppointmentsPreviewComponent implements OnInit {
     return this.visitForm.get('user.id') as FormControl;
   }
 
-  setUserId(selectedUser: DoctorModel) {
+  setUserId(selectedUser: UserModel) {
     this.visitForm.get('user')?.patchValue({
       id: selectedUser.id,
       name: selectedUser.name,
-      surname: selectedUser.surname,
+      surname: selectedUser.lastname,
     });
-    console.log('user ', this.visitForm.get('user')?.value);
   }
 
   resetForm() {
@@ -205,14 +198,12 @@ export class AppointmentsPreviewComponent implements OnInit {
           console.log('Dialog was cancelled');
         }
       });
-      console.log('visitDetails222', visitDetails.medicines, visitDetails.description);
     });
   }
   addDetailsToVisit(visitId: string, visitDetailsDto: VisitDetails) {
     this.appointmentsService.addVisitDetails(visitId, visitDetailsDto).subscribe(
       response => {
         this.snackBarService.snackMessage('Szczegóły dodane poprawnie');
-        console.log('Visit Details added successfully', response);
       },
       error => {
         console.error('There was an error adding the visit details', error);

@@ -1,14 +1,14 @@
-<h2 mat-dialog-title>Wprowadź szczegóły wizyty</h2>
+<h2 mat-dialog-title>{{ 'popup.insert-value' | translate }}</h2>
 <mat-dialog-content class="popup">
   <div class="popup__detail">
-    <h3 class="popup__label">Leki:</h3>
+    <h3 class="popup__label">{{ 'popup.medicines' | translate }}</h3>
     <span class="popup__value">{{ medicines }}</span>
   </div>
   <div class="popup__detail">
-    <h3 class="popup__label">Opis:</h3>
+    <h3 class="popup__label">{{ 'popup.description' | translate }}</h3>
     <span class="popup__value">{{ description }}</span>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button class="popup__button" mat-button mat-dialog-close>Close</button>
+  <button class="popup__button" mat-button mat-dialog-close>{{ 'popup.close' | translate }}</button>
 </mat-dialog-actions>

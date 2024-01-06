@@ -46,8 +46,9 @@
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="userId()"
-          >{{ this.userRole }} {{ userList?.name }} {{ userList?.surname }}</a
+        <a href="user" class="nav-link"
+          >{{ 'headers.' + this.userRole | translate }} {{ userList?.name }}
+          {{ userList?.lastname }}</a
         >
       </li>
       <li class="nav-item">

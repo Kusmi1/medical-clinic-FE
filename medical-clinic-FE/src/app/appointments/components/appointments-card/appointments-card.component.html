@@ -8,6 +8,7 @@
       width="70" />
     <h3>
       {{ specialization }}
+
       <p>{{ 'appointment.tittle' | translate }} {{ doctorName + ' ' + doctorSurname }}</p>
     </h3>
   </div>
@@ -32,13 +33,15 @@
       }}<span *ngIf="clinic?.flatNo">/{{ clinic?.flatNo }}</span
       >, {{ clinic?.postalCode }} {{ clinic?.city }}
     </div>
-    <div class="appointments-card__container-text" *ngIf="user !== ''">Pacjent: {{ user }}</div>
+    <div class="appointments-card__container-text" *ngIf="user !== ''">
+      {{ 'appointment.patient' | translate }} {{ user }}
+    </div>
     <div>
       <div class="appointments-card__button-container" *ngIf="isFutureDate; else pastAppointment">
         <button
           (click)="clickCancelButton.emit($event)"
           class="appointments-card__button appointments-card__button-red">
-          {{ 'button.cancel' | translate }}
+          {{ 'button.cancel-visit' | translate }}
         </button>
 
         <button

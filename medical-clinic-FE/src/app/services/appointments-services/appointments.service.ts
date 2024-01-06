@@ -6,7 +6,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { SpecializationModel } from '../../models/specialization.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctorModel } from '../../models/doctor.model';
-import { UserModel } from '../../models/book-visit.model';
+import { UserModel } from '../../models/user.model';
 
 const VISIT_API = 'http://localhost:8080/api/visit';
 const USER_API = 'http://localhost:8080/api/user';
@@ -36,10 +36,18 @@ export class AppointmentsService {
     const userId = this.tokenStorageService.getUserId();
     return this.http.get<UserModel>(`${USER_API}/${userId}`);
   }
+
+  UpdateUser(userData: any): Observable<any> {
+    const userId = this.tokenStorageService.getUserId();
+    const url = `${USER_API}/add/${userId}`;
+    return this.http.put(url, userData);
+  }
+
   getAllMedicalClinics(): Observable<MedicalClinic[]> {
     const url = 'http://localhost:8080/api/medicalClinics/all-clinics';
     return this.http.get<MedicalClinic[]>(url);
   }
+
   getPastBookedVisits(): Observable<VisitModel[]> {
     const userId = this.tokenStorageService.getUserId();
     return this.http.get<VisitModel[]>(`${VISIT_API}/past-visit/user/${userId}`, httpOptions);
@@ -119,7 +127,6 @@ export class AppointmentsService {
     let params = new HttpParams();
 
     if (userId !== undefined && userId !== null) {
-      console.log('userId ', userId);
       params = params.set('userId', userId!.toString());
     }
 

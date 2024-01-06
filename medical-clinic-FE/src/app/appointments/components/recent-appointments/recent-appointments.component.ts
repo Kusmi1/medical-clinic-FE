@@ -22,7 +22,6 @@ export class RecentAppointmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPastVisits();
-    console.log('this.pastVisits ', this.pastVisits);
   }
 
   loadPastVisits(): void {
@@ -50,7 +49,6 @@ export class RecentAppointmentsComponent implements OnInit {
           description: visitDetails.description,
         },
       });
-      console.log('visitDetails', visitDetails.medicines, visitDetails.description);
     });
   }
   getDetailsOfVisit(visitId: string): Observable<VisitDetails> {

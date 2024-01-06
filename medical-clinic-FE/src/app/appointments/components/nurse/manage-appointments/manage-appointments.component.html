@@ -1,17 +1,19 @@
 <form class="manage" [formGroup]="visitForm">
   <div class="manage__container">
     <mat-form-field class="example-full-width">
-      <mat-label>Wybierz specjalizację</mat-label>
+      <mat-label>{{ 'headers.specialization' | translate }}</mat-label>
       <input
         type="text"
-        placeholder="Wybierz specjalizację"
+        placeholder="{{ 'headers.specialization' | translate }}"
         matInput
         formControlName="specialization"
         [matAutocomplete]="auto"
         (click)="clearResult()" />
       <mat-autocomplete class="new-appointment" #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
-          {{ option.name }}
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="'specialization.' + option.name | translate">
+          {{ 'specialization.' + option.name | translate }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -31,7 +33,7 @@
 
   <div class="manage__container">
     <mat-form-field class="example-full-width">
-      <mat-label>Wybierz Pacjenta</mat-label>
+      <mat-label>{{ 'headers.select-patient' | translate }}</mat-label>
       <input
         type="text"
         placeholder="Wybierz Pacjenta"
@@ -44,17 +46,17 @@
         (click)="setUserId(user)"
         *ngFor="let user of filteredUsersByTerm"
         [value]="user.id">
-        {{ user.name }} {{ user.surname }}
+        {{ user.name }} {{ user.lastname }}
       </mat-radio-button>
     </mat-radio-group>
   </div>
   <button class="manage__button-clear" mat-button (click)="resetForm()">
-    Pokaż wszystkie wizyty
+    {{ 'button.all-visits' | translate }}
   </button>
 
   <div class="manage__visits" *ngFor="let visit of futureVisits">
     <app-appointments-card
-      [specialization]="visit.specialization"
+      [specialization]="'specialization.' + visit.specialization | translate"
       [doctorName]="visit.doctorName"
       [doctorSurname]="visit.doctorSurname"
       [date]="visit.date"

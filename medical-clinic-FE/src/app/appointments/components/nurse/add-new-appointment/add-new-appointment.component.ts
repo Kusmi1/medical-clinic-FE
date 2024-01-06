@@ -8,6 +8,8 @@ import { HoursModel, MedicalClinic } from '../../../../models/visit.model';
 import { SnackbarService } from '../../../../guard/snackbar.service';
 import { Router } from '@angular/router';
 import { formatDate, Location } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { specializationMapping } from '../../../../shared/specialization-mapping';
 
 @Component({
   selector: 'app-add-new-appointment',
@@ -29,7 +31,8 @@ export class AddNewAppointmentComponent implements OnInit {
     private fb: FormBuilder,
     private snackBarService: SnackbarService,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     this.visitForm = this.fb.group({
       specialization: ['', Validators.required],
@@ -85,6 +88,7 @@ export class AddNewAppointmentComponent implements OnInit {
 
     return this.clinicList!.filter(option => option.name.toLowerCase().includes(filterValue));
   }
+
   clearResult() {
     this.visitForm.get('specialization')?.setValue('');
   }
@@ -99,17 +103,16 @@ export class AddNewAppointmentComponent implements OnInit {
       }
     );
   }
+
   loadMedicalClinic() {
     this.appointmentsService.getAllMedicalClinics().subscribe(
       clinics => {
         this.clinicList = clinics;
-        console.log('this.clinicList ', this.clinicList);
       },
       error => {
         console.error('Error fetching clinics', error);
       }
     );
-    console.log(' this.clinicList ', this.clinicList);
   }
 
   allDoctors() {
@@ -118,7 +121,8 @@ export class AddNewAppointmentComponent implements OnInit {
       ?.valueChanges.pipe(
         filter(specialization => specialization != ''),
         switchMap(specialization => {
-          return this.appointmentsService.getDoctorsBySpecialization(specialization);
+          const polishSpecialization = specializationMapping[specialization] || specialization;
+          return this.appointmentsService.getDoctorsBySpecialization(polishSpecialization);
         })
       )
       .subscribe(
@@ -138,11 +142,13 @@ export class AddNewAppointmentComponent implements OnInit {
       surname: selectedDoctor.surname,
     });
   }
+
   setClinicId(selectedClinic: MedicalClinic) {
     this.visitForm.get('medicalClinic')?.patchValue({
       id: selectedClinic.id,
     });
   }
+
   addVisit(): void {
     const visitDate = formatDate(this.visitForm.get('chosenDate')?.value, 'yyy-MM-dd', 'pl');
     const doctorId = this.visitForm.get('doctor.id')?.value;
@@ -152,7 +158,7 @@ export class AddNewAppointmentComponent implements OnInit {
 
     this.appointmentsService.addVisit(visitDate, doctorId, hours, price, clinicId).subscribe(
       () => {
-        this.snackBarService.snackMessage('Wizyta dodana poprawnie');
+        this.snackBarService.snackMessage('added-correctly');
         this.doctorUnavailable = false;
         setTimeout(() => {
           window.location.reload();
@@ -164,7 +170,6 @@ export class AddNewAppointmentComponent implements OnInit {
         this.doctorUnavailable = true;
       }
     );
-    console.log('visitDate', visitDate);
   }
 
   cancelClicked() {

@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,6 +36,12 @@ export class RegisterComponent {
       { type: 'pattern', message: 'please enter a valid email address.' },
     ],
 
+    pesel: [
+      { type: 'required', message: '' },
+      { type: 'minlength', message: 'pesel length.' },
+      { type: 'maxlength', message: 'pesel length.' },
+    ],
+
     password: [
       { type: 'required', message: 'password is required.' },
       { type: 'minlength', message: 'password is too short min 6.' },
@@ -52,6 +66,15 @@ export class RegisterComponent {
         secondName: new FormControl(''),
         lastName: new FormControl('', Validators.compose([Validators.required])),
         userName: new FormControl('', Validators.compose([Validators.required])),
+
+        pesel: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(11),
+            Validators.maxLength(12),
+          ])
+        ),
 
         email: new FormControl(
           '',
@@ -90,15 +113,12 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    const { firstName, secondName, lastName, userName, email, password } =
+    const { firstName, lastName, userName, email, pesel, password, secondName } =
       this.registrationForm.value;
-
     this.authService
-      .register(firstName, lastName, userName, email, password, secondName)
+      .register(firstName, lastName, userName, email, pesel, password, secondName)
       .subscribe({
-        // this.authService.register(username, email, password).subscribe({
         next: data => {
-          console.log(data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
         },
@@ -132,7 +152,7 @@ export class RegisterComponent {
   goToLogin() {
     setTimeout(() => {
       this.router.navigate(['/login']);
-    }, 3000);
+    }, 2000);
 
     if (!this.isSignUpFailed) {
       this.registrationMessage = 'User registered successfully!';

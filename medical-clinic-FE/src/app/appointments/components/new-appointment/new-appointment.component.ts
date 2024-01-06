@@ -16,6 +16,7 @@ import { formatDate, Location } from '@angular/common';
 import { HoursModel, VisitModel } from '../../../models/visit.model';
 import { AppointmentsService } from '../../../services/appointments-services/appointments.service';
 import { SpecializationModel } from '../../../models/specialization.model';
+import { specializationMapping } from '../../../shared/specialization-mapping';
 
 @Component({
   selector: 'app-new-appointment',
@@ -30,6 +31,7 @@ export class NewAppointmentComponent implements OnInit {
   availableVisits: VisitModel[] = [];
   specializationFromRoute = '';
   currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'pl');
+
   constructor(
     private fb: FormBuilder,
     private readonly location: Location,
@@ -99,7 +101,6 @@ export class NewAppointmentComponent implements OnInit {
 
   private setupSpecializationListener(): void {
     if (this.specializationFromRoute) {
-      console.log('this.specializationFromRoute ', this.specializationFromRoute);
       this.specializationControl.setValue(this.specializationFromRoute, { emitEvent: false });
 
       this.getVisits(this.specializationFromRoute).subscribe(visits => {
@@ -129,13 +130,15 @@ export class NewAppointmentComponent implements OnInit {
       specialization = specializationRoute;
     }
 
-    console.log('specialization ', specialization, ' date: ', date);
+    const polishSpecialization = specializationMapping[specialization] || specialization;
 
-    return this.appointmentsService.getAvailableVisitsBySpecialization(specialization, date!).pipe(
-      map(visits => {
-        return visits;
-      })
-    );
+    return this.appointmentsService
+      .getAvailableVisitsBySpecialization(polishSpecialization, date!)
+      .pipe(
+        map(visits => {
+          return visits;
+        })
+      );
   }
 
   get dateControl(): FormControl {
@@ -156,8 +159,6 @@ export class NewAppointmentComponent implements OnInit {
       visitId: selectedHour.visitId,
       hour: selectedHour.hour,
     });
-
     selectedHour.isSelected = true;
-    console.log(' visitId hour ', this.visitForm.get('chosenHour')?.value);
   }
 }

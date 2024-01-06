@@ -1,23 +1,25 @@
 <form [formGroup]="visitForm" class="new-appointment">
   <div class="new-appointment__container">
     <mat-form-field class="example-full-width">
-      <mat-label>Wybierz specjalizację</mat-label>
+      <mat-label>{{ 'headers.specialization' | translate }}</mat-label>
       <input
         type="text"
-        placeholder="Wybierz specjalizację"
+        placeholder="{{ 'headers.specialization' | translate }}"
         matInput
         formControlName="specialization"
         [matAutocomplete]="auto"
         (click)="clearResult()" />
       <mat-autocomplete class="new-appointment" #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
-          {{ option.name }}
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="'specialization.' + option.name | translate">
+          {{ 'specialization.' + option.name | translate }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Wybierz datę</mat-label>
+      <mat-label>{{ 'headers.date' | translate }}</mat-label>
       <input formControlName="chosenDate" matInput [matDatepicker]="picker" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
@@ -55,35 +57,32 @@
       </div>
     </div>
     <p class="new-appointment__error" *ngIf="visitForm.get('specialization')?.invalid">
-      Specjalizacja jest wymagana!
+      {{ 'headers.spec-needed' | translate }}
     </p>
 
     <ng-template #noVisits>
       <p class="new-appointment__error" *ngIf="visitForm.get('chosenDate')?.value; else noData">
-        Brak dostępnych wizyt dnia {{ visitForm.get('chosenDate')!.value | date: 'yyyy-MM-dd' }}
+        {{ 'headers.doctor-unavailable' | translate }}
+        {{ visitForm.get('chosenDate')!.value | date: 'yyyy-MM-dd' }}
       </p>
       <ng-template #noData>
-        <p class="new-appointment__error">Brak dostępnych wizyt dnia {{ currentDate }}</p>
+        <p class="new-appointment__error">
+          {{ 'headers.doctor-unavailable' | translate }} {{ currentDate }}
+        </p>
       </ng-template>
     </ng-template>
   </div>
 
   <div class="new-appointment__button-container">
-    <button class="new-appointment__button" mat-button (click)="cancelClicked()">Anuluj</button>
+    <button class="new-appointment__button" mat-button (click)="cancelClicked()">
+      {{ 'button.cancel' | translate }}
+    </button>
     <button
       disabled="{{ visitForm.invalid }}"
       class="new-appointment__button"
       mat-button
       (click)="clickNext()">
-      Przechodzę Dalej
+      {{ 'button.next' | translate }}
     </button>
   </div>
 </form>
-<div>Chosen specialization: {{ visitForm.get('specialization')?.value }}</div>
-<div>Chosen Date: {{ visitForm.get('chosenDate')?.value | date }}</div>
-<div>Chosen Date: {{ visitForm.get('date')?.value | date }}</div>
-
-<div>
-  Chosen Hour: {{ visitForm.get('chosenHour.visitId')?.value }} -
-  {{ visitForm.get('chosenHour.hour')?.value }}
-</div>

@@ -1,35 +1,45 @@
-$login-width: 70%;
-$login-background-color: white;
-$login-button-color: var(--primary-color);
-.login {
+$user-width: 80%;
+$user-background-color: white;
+$user-button-color: var(--primary-green);
+
+.user {
   display: grid;
-  background-color: $login-background-color;
+  background-color: $user-background-color;
   padding: 2rem;
   border-radius: 0.5rem;
-  width: $login-width;
-
+  width: 400px;
+  max-width: 400px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--primary-color);
+  box-shadow: var(--box-shadow);
+
+  &__header {
+    font-size: 1.5rem;
+  }
 
   &__field {
     width: 100%;
     margin-bottom: 0;
-    margin-top: 1rem !important;
     margin: 0;
     padding: 0;
+    &-sName {
+      margin-bottom: 1rem;
+    }
   }
+
   &__header {
     font-size: 1.5rem;
   }
 
   &__button {
-    background-color: $login-button-color !important;
+    background-color: var(--primary-color);
     border-radius: 0.2rem;
     margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
     width: 100%;
+    height: 2rem;
 
     &:disabled {
       background-color: #817f7f;
@@ -40,7 +50,6 @@ $login-button-color: var(--primary-color);
 
     &:hover {
       background-color: var(--primary-dark-color);
-      color: black;
     }
   }
 
@@ -56,12 +65,7 @@ $login-button-color: var(--primary-color);
 
   &__error {
     margin-top: 0;
-    color: red !important;
-  }
-
-  &__text {
-    font-size: 1.1rem;
-    text-align: center;
     margin-bottom: 1rem;
+    color: red;
   }
 }
