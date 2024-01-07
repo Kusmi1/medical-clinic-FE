@@ -25,6 +25,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.mapRole(user.roles);
@@ -47,7 +48,6 @@ export class NavBarComponent implements OnInit {
       this.userList = user;
     });
   }
-
   mapRole(roles: string[]) {
     if (this.roles[0] != 'ROLE_USER') {
       if (roles.includes('ROLE_DOCTOR')) {

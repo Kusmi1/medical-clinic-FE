@@ -4,7 +4,6 @@ import { AppointmentsService } from '../../../services/appointments-services/app
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarService } from '../../../guard/snackbar.service';
-import { UserModel } from '../../../models/user.model';
 
 @Component({
   selector: 'app-summary',
@@ -15,8 +14,6 @@ export class SummaryComponent implements OnInit {
   visitDetails: any;
   visitId = 0;
   visitIdString = '';
-  userList: UserModel | undefined;
-
   constructor(
     private route: ActivatedRoute,
     private appointmentsService: AppointmentsService,
@@ -31,7 +28,6 @@ export class SummaryComponent implements OnInit {
       this.visitIdString = params.get('visitId')!;
       if (this.visitIdString) {
         this.loadVisitById(this.visitIdString);
-        this.getUserById();
       }
     });
   }
@@ -64,11 +60,5 @@ export class SummaryComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-
-  getUserById() {
-    this.appointmentsService.getUser().subscribe(user => {
-      this.userList = user;
-    });
   }
 }
