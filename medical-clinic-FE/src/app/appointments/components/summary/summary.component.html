@@ -3,16 +3,16 @@
     <h3>{{ 'patient.user-data' | translate }}</h3>
     <div class="summary__row">
       <span class="summary__row-text">{{ 'patient.name' | translate }}</span>
-      <span class="summary__row-definition">Jan Kowalski</span>
+      <span class="summary__row-definition">{{ userList?.name }} {{ userList?.lastname }}</span>
     </div>
 
     <div class="summary__row">
       <span class="summary__row-text">{{ 'patient.pesel' | translate }}</span>
-      <span class="summary__row-definition">999999999</span>
+      <span class="summary__row-definition">{{ userList?.pesel }} </span>
     </div>
     <div class="summary__row">
       <span class="summary__row-text">{{ 'patient.email' | translate }}</span>
-      <span class="summary__row-definition">janek@wp.pl</span>
+      <span class="summary__row-definition">{{ userList?.email }}</span>
     </div>
   </div>
 
