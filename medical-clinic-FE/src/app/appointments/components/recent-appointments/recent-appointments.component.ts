@@ -28,9 +28,6 @@ export class RecentAppointmentsComponent implements OnInit {
     this.appointmentsService.getPastBookedVisits().subscribe(visits => {
       this.pastVisits = visits;
     });
-    if (!this.pastVisits) {
-      return;
-    }
   }
 
   navigateToNewVisit(specializationName: string): void {

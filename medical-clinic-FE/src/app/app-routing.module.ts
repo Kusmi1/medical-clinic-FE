@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'mod', component: BoardModeratorComponent },
-  { path: 'user', component: PatientDataComponent },
+  { path: 'user', canActivate: [AuthGuard], component: PatientDataComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'visit',

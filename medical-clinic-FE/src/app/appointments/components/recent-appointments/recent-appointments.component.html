@@ -11,5 +11,7 @@
     (clickAgainMakeAppointmentButton)="
       navigateToNewVisit(visit.specialization)
     "></app-appointments-card>
-  <div *ngIf="pastVisits && pastVisits.length <= 0">Brak wizyt</div>
+</div>
+<div *ngIf="pastVisits?.length === 0">
+  <span class="recent-appointments__empty-list">{{ 'appointment.no-visit' | translate }}</span>
 </div>

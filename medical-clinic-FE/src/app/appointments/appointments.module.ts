@@ -28,6 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppointmentsPreviewComponent } from './components/doctor/appointments-preview/appointments-preview.component';
 import { InputDialogComponent } from './components/popup-window/input-dialog/input-dialog.component';
 import { AppointmentDetailsPopupComponent } from './components/popup-window/appointment-details-popup/appointment-details-popup.component';
+import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     RecentAppointmentsComponent,
@@ -41,6 +43,7 @@ import { AppointmentDetailsPopupComponent } from './components/popup-window/appo
     AppointmentsPreviewComponent,
     InputDialogComponent,
     AppointmentDetailsPopupComponent,
+    AddDoctorNurseComponent,
   ],
   exports: [NewAppointmentComponent],
   imports: [
@@ -58,6 +61,7 @@ import { AppointmentDetailsPopupComponent } from './components/popup-window/appo
     MatSnackBarModule,
     MatRadioModule,
     MatDialogModule,
+    MatSelectModule,
   ],
 })
 export class AppointmentsModule {}

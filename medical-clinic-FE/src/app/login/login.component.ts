@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { ErrorStateMatcher } from '@angular/material/core';
 import { CustomErrorStateMatcher } from './CustomErrorStateMatcher';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       username: new FormControl(
@@ -67,8 +69,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.loginForm.value;
-
-    this.authService.login(username, password).subscribe({
+    const lowercaseUsername = username.toLowerCase();
+    this.authService.login(lowercaseUsername, password).subscribe({
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
@@ -87,5 +89,8 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
+    setTimeout(() => {
+      this.router.navigate(['/visit/future-visit']);
+    }, 2500);
   }
 }

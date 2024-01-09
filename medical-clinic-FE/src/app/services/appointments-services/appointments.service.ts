@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { MedicalClinic, VisitDetails, VisitModel } from '../../models/visit.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token-storage.service';
@@ -7,11 +7,17 @@ import { SpecializationModel } from '../../models/specialization.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctorModel } from '../../models/doctor.model';
 import { UserModel } from '../../models/user.model';
+import { environment } from '../../../environments/environment';
 
-const VISIT_API = 'http://localhost:8080/api/visit';
-const USER_API = 'http://localhost:8080/api/user';
-const DOCTOR_API = 'http://localhost:8080/api/doctor';
-const VISIT_DETAILS_API = 'http://localhost:8080/api/visit-details';
+const host8080 = 'http://localhost:8080';
+const AWS = environment.baseUrl;
+// const AWS = 'http://medical-clinic-3.eu-north-1.elasticbeanstalk.com';
+
+const VISIT_API = `${AWS}/api/visit`;
+
+const USER_API = `${AWS}/api/user`;
+const DOCTOR_API = `${AWS}/api/doctor`;
+const VISIT_DETAILS_API = `${AWS}/api/visit-details`;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -32,6 +38,10 @@ export class AppointmentsService {
     return this.http.get<UserModel[]>(`${USER_API}/all`);
   }
 
+  getAllUsersByRole(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${USER_API}/allByRole`);
+  }
+
   getUser(): Observable<UserModel> {
     const userId = this.tokenStorageService.getUserId();
     return this.http.get<UserModel>(`${USER_API}/${userId}`);
@@ -44,7 +54,7 @@ export class AppointmentsService {
   }
 
   getAllMedicalClinics(): Observable<MedicalClinic[]> {
-    const url = 'http://localhost:8080/api/medicalClinics/all-clinics';
+    const url = `${AWS}/api/medicalClinics/all-clinics`;
     return this.http.get<MedicalClinic[]>(url);
   }
 
@@ -72,7 +82,8 @@ export class AppointmentsService {
   }
 
   getAllSpecializations(): Observable<SpecializationModel[]> {
-    const url = 'http://localhost:8080/api/specialization';
+    const url = `${AWS}/api/specialization`;
+    // const url = 'http://localhost:8080/api/specialization';
     return this.http.get<SpecializationModel[]>(url, httpOptions);
   }
 
@@ -99,7 +110,7 @@ export class AppointmentsService {
 
   addVisit(
     visitDate: string,
-    doctorId: number,
+    doctorId: string,
     hours: string,
     price: number,
     clinicId: number
@@ -121,26 +132,44 @@ export class AppointmentsService {
     return this.http.post<string>(url, null, httpOptionsParams);
   }
 
-  getAllFutureBookedVisits(doctorId?: number, userId?: number): Observable<any> {
+  getAllFutureBookedVisits(doctorId?: string, userId?: string): Observable<any> {
     const url = `${VISIT_API}/all-future-visits`;
 
     let params = new HttpParams();
 
     if (userId !== undefined && userId !== null) {
-      params = params.set('userId', userId!.toString());
+      params = params.set('userId', userId);
     }
 
     if (doctorId !== undefined && doctorId !== null) {
-      params = params.set('doctorId', doctorId!.toString());
+      params = params.set('doctorId', doctorId);
     }
 
-    return this.http.get<any>(url, { params });
+    return this.http.get<any>(url, { params }).pipe(
+      catchError(error => {
+        console.error('Error fetching visits:', error);
+        return of([]);
+      })
+    );
   }
-
   addVisitDetails(visitId: string, visitDetailsDto: VisitDetails): Observable<any> {
     return this.http.post(`${VISIT_DETAILS_API}/add/${visitId}`, visitDetailsDto);
   }
   getVisitDetailsByVisitId(visitId: string): Observable<VisitDetails> {
     return this.http.get<VisitDetails>(`${VISIT_DETAILS_API}/${visitId}`);
+  }
+
+  changeUserRoleAndHandleDoctor(
+    userId: string,
+    newRole: string,
+    specializationIds: number[] | null
+  ): Observable<any> {
+    let url = `${USER_API}/change-role/${userId}?newRole=${newRole}`;
+    console.log('newRole', newRole, ' specializationIds ', specializationIds);
+    if (newRole === 'ROLE_DOCTOR' && specializationIds) {
+      url += `&specializationIds=${specializationIds}`;
+    }
+
+    return this.http.put(url, {}, httpOptionsString);
   }
 }

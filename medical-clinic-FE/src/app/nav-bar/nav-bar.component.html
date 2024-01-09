@@ -4,10 +4,10 @@
       <li><a href="#" class="navbar-brand">medical-clinic</a></li>
 
       <li class="nav-item">
-        <a routerLink="/register" class="nav-link">Sign Up</a>
+        <a routerLink="/register" class="nav-link">{{ 'nav.signup' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login">{{ 'nav.login' | translate }}</a>
       </li>
     </ul>
     <ul class="navbar__list" routerLinkActive="active" *ngIf="isLoggedIn">
@@ -44,6 +44,11 @@
           routerLink="visit/manage-appointments"
           >{{ 'nav.manage-appointments' | translate }}</a
         >
+      </li>
+      <li *ngIf="showNurseBoard">
+        <a href="visit/new-role" class="nav-link" routerLink="visit/new-role">{{
+          'nav.new-role' | translate
+        }}</a>
       </li>
       <li class="nav-item">
         <a href="user" class="nav-link"

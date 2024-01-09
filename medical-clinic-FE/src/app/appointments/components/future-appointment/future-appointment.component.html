@@ -10,3 +10,6 @@
     [clinic]="visit.medicalClinic"
     (clickCancelButton)="deleteVisit(visit)"></app-appointments-card>
 </div>
+<div *ngIf="futureVisits?.length === 0">
+  <span class="future-appointments__empty-list">{{ 'appointment.no-visit' | translate }} </span>
+</div>

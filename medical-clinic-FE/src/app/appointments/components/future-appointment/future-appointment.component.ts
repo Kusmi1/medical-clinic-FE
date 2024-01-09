@@ -26,13 +26,25 @@ export class FutureAppointmentComponent {
 
   ngOnInit(): void {
     this.loadFutureVisits();
+    console.log('lengtht', this.futureVisits?.length);
   }
 
-  loadFutureVisits(): void {
-    this.appointmentsService.getFutureBookedVisits().subscribe(visits => {
-      this.futureVisits = visits;
-    });
+  private loadFutureVisits(): void {
+    this.appointmentsService.getFutureBookedVisits().subscribe(
+      visits => {
+        this.futureVisits = visits;
+        console.log('Loaded visits, length:', this.futureVisits.length);
+      },
+      error => {
+        console.error('Error loading future visits:', error);
+      }
+    );
   }
+  // loadFutureVisits(): void {
+  //   this.appointmentsService.getFutureBookedVisits().subscribe(visits => {
+  //     this.futureVisits = visits;
+  //   });
+  // }
 
   deleteVisit(visit: VisitModel) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

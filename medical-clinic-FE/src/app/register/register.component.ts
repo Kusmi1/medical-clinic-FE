@@ -10,6 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SnackbarService } from '../guard/snackbar.service';
 
 @Component({
   selector: 'app-register',
@@ -58,7 +59,8 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBarService: SnackbarService
   ) {
     this.registrationForm = this.formBuilder.group(
       {
@@ -115,16 +117,41 @@ export class RegisterComponent {
   onSubmit(): void {
     const { firstName, lastName, userName, email, pesel, password, secondName } =
       this.registrationForm.value;
+
+    const userNameLower = userName.toLowerCase();
+    const emailLower = email.toLowerCase();
+
+    const capitalizedFirstName = this.capitalizeFirstLetter(firstName);
+    const capitalizedLastName = this.capitalizeFirstLetter(lastName);
+    const capitalizedSecondName: string | undefined = this.capitalizeFirstLetter(secondName);
+
     this.authService
-      .register(firstName, lastName, userName, email, pesel, password, secondName)
+      .register(
+        capitalizedFirstName,
+        capitalizedLastName,
+        userNameLower,
+        emailLower,
+        pesel,
+        password,
+        capitalizedSecondName
+      )
       .subscribe({
         next: data => {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          console.log('this.isSignUpFailed goToLogin succes register', this.isSignUpFailed);
+          this.snackBarService.snackMessage('register-correctly');
+          this.registrationMessage = 'register-correctly';
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000);
         },
         error: err => {
           this.errorMessage = err.error.message;
           this.isSignUpFailed = true;
+          this.snackBarService.snackMessage('register-wrong');
+          this.registrationMessage = 'register-wrong';
+          console.log('this.isSignUpFailed goToLogin error register', this.isSignUpFailed);
         },
       });
   }
@@ -149,13 +176,10 @@ export class RegisterComponent {
     return this.registrationForm.controls;
   }
 
-  goToLogin() {
-    setTimeout(() => {
-      this.router.navigate(['/login']);
-    }, 2000);
-
-    if (!this.isSignUpFailed) {
-      this.registrationMessage = 'User registered successfully!';
+  capitalizeFirstLetter(str?: string) {
+    if (str) {
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
+    return '';
   }
 }
