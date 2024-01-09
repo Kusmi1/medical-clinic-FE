@@ -17,7 +17,7 @@
     "hour": "Hour",
     "price": "Price",
     "clinic": "Select a clinic",
-    "select-patient": "Select patient",
+    "select-patient": "Find patient",
     "doctor-unavailable": "The doctor is unavailable on this day",
     "street": "street",
     "nurse": "Nurse",
@@ -47,8 +47,8 @@
   "nav": {
     "menu": "Login",
     "dash": "DashBoard",
-    "list": "Hero List",
     "regButton": "Sign up",
+    "new-role": "Grant permissions",
     "recent-appointment": "Your appointments",
     "add-appointment": "Add appointment",
     "make-appointment": "Make appointment",
@@ -95,7 +95,11 @@
   "appointment":{
     "tittle": "doc",
     "hour": "hour:",
-    "patient": "Patient:"
+    "patient": "Patient:",
+    "patient-pl": "Pacjenta:",
+    "doctor-pl": "Lekarza:",
+    "no-visit-for": "No available appointments for",
+    "no-visit": "No available appointments "
   },
   "popup":{
     "insert-value": "Enter your visit details",
@@ -134,7 +138,14 @@
     "Urolog": "Urologist",
     "Internista": "Internist"
   },
-
+  "role": {
+    "ROLE_USER" : "Patient",
+    "ROLE_NURSE" : "Nurse",
+    "ROLE_DOCTOR" : "Doctor",
+    "error": "Choose specialization for doctor",
+    "permission": "Select permissions",
+    "button": "Change permissions"
+  },
   "errors": {
     "name": "name is ",
     "ID": "ID is ",

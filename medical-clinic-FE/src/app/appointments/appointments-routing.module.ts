@@ -8,6 +8,7 @@ import { FutureAppointmentComponent } from './components/future-appointment/futu
 import { AddNewAppointmentComponent } from './components/nurse/add-new-appointment/add-new-appointment.component';
 import { ManageAppointmentsComponent } from './components/nurse/manage-appointments/manage-appointments.component';
 import { AppointmentsPreviewComponent } from './components/doctor/appointments-preview/appointments-preview.component';
+import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'preview-appointments',
         component: AppointmentsPreviewComponent,
+      },
+      {
+        path: 'new-role',
+        component: AddDoctorNurseComponent,
       },
     ],
   },

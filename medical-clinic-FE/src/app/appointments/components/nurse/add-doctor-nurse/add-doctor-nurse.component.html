@@ -1,0 +1,47 @@
+<form [formGroup]="roleForm">
+  <div class="role__container">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ 'headers.specialization' | translate }}</mat-label>
+      <mat-select formControlName="specialization" class="new-appointment">
+        <mat-option *ngFor="let option of options" [value]="option.id">
+          {{ 'specialization.' + option.name | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ 'headers.select-patient' | translate }}</mat-label>
+      <input
+        type="text"
+        placeholder=" {{ 'headers.select-patient' | translate }}"
+        matInput
+        [formControl]="userSearchControl" />
+    </mat-form-field>
+
+    <mat-radio-group class="role__list-doctor" aria-label="Select a user">
+      <mat-radio-button
+        (click)="setUserId(user)"
+        *ngFor="let user of filteredUsersByTerm"
+        [value]="user.id">
+        {{ user.name }} {{ user.lastname }}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-radio-group formControlName="role">
+      <mat-label class="role__label">Wybierz uprawnienia</mat-label>
+      <mat-radio-button *ngFor="let role of userRole" value="{{ role }}">
+        {{ 'role.' + role | translate }}</mat-radio-button
+      >
+    </mat-radio-group>
+    <div
+      class="role__error"
+      *ngIf="
+        roleForm.get('role')?.value === 'ROLE_DOCTOR' && !roleForm.get('specialization')?.value
+      ">
+      {{ 'role.error' | translate }}
+    </div>
+    <button class="role__button" mat-button (click)="changeUserRole()">
+      {{ 'role.button' | translate }}
+    </button>
+  </div>
+</form>

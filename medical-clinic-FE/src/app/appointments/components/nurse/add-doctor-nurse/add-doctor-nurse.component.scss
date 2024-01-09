@@ -1,0 +1,30 @@
+.role {
+  &__container {
+    display: flex;
+    flex-flow: column;
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    min-width: 600px;
+    max-width: 70%;
+  }
+  &__list-doctor {
+    display: flex;
+    flex-flow: column;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--primary-color);
+  }
+  &__label {
+    font-size: 1rem;
+  }
+  &__error {
+    color: var(--alert-error);
+    font-size: 1rem;
+  }
+  &__button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}

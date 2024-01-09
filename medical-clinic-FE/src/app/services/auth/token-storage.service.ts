@@ -35,7 +35,7 @@ export class TokenStorageService {
     return {};
   }
 
-  public getUserId(): number | null {
+  public getUserId(): string | null {
     const user = this.getUser();
     return user ? user.id : null;
   }

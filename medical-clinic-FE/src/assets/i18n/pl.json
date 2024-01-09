@@ -24,7 +24,7 @@
     "doctor": "Lekarz",
     "future-visit":"Twoje Przyszłe wizyty",
     "recent-visit":"Twoje Odbyte wizyty",
-    "select-patient": "Wybierz Pacjenta",
+    "select-patient": "Wyszukaj Pacjenta",
     "no-visits": "Brak wizyt",
     "no-available-visits": "Brak dostępnych wizyt dnia",
     "spec-needed": "Specjalizacja jest wymagana!",
@@ -46,6 +46,7 @@
     "menu": "Login",
     "regButton": "Zarejestruj",
     "recent-appointment": "Odbyte wizyty",
+    "new-role": "Nadaj uprawnienia",
     "add-appointment": "Dodaj Wizytę",
     "make-appointment": "Umów Wizytę",
     "main-page": "Główna Strona",
@@ -94,9 +95,13 @@
     "failed": "Logowanie nie powiodło się"
   },
   "appointment":{
-  "tittle": "lek",
-  "patient": "Pacjent:",
-    "hour": "godz:"
+    "tittle": "lek",
+    "patient": "Pacjent:",
+    "patient-pl": "Pacjenta:",
+    "doctor-pl": "Lekarza:",
+    "hour": "godz:",
+    "no-visit-for": "Brak wizyty dla",
+    "no-visit": "Brak wizyty "
   },
 
 "popup":{
@@ -136,6 +141,15 @@
     "Urolog":"Urolog",
     "Internista":"Internista"
   },
+
+"role": {
+  "ROLE_USER" : "Pacjent",
+  "ROLE_NURSE" : "Pielęgniarka",
+  "ROLE_DOCTOR" : "Lekarz",
+  "error": "Wybierz specjalizację dla lekarza",
+  "permission": "Wybierz uprawnienia",
+  "button": "Zmień uprawnienia"
+},
 
   "errors": {
     "name": "name is ",

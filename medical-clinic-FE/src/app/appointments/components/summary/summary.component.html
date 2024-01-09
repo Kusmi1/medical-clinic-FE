@@ -26,7 +26,14 @@
     </div>
     <div class="summary__row">
       <span class="summary__row-text">{{ 'patient.address' | translate }}</span>
-      <span class="summary__row-definition">janek@wp.pl</span>
+
+      <span class="summary__row-definition">
+        {{ visitDetails.medicalClinic?.name }}, ul.{{ visitDetails.medicalClinic?.street }}
+        {{ visitDetails.medicalClinic?.houseNo
+        }}<span *ngIf="visitDetails.medicalClinic?.flatNo"
+          >/{{ visitDetails.medicalClinic?.flatNo }}</span
+        >, {{ visitDetails.medicalClinic?.postalCode }} {{ visitDetails.medicalClinic?.city }}
+      </span>
     </div>
     <div class="summary__row">
       <span class="summary__row-text">{{ 'patient.date' | translate }}</span>

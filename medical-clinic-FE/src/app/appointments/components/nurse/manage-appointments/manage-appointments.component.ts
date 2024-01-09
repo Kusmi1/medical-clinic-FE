@@ -51,7 +51,7 @@ export class ManageAppointmentsComponent implements OnInit {
       specialization: [''],
       userSearch: [''],
       user: this.fb.group({
-        id: [null],
+        id: [''],
         name: [''],
         surname: [''],
       }),
@@ -224,16 +224,19 @@ export class ManageAppointmentsComponent implements OnInit {
       specialization: '',
       userSearchControl: '',
       user: {
-        id: null,
+        id: '',
         name: '',
         surname: '',
       },
       doctor: {
-        id: null,
+        id: '',
         name: '',
         surname: '',
       },
     });
     this.allUsers();
+    setTimeout(() => {
+      this.loadFutureVisits();
+    }, 1000);
   }
 }
