@@ -69,8 +69,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.loginForm.value;
-
-    this.authService.login(username, password).subscribe({
+    const lowercaseUsername = username.toLowerCase();
+    this.authService.login(lowercaseUsername, password).subscribe({
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);

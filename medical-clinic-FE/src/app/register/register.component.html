@@ -147,14 +147,12 @@
       {{ 'errors.password.match' | translate }}
     </p>
 
-    <button
-      type="submit"
-      class="register__button"
-      [disabled]="!registrationForm.valid"
-      (click)="goToLogin()">
+    <button type="submit" class="register__button" [disabled]="!registrationForm.valid">
       {{ 'register.button' | translate }}
     </button>
   </div>
   <div *ngIf="registrationForm.valid && isSignUpFailed">Login failed: {{ errorMessage }}</div>
-  <div *ngIf="registrationMessage">{{ registrationMessage }}</div>
+  <div *ngIf="registrationMessage">
+    {{ 'register.' + registrationMessage | translate }}
+  </div>
 </form>

@@ -61,12 +61,6 @@ export class AppointmentsService {
   getPastBookedVisits(): Observable<VisitModel[]> {
     const userId = this.tokenStorageService.getUserId();
     return this.http.get<VisitModel[]>(`${VISIT_API}/past-visit/user/${userId}`, httpOptions);
-    // .pipe(
-    //   catchError(error => {
-    //     console.error('Error fetching visits:', error);
-    //     return of([]);
-    //   })
-    // );
   }
 
   getFutureBookedVisits(): Observable<VisitModel[]> {

@@ -9,41 +9,49 @@ import { AddNewAppointmentComponent } from './components/nurse/add-new-appointme
 import { ManageAppointmentsComponent } from './components/nurse/manage-appointments/manage-appointments.component';
 import { AppointmentsPreviewComponent } from './components/doctor/appointments-preview/appointments-preview.component';
 import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
+import { AuthenticationGuard as AuthGuard } from '../guard/authentication.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AppointmentsComponent,
     children: [
-      { path: 'recent', component: RecentAppointmentsComponent },
+      { path: 'recent', canActivate: [AuthGuard], component: RecentAppointmentsComponent },
       {
         path: 'future-visit',
+        canActivate: [AuthGuard],
         component: FutureAppointmentComponent,
       },
 
       {
         path: 'new-visit',
+        canActivate: [AuthGuard],
         component: NewAppointmentComponent,
         data: { title: 'New Visit' },
       },
       {
         path: 'summary/:visitId',
+        canActivate: [AuthGuard],
         component: SummaryComponent,
       },
       {
         path: 'add',
+        canActivate: [AuthGuard],
         component: AddNewAppointmentComponent,
       },
       {
         path: 'manage-appointments',
+        canActivate: [AuthGuard],
         component: ManageAppointmentsComponent,
       },
       {
         path: 'preview-appointments',
+        canActivate: [AuthGuard],
         component: AppointmentsPreviewComponent,
       },
       {
         path: 'new-role',
+        canActivate: [AuthGuard],
         component: AddDoctorNurseComponent,
       },
     ],

@@ -46,4 +46,8 @@ export class TokenStorageService {
     }
     return null;
   }
+
+  IsloggedIn() {
+    return sessionStorage.getItem(TOKEN_KEY) !== null;
+  }
 }

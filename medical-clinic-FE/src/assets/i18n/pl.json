@@ -11,7 +11,6 @@
     "all-visits": "Pokaż wszystkie wizyty",
     "confirm": "Potwierdź"
   },
-
   "headers": {
     "specialization": "Wybierz specjalizację",
     "date": "Wybierz datę",
@@ -22,8 +21,8 @@
     "street": "ul",
     "nurse": "Pielęgniarka",
     "doctor": "Lekarz",
-    "future-visit":"Twoje Przyszłe wizyty",
-    "recent-visit":"Twoje Odbyte wizyty",
+    "future-visit": "Twoje Przyszłe wizyty",
+    "recent-visit": "Twoje Odbyte wizyty",
     "select-patient": "Wyszukaj Pacjenta",
     "no-visits": "Brak wizyt",
     "no-available-visits": "Brak dostępnych wizyt dnia",
@@ -34,13 +33,11 @@
     "added-correctly": "Wizyta dodana poprawnie",
     "added-data-correctly": "Dane zmieniono poprawnie",
     "added-data-wrong": "Błąd, nie zmieniono danych",
-    "made-appointment":"Wizyta umówiona poprawnie",
-    "undefined": ""
-  },
+    "made-appointment": "Wizyta umówiona poprawnie",
+    "register-correctly": "Użytkownik zarejestrowany poprawnie",
+    "register-wrong": "Błąd, Użytkownik nie został zarejestrowany",
 
-  "hint": {
-    "insert": "insert ",
-    "name": "name!"
+    "undefined": " "
   },
   "nav": {
     "menu": "Login",
@@ -52,7 +49,9 @@
     "main-page": "Główna Strona",
     "all-visits": "Wszystkie wizyty",
     "manage-appointments": "Zarządzaj wizytami",
-    "show-appointments": "Podgląd wizyt"
+    "show-appointments": "Podgląd wizyt",
+    "signup": "Załóż konto",
+    "login": "Zaloguj"
   },
   "user": {
     "email": "Email",
@@ -82,7 +81,9 @@
     "post-code": "kod pocztowy",
     "city": "miasto",
     "street": "ulica",
-    "button": "Zarejestruj"
+    "button": "Zarejestruj",
+    "register-correctly": "Użytkownik zarejestrowany poprawnie",
+    "register-wrong": "Błąd, Użytkownik nie został zarejestrowany"
   },
   "login": {
     "username": "Nazwa użytkownika",
@@ -94,7 +95,7 @@
     "message": "Zostałeś zalogowany",
     "failed": "Logowanie nie powiodło się"
   },
-  "appointment":{
+  "appointment": {
     "tittle": "lek",
     "patient": "Pacjent:",
     "patient-pl": "Pacjenta:",
@@ -103,16 +104,15 @@
     "no-visit-for": "Brak wizyty dla",
     "no-visit": "Brak wizyty "
   },
-
-"popup":{
-  "insert-value": "Wprowadź szczegóły wizyty",
-  "medicines": "Leki:",
-  "medicines-add": "Wprowadź leki:",
-  "description": "Opis:",
-  "description-add": "Wprowadź opis",
-  "close": "Zamknij",
-  "confirm": "zatwierdź"
-},
+  "popup": {
+    "insert-value": "Wprowadź szczegóły wizyty",
+    "medicines": "Leki:",
+    "medicines-add": "Wprowadź leki:",
+    "description": "Opis:",
+    "description-add": "Wprowadź opis",
+    "close": "Zamknij",
+    "confirm": "zatwierdź"
+  },
   "patient": {
     "user-data": "Dane osobowe",
     "visit-data": "Dane wizyty",
@@ -127,30 +127,27 @@
     "book-again": "Nie, Umów nową wizytę",
     "correct-book": "Tak, umawiam wizytę"
   },
-
   "specialization": {
-    "Chirurg" : "Chirurg",
-    "Kardiolog":"Kardiolog",
-    "Dermatolog":"Dermatolog",
-    "Pediatra":"Pediatra",
-    "Ortopeda":"Ortopeda",
-    "Ginekolog":"Ginekolog",
-    "Neurolog":"Neurolog",
-    "Okulista":"Okulista",
-    "Psychiatra":"Psychiatra",
-    "Urolog":"Urolog",
-    "Internista":"Internista"
+    "Chirurg": "Chirurg",
+    "Kardiolog": "Kardiolog",
+    "Dermatolog": "Dermatolog",
+    "Pediatra": "Pediatra",
+    "Ortopeda": "Ortopeda",
+    "Ginekolog": "Ginekolog",
+    "Neurolog": "Neurolog",
+    "Okulista": "Okulista",
+    "Psychiatra": "Psychiatra",
+    "Urolog": "Urolog",
+    "Internista": "Internista"
   },
-
-"role": {
-  "ROLE_USER" : "Pacjent",
-  "ROLE_NURSE" : "Pielęgniarka",
-  "ROLE_DOCTOR" : "Lekarz",
-  "error": "Wybierz specjalizację dla lekarza",
-  "permission": "Wybierz uprawnienia",
-  "button": "Zmień uprawnienia"
-},
-
+  "role": {
+    "ROLE_USER": "Pacjent",
+    "ROLE_NURSE": "Pielęgniarka",
+    "ROLE_DOCTOR": "Lekarz",
+    "error": "Wybierz specjalizację dla lekarza",
+    "permission": "Wybierz uprawnienia",
+    "button": "Zmień uprawnienia"
+  },
   "errors": {
     "name": "name is ",
     "ID": "ID is ",
@@ -160,28 +157,26 @@
       "minlength": "Email jest zbyt krótki, minimum znaków to 6",
       "maxlength": "Email zbyt długi, maks znaków to 40",
       "pattern": " Proszę wprowadź poprawny e-mail"
-
     },
-
     "pesel": {
       "required": "pesel jest wymagany",
       "minlength": "pesel  jest zbyt krótki, minimum znaków to 6",
       "maxlength": "pesel  zbyt długi, maks znaków to 40"
     },
-    "password":{
+    "password": {
       "required": "Hasło jest wymagane",
       "minlength": "Hasło jest zbyt krótkie, minimum znaków to 6",
       "maxlength": "Hasło jest zbyt długie, maks znaków to 40",
       "pattern": "Hasło musi zawierać conajmniej jedną dużą literę, liczbę oraz znak specjaln",
       "match": "Hasła są różne"
     },
-    "username":{
+    "username": {
       "required": "Nazwa użytkownika jest wymagane",
       "minlength": "Nazwa użytkownika jest zbyt krótka, minimum znaków to 6",
       "maxlength": "Nazwa użytkownika jest zbyt długa, maks znaków to 40"
     },
-    "fNamerequired":"Imię jest wymagane",
-    "lNamerequired":"Nazwisko jest wymagane",
-    "userNamerequired":"Nazwa użytkownika jest wymagana"
+    "fNamerequired": "Imię jest wymagane",
+    "lNamerequired": "Nazwisko jest wymagane",
+    "userNamerequired": "Nazwa użytkownika jest wymagana"
   }
 }

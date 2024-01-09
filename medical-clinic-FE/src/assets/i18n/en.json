@@ -22,8 +22,8 @@
     "street": "street",
     "nurse": "Nurse",
     "doctor": "Doctor",
-    "future-visit":"Your appointments",
-    "recent-visit":"Your appointments completed",
+    "future-visit": "Your appointments",
+    "recent-visit": "Your appointments completed",
     "no-visits": "no appointments",
     "no-available-visits": "No appointments available on",
     "spec-needed": "Specialization required!",
@@ -31,19 +31,13 @@
     "delete-visit": "Do you want to delete this visit?",
     "deleted-correctly": "Appointment deleted Correct",
     "added-correctly": "The appointment was added correctly",
-    "made-appointment":"The appointment was scheduled correctly",
+    "made-appointment": "The appointment was scheduled correctly",
     "added-data-correctly": "Data changed correctly",
-    "added-data-wrong": "Error, data not changed"
+    "added-data-wrong": "Error, data not changed",
+    "register-correctly": "User registered successfully",
+    "register-wrong": "Error, User was not registered",
+    "undefined": " "
   },
-
-  "angerList": {
-    "ANGRY": "anger",
-    "KIND": "kind",
-    "HUNGRY": "hungry",
-    "WITHOUTENERGY": "withoutEnergy"
-  },
-
-
   "nav": {
     "menu": "Login",
     "dash": "DashBoard",
@@ -56,9 +50,10 @@
     "all-visits": "All Appointments",
     "manage-appointments": "Manage Appointments",
     "show-appointments": "Visit preview",
-    "failed": "Login failed:"
+    "failed": "Login failed:",
+    "signup": "Sign Up",
+    "login": "Login"
   },
-
   "user": {
     "email": "Email",
     "title": "Modify your data",
@@ -69,7 +64,6 @@
     "password": "Password",
     "confpassword": "Confirm your password",
     "button": "Modify data"
-
   },
   "register": {
     "email": "Email",
@@ -80,19 +74,20 @@
     "lName": "Last Name",
     "password": "Password",
     "confpassword": "Confirm your password",
-    "button": "Sign up"
+    "button": "Sign up",
+    "register-correctly": "User registered successfully!",
+    "register-wrong": "Error, User was not registered"
   },
   "login": {
     "username": "Username",
     "password": "Password",
     "logbutton": "Log in",
-    "request":" If You don't have an account yet, please",
+    "request": " If You don't have an account yet, please",
     "reglink": "REGISTER HERE",
     "button": "Log in",
     "message": "You are logged in"
   },
-
-  "appointment":{
+  "appointment": {
     "tittle": "doc",
     "hour": "hour:",
     "patient": "Patient:",
@@ -101,7 +96,7 @@
     "no-visit-for": "No available appointments for",
     "no-visit": "No available appointments "
   },
-  "popup":{
+  "popup": {
     "insert-value": "Enter your visit details",
     "medicines": "Medicines:",
     "medicines-add": "Add medicines:",
@@ -110,7 +105,6 @@
     "close": "Close",
     "confirm": "Confirm"
   },
-
   "patient": {
     "user-data": "Personal data",
     "visit-data": "Appointments data",
@@ -139,9 +133,9 @@
     "Internista": "Internist"
   },
   "role": {
-    "ROLE_USER" : "Patient",
-    "ROLE_NURSE" : "Nurse",
-    "ROLE_DOCTOR" : "Doctor",
+    "ROLE_USER": "Patient",
+    "ROLE_NURSE": "Nurse",
+    "ROLE_DOCTOR": "Doctor",
     "error": "Choose specialization for doctor",
     "permission": "Select permissions",
     "button": "Change permissions"
@@ -155,9 +149,8 @@
       "minlength": "Email is too short minimum 6 characters ",
       "maxlength": "Email is too long maximum 40 characters ",
       "pattern": "Please enter a valid email address."
-
     },
-    "password":{
+    "password": {
       "required": "Password is required",
       "minlength": "Password is too short minimum 6 characters ",
       "maxlength": "Password too long maximum 40 characters ",
@@ -169,8 +162,8 @@
       "minlength": "Username is too short minimum 6 characters ",
       "maxlength": "Username is too long maximum 40 characters "
     },
-    "fNamerequired":"First Name is required.",
-    "lNamerequired":"Last Name is required.",
-    "userNamerequired":"userName is required."
+    "fNamerequired": "First Name is required.",
+    "lNamerequired": "Last Name is required.",
+    "userNamerequired": "userName is required."
   }
 }
