@@ -165,10 +165,10 @@ export class AppointmentsService {
     specializationIds: number[] | null
   ): Observable<any> {
     let url = `${USER_API}/change-role/${userId}?newRole=${newRole}`;
-    if (newRole != 'ROLE_NURSE' && specializationIds && specializationIds.length > 0) {
+    console.log('newRole', newRole, ' specializationIds ', specializationIds);
+    if (newRole === 'ROLE_DOCTOR' && specializationIds) {
       url += `&specializationIds=${specializationIds}`;
     }
-    // const body = { newRole, specializationIds };
 
     return this.http.put(url, {}, httpOptionsString);
   }
