@@ -1,10 +1,10 @@
 <form class="preview" [formGroup]="visitForm">
   <div class="preview__container">
     <mat-form-field class="example-full-width">
-      <mat-label>Wybierz Pacjenta</mat-label>
+      <mat-label>{{ 'headers.select-patient' | translate }}</mat-label>
       <input
         type="text"
-        placeholder="Wybierz Pacjenta"
+        placeholder="{{ 'headers.select-patient' | translate }} "
         matInput
         [formControl]="userSearchControl" />
     </mat-form-field>

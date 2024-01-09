@@ -36,7 +36,7 @@
       <mat-label>{{ 'headers.select-patient' | translate }}</mat-label>
       <input
         type="text"
-        placeholder="Wybierz Pacjenta"
+        placeholder=" {{ 'headers.select-patient' | translate }}"
         matInput
         [formControl]="userSearchControl" />
     </mat-form-field>
@@ -53,7 +53,17 @@
   <button class="manage__button-clear" mat-button (click)="resetForm()">
     {{ 'button.all-visits' | translate }}
   </button>
-
+  <div class="manage__empty-list" *ngIf="futureVisits?.length === 0">
+    <span>{{ 'appointment.no-visit-for' | translate }} </span>
+    <span *ngIf="visitForm.get('user.id')?.value"
+      >{{ 'appointment.patient-pl' | translate }} {{ visitForm.get('user.name')?.value }}
+      {{ visitForm.get('user.surname')?.value }}</span
+    >
+    <span *ngIf="visitForm.get('doctor.id')?.value">
+      {{ 'appointment.doctor-pl' | translate }}
+      {{ visitForm.get('doctor.name')?.value }} {{ visitForm.get('doctor.surname')?.value }}</span
+    >
+  </div>
   <div class="manage__visits" *ngFor="let visit of futureVisits">
     <app-appointments-card
       [specialization]="'specialization.' + visit.specialization | translate"

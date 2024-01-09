@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-const API_URL = 'http://localhost:8080/api/test/';
+import { environment } from '../../../environments/environment';
+const host8080 = 'http://localhost:8080';
+const AWS = environment.baseUrl;
+// const AWS = 'http://medical-clinic-3.eu-north-1.elasticbeanstalk.com';
+const API_URL = `${AWS}/api/test/`;
 
 @Injectable({
   providedIn: 'root',
