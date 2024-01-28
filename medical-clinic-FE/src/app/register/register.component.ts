@@ -139,7 +139,6 @@ export class RegisterComponent {
         next: data => {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
-          console.log('this.isSignUpFailed goToLogin succes register', this.isSignUpFailed);
           this.snackBarService.snackMessage('register-correctly');
           this.registrationMessage = 'register-correctly';
           setTimeout(() => {
@@ -151,7 +150,6 @@ export class RegisterComponent {
           this.isSignUpFailed = true;
           this.snackBarService.snackMessage('register-wrong');
           this.registrationMessage = 'register-wrong';
-          console.log('this.isSignUpFailed goToLogin error register', this.isSignUpFailed);
         },
       });
   }

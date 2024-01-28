@@ -29,10 +29,13 @@
     "spec-needed": "Specjalizacja jest wymagana!",
     "confirm": "Potwierdzenie",
     "delete-visit": "Chcesz usunąć tę wizytę?",
+    "delete-user": "Chcesz usunąć tego użytkownika?",
     "deleted-correctly": "Wizyta usunieta Poprawnie",
     "added-correctly": "Wizyta dodana poprawnie",
     "added-data-correctly": "Dane zmieniono poprawnie",
+    "deleted-user-correctly": "Użytkownik został usunięty",
     "added-data-wrong": "Błąd, nie zmieniono danych",
+    "deleted-user-wrong": "Błąd, nie można usunąć użytkownika",
     "made-appointment": "Wizyta umówiona poprawnie",
     "register-correctly": "Użytkownik zarejestrowany poprawnie",
     "register-wrong": "Błąd, Użytkownik nie został zarejestrowany",
@@ -66,7 +69,8 @@
     "post-code": "kod pocztowy",
     "city": "miasto",
     "street": "ulica",
-    "button": "Zmień dane"
+    "button": "Zmień dane",
+    "delete-button": "Usuń użytkownika"
   },
   "register": {
     "email": "Email",

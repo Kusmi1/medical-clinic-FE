@@ -53,6 +53,12 @@ export class AppointmentsService {
     return this.http.put(url, userData);
   }
 
+  deleteUser(): Observable<any> {
+    const userId = this.tokenStorageService.getUserId();
+    const url = `${USER_API}/delete/${userId}`;
+    return this.http.delete(url, httpOptionsString);
+  }
+
   getAllMedicalClinics(): Observable<MedicalClinic[]> {
     const url = `${AWS}/api/medicalClinics/all-clinics`;
     return this.http.get<MedicalClinic[]>(url);
@@ -165,7 +171,6 @@ export class AppointmentsService {
     specializationIds: number[] | null
   ): Observable<any> {
     let url = `${USER_API}/change-role/${userId}?newRole=${newRole}`;
-    console.log('newRole', newRole, ' specializationIds ', specializationIds);
     if (newRole === 'ROLE_DOCTOR' && specializationIds) {
       url += `&specializationIds=${specializationIds}`;
     }

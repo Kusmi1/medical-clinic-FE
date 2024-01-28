@@ -107,7 +107,7 @@ export class ManageAppointmentsComponent implements OnInit {
           user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user.lastname.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    } else console.log('else searchTerm', searchTerm);
+    }
     return this.filteredUsersByTerm;
   }
 

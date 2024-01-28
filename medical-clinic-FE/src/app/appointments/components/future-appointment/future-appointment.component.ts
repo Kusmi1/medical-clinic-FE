@@ -26,7 +26,6 @@ export class FutureAppointmentComponent {
 
   ngOnInit(): void {
     this.loadFutureVisits();
-    console.log('lengtht', this.futureVisits?.length);
   }
 
   private loadFutureVisits(): void {

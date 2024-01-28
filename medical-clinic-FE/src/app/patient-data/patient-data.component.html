@@ -80,9 +80,13 @@
       <mat-label class="user__label">{{ 'user.pesel' | translate }}</mat-label>
       <input matInput formControlName="pesel" type="text" />
     </mat-form-field>
-
-    <button class="user__button" (click)="UpdateUserData()">
-      {{ 'user.button' | translate }}
-    </button>
+    <div>
+      <button class="user__button" (click)="UpdateUserData()">
+        {{ 'user.button' | translate }}
+      </button>
+      <button class="user__button user__button-delete" (click)="deleteUser()">
+        {{ 'user.delete-button' | translate }}
+      </button>
+    </div>
   </div>
 </form>

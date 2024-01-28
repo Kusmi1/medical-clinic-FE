@@ -63,7 +63,7 @@ export class AddDoctorNurseComponent implements OnInit {
           user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user.lastname.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    } else console.log('else searchTerm', searchTerm);
+    }
     return this.filteredUsersByTerm;
   }
 
@@ -114,21 +114,12 @@ export class AddDoctorNurseComponent implements OnInit {
     const specializationIds = this.roleForm.get('specialization')?.value;
     const newRole = this.roleForm.get('role')?.value;
     const userId = this.roleForm.get('user.id')?.value;
-    console.log('userId ', userId, ' newRole ', newRole, ' specializationIds ', specializationIds);
     this.appointmentsService
       .changeUserRoleAndHandleDoctor(userId, newRole, specializationIds)
       .subscribe(
         response => {
           this.snackBarService.snackMessage('added-correctly');
           window.location.reload();
-          console.log(
-            'userId ',
-            userId,
-            ' newRole ',
-            newRole,
-            ' specializationIds ',
-            specializationIds
-          );
         },
         error => {
           console.error('Error:', error);

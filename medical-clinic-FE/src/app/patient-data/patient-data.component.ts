@@ -6,6 +6,8 @@ import { AppointmentsService } from '../services/appointments-services/appointme
 import { UserModel } from '../models/user.model';
 import { SnackbarService } from '../guard/snackbar.service';
 import { TokenStorageService } from '../services/auth/token-storage.service';
+import { ConfirmDialogComponent } from '../appointments/components/popup-window/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-patient-data',
@@ -48,7 +50,9 @@ export class PatientDataComponent implements OnInit {
     private router: Router,
     private appointmentService: AppointmentsService,
     private tokenStorageService: TokenStorageService,
-    private snackBar: SnackbarService
+    private snackBar: SnackbarService,
+    private dialog: MatDialog,
+    private snackBarService: SnackbarService
   ) {
     this.userForm = this.formBuilder.group({
       firstName: new FormControl('', Validators.compose([Validators.required])),
@@ -87,14 +91,12 @@ export class PatientDataComponent implements OnInit {
 
   ngOnInit() {
     this.getUserData();
-    // this.setUserId(this.userData!);
   }
 
   getUserData() {
     this.appointmentService.getUser().subscribe(user => {
       this.userData = user;
       this.setUserId(user);
-      console.log('this.userForm inside method ', this.userData);
     });
   }
 
@@ -131,5 +133,51 @@ export class PatientDataComponent implements OnInit {
         this.snackBar.snackMessage('added-data-wrong');
       }
     );
+  }
+
+  // deleteUser(): void {
+  //   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+  //     width: '300px',
+  //     data: { message: 'delete-visit' },
+  //   });
+  //   this.appointmentService.deleteUser().subscribe(
+  //     response => {
+  //       this.snackBar.snackMessage('deleted-user-correctly');
+  //       setTimeout(() => {
+  //         this.tokenStorageService.signOut();
+  //         this.router.navigate(['/login']);
+  //       }, 1000);
+  //     },
+  //     error => {
+  //       this.snackBar.snackMessage('deleted-user-wrong');
+  //     }
+  //   );
+  // }
+
+  deleteUser() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '340px',
+      data: { message: 'delete-user' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.appointmentService.deleteUser().subscribe(
+          () => {
+            this.snackBarService.snackMessage('deleted-user-correctly');
+            setTimeout(() => {
+              this.tokenStorageService.signOut();
+              this.router.navigate(['/login']);
+              setTimeout(() => {
+                window.location.reload();
+              }, 300);
+            }, 800);
+          },
+          error => {
+            this.snackBar.snackMessage('deleted-user-wrong');
+          }
+        );
+      }
+    });
   }
 }
