@@ -51,6 +51,13 @@ $user-button-color: var(--primary-green);
     &:hover {
       background-color: var(--primary-dark-color);
     }
+
+    &-delete {
+      background-color: var(--alert-error);
+      &:hover {
+        background-color: var(--alert-dark-error);
+      }
+    }
   }
 
   &__icon {

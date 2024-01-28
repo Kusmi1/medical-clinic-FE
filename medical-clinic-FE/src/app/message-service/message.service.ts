@@ -17,7 +17,6 @@ export class MessageService {
       this.tempMessages.push(id as number);
     }
     // this.messages.push(message);
-    console.log(message);
   }
   clear() {
     this.messages = [];
