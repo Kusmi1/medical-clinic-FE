@@ -9,12 +9,15 @@
     "next": "Continue",
     "show-details": "Show Details",
     "all-visits": "Show all visits",
-    "confirm": "Confirmation"
+    "confirm": "Confirmation",
+    "add-money": "Add money"
   },
   "headers": {
     "specialization": "Choose specialization",
     "date": "Select date",
-    "hour": "Hour",
+    "hour-start": "Start time of visits",
+    "hour-end": "End time of visits",
+    "hour-step": "Duration of one visit",
     "price": "Price",
     "clinic": "Select a clinic",
     "select-patient": "Find patient",
@@ -39,7 +42,8 @@
     "deleted-user-wrong": "Error, User cannot be added",
     "register-correctly": "User registered successfully",
     "register-wrong": "Error, User was not registered",
-    "undefined": " "
+    "undefined": " ",
+    "set-balance": "Enter amount"
   },
   "nav": {
     "menu": "Login",
@@ -55,7 +59,8 @@
     "show-appointments": "Visit preview",
     "failed": "Login failed:",
     "signup": "Sign Up",
-    "login": "Login"
+    "login": "Login",
+    "add-balance": "add money"
   },
   "user": {
     "email": "Email",
@@ -147,6 +152,7 @@
     "name": "name is ",
     "ID": "ID is ",
     "required": "required",
+    "no-visits-with-date": "There are no appointments for the given date, below you will find all appointments of the selected doctor",
     "email": {
       "required": "Email is required",
       "minlength": "Email is too short minimum 6 characters ",

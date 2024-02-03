@@ -9,12 +9,15 @@
     "next": "Przechodzę dalej",
     "show-details": "Pokaż szczegóły",
     "all-visits": "Pokaż wszystkie wizyty",
-    "confirm": "Potwierdź"
+    "confirm": "Potwierdź",
+    "add-money": "Doładuj konto"
   },
   "headers": {
     "specialization": "Wybierz specjalizację",
     "date": "Wybierz datę",
-    "hour": "Godzina",
+    "hour-start": "Godzina rozpoczęcia wizyt",
+    "hour-end": "Godzina zakończenia wizyt",
+    "hour-step": "Czas trwania jednej wizyty",
     "price": "Cena",
     "clinic": "Wybierz Przychodnię",
     "doctor-unavailable": "Lekarz w tym dniu jest niedostępny",
@@ -39,8 +42,9 @@
     "made-appointment": "Wizyta umówiona poprawnie",
     "register-correctly": "Użytkownik zarejestrowany poprawnie",
     "register-wrong": "Błąd, Użytkownik nie został zarejestrowany",
+    "undefined": " ",
+    "set-balance": "Wprowadź kwote"
 
-    "undefined": " "
   },
   "nav": {
     "menu": "Login",
@@ -54,7 +58,8 @@
     "manage-appointments": "Zarządzaj wizytami",
     "show-appointments": "Podgląd wizyt",
     "signup": "Załóż konto",
-    "login": "Zaloguj"
+    "login": "Zaloguj",
+    "add-balance": "doładuj konto"
   },
   "user": {
     "email": "Email",
@@ -156,6 +161,7 @@
     "name": "name is ",
     "ID": "ID is ",
     "required": "required",
+    "no-visits-with-date": "Brak wizyt dla podanej daty, poniżej znajdziesz wszytskie wizyty u wybranego lekarza",
     "email": {
       "required": "Email jest wymagany",
       "minlength": "Email jest zbyt krótki, minimum znaków to 6",

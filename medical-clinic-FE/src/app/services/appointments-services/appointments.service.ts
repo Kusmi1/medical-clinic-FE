@@ -18,6 +18,7 @@ const VISIT_API = `${AWS}/api/visit`;
 const USER_API = `${AWS}/api/user`;
 const DOCTOR_API = `${AWS}/api/doctor`;
 const VISIT_DETAILS_API = `${AWS}/api/visit-details`;
+const USERACCOUNT_API = `${AWS}/api/useraccount`;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -117,7 +118,9 @@ export class AppointmentsService {
   addVisit(
     visitDate: string,
     doctorId: string,
-    hours: string,
+    startHour: string,
+    endHour: string,
+    stepHour: string,
     price: number,
     clinicId: number
   ): Observable<any> {
@@ -125,7 +128,9 @@ export class AppointmentsService {
     const params = new HttpParams()
       .set('visitDate', visitDate)
       .set('doctorId', doctorId)
-      .set('hours', hours)
+      .set('startHour', startHour)
+      .set('endHour', endHour)
+      .set('stepHour', stepHour)
       .set('price', price)
       .set('clinicId', clinicId);
 
@@ -176,5 +181,17 @@ export class AppointmentsService {
     }
 
     return this.http.put(url, {}, httpOptionsString);
+  }
+
+  addBalance(balance: number, userId: string) {
+    const params = new HttpParams().set('balance', balance);
+
+    const httpOptionsParams = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      params: params,
+      responseType: 'text' as 'json',
+    };
+    const url = `${USERACCOUNT_API}/setbalance/${userId}`;
+    return this.http.put<string>(url, null, httpOptionsParams);
   }
 }

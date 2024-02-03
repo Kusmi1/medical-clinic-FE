@@ -10,6 +10,7 @@ import {
   startWith,
   switchMap,
   tap,
+  throwError,
 } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formatDate, Location } from '@angular/common';
@@ -31,7 +32,7 @@ export class NewAppointmentComponent implements OnInit {
   availableVisits: VisitModel[] = [];
   specializationFromRoute = '';
   currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'pl');
-
+  errorValue: any = null;
   constructor(
     private fb: FormBuilder,
     private readonly location: Location,
@@ -129,14 +130,18 @@ export class NewAppointmentComponent implements OnInit {
     if (specializationRoute) {
       specialization = specializationRoute;
     }
-
     const polishSpecialization = specializationMapping[specialization] || specialization;
-
     return this.appointmentsService
       .getAvailableVisitsBySpecialization(polishSpecialization, date!)
+
       .pipe(
         map(visits => {
           return visits;
+        }),
+        catchError(error => {
+          this.errorValue = error.status;
+          console.log('error2 ', this.errorValue);
+          return throwError(error);
         })
       );
   }

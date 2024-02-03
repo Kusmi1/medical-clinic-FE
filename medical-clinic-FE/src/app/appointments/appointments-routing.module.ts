@@ -10,6 +10,7 @@ import { ManageAppointmentsComponent } from './components/nurse/manage-appointme
 import { AppointmentsPreviewComponent } from './components/doctor/appointments-preview/appointments-preview.component';
 import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
 import { AuthenticationGuard as AuthGuard } from '../guard/authentication.guard';
+import { AddBalanceComponent } from './components/nurse/add-balance/add-balance.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,11 @@ const routes: Routes = [
         path: 'new-role',
         canActivate: [AuthGuard],
         component: AddDoctorNurseComponent,
+      },
+      {
+        path: 'add-balance',
+        canActivate: [AuthGuard],
+        component: AddBalanceComponent,
       },
     ],
   },

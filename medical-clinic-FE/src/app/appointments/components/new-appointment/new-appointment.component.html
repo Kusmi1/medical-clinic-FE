@@ -24,7 +24,9 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
-
+    <div class="new-appointment__error-no-visits" *ngIf="errorValue === 404">
+      {{ 'errors.no-visits-with-date' | translate }}
+    </div>
     <div
       *ngIf="
         availableVisits &&

@@ -30,6 +30,7 @@ import { InputDialogComponent } from './components/popup-window/input-dialog/inp
 import { AppointmentDetailsPopupComponent } from './components/popup-window/appointment-details-popup/appointment-details-popup.component';
 import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
 import { MatSelectModule } from '@angular/material/select';
+import { AddBalanceComponent } from './components/nurse/add-balance/add-balance.component';
 @NgModule({
   declarations: [
     RecentAppointmentsComponent,
@@ -44,6 +45,7 @@ import { MatSelectModule } from '@angular/material/select';
     InputDialogComponent,
     AppointmentDetailsPopupComponent,
     AddDoctorNurseComponent,
+    AddBalanceComponent,
   ],
   exports: [NewAppointmentComponent],
   imports: [

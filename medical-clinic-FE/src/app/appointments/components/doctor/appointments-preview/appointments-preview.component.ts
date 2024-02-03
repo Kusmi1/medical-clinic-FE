@@ -194,8 +194,6 @@ export class AppointmentsPreviewComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result !== undefined) {
           this.addDetailsToVisit(visitId, result as VisitDetails);
-        } else {
-          console.log('Dialog was cancelled');
         }
       });
     });
@@ -213,7 +211,6 @@ export class AppointmentsPreviewComponent implements OnInit {
 
   getDetailsOfVisit(visitId: string): Observable<VisitDetails> {
     return this.appointmentsService.getVisitDetailsByVisitId(visitId).pipe(
-      tap(visitDetails => console.log('Visit Details retrieved successfully', visitDetails)),
       catchError(error => {
         console.error('There was an error retrieving the visit details', error);
         return throwError(error);

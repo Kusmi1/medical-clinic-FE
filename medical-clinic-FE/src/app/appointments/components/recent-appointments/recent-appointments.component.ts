@@ -50,7 +50,6 @@ export class RecentAppointmentsComponent implements OnInit {
   }
   getDetailsOfVisit(visitId: string): Observable<VisitDetails> {
     return this.appointmentsService.getVisitDetailsByVisitId(visitId).pipe(
-      tap(visitDetails => console.log('Visit Details retrieved successfully', visitDetails)),
       catchError(error => {
         console.error('There was an error retrieving the visit details', error);
         return throwError(error);

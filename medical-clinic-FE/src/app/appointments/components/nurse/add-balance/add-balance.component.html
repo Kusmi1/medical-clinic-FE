@@ -1,0 +1,35 @@
+<form [formGroup]="balanceForm">
+  <div class="balance__container">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ 'headers.select-patient' | translate }}</mat-label>
+      <input
+        type="text"
+        placeholder=" {{ 'headers.select-patient' | translate }}"
+        matInput
+        [formControl]="userSearchControl" />
+    </mat-form-field>
+
+    <mat-radio-group class="balance__list-doctor" aria-label="Select a user">
+      <mat-radio-button
+        (click)="setUserId(user)"
+        *ngFor="let user of filteredUsersByTerm"
+        [value]="user.id">
+        {{ user.name }} {{ user.lastname }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field class="balance__input-money">
+      <mat-label>{{ 'headers.set-balance' | translate }}</mat-label>
+
+      <input
+        matInput
+        type="text"
+        #input
+        OnlyNumberInput
+        placeholder=" {{ 'headers.set-balance' | translate }}"
+        formControlName="balance" />
+    </mat-form-field>
+    <button class="balance__button" mat-button (click)="addBalance()">
+      {{ 'button.add-money' | translate }}
+    </button>
+  </div>
+</form>

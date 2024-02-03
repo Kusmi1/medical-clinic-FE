@@ -78,5 +78,12 @@
   &__error {
     color: var(--alert-error);
     font-size: 1rem;
+
+    &-no-visits {
+      padding-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--alert-error);
+    }
   }
 }

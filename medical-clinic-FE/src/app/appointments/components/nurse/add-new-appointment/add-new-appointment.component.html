@@ -7,14 +7,32 @@
       <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>{{ 'headers.hour' | translate }}</mat-label>
-      <input formControlName="hour" matInput type="time" />
+      <mat-label>{{ 'headers.hour-start' | translate }}</mat-label>
+      <input formControlName="hourStart" matInput type="time" />
     </mat-form-field>
-    <!--    <mat-form-field>-->
-    <!--      <mat-label>{{ 'headers.price' | translate }}</mat-label>-->
-    <!--      <input formControlName="price" matInput type="number" />-->
-    <!--    </mat-form-field>-->
+    <mat-form-field>
+      <mat-label>{{ 'headers.hour-end' | translate }}</mat-label>
+      <input formControlName="hourEnd" matInput type="time" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'headers.hour-step' | translate }}</mat-label>
+      <mat-select required>
+        <mat-option (click)="setStep(step.valueOf())" *ngFor="let step of steps" [value]="step"
+          >{{ step }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="balance__input-money">
+      <mat-label>{{ 'headers.set-balance' | translate }}</mat-label>
 
+      <input
+        matInput
+        type="text"
+        #input
+        OnlyNumberInput
+        placeholder=" {{ 'headers.set-balance' | translate }}"
+        formControlName="balance" />
+    </mat-form-field>
     <mat-form-field formGroupName="medicalClinic">
       <mat-label>{{ 'headers.clinic' | translate }}</mat-label>
       <mat-select required>
