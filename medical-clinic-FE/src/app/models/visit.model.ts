@@ -3,6 +3,7 @@ export interface VisitModel {
   specialization: string;
   doctorName: string;
   doctorSurname: string;
+  price: number;
   userName: string;
   userSurname: string;
   date: string;

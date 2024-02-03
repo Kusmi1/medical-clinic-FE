@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarService } from '../../../guard/snackbar.service';
 import { UserModel } from '../../../models/user.model';
+import { ConfirmDialogComponent } from '../popup-window/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-summary',
@@ -16,6 +18,8 @@ export class SummaryComponent implements OnInit {
   visitId = 0;
   visitIdString = '';
   userList: UserModel | undefined;
+  errorValue: any = null;
+  private balanceValue: number | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,10 +27,12 @@ export class SummaryComponent implements OnInit {
     private readonly location: Location,
     private snackBar: MatSnackBar,
     private router: Router,
-    private snackBarService: SnackbarService
+    private snackBarService: SnackbarService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    console.log('user list balance onInit ', this.balanceValue);
     this.route.paramMap.subscribe(params => {
       this.visitIdString = params.get('visitId')!;
       if (this.visitIdString) {
@@ -52,22 +58,45 @@ export class SummaryComponent implements OnInit {
   }
 
   bookVisit() {
+    if (this.visitDetails.price > 0) {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '340px',
+        data: { message: 'paid-visit' },
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.bookVisitRequest();
+        }
+      });
+    } else {
+      this.bookVisitRequest();
+    }
+  }
+
+  private bookVisitRequest() {
     this.appointmentsService.bookVisit(this.visitIdString).subscribe(
       response => {
         this.snackBarService.snackMessage('made-appointment');
         setTimeout(() => {
-          this.router.navigate(['/visit/future-visit']);
+          this.router.navigate(['/visit/future-visit'], {
+            queryParams: { balanceAvailable: 'true' },
+          });
         }, 1500);
       },
       error => {
-        console.error(error);
+        this.errorValue = error.status;
+        this.snackBarService.snackMessage('error-' + error.status);
+        setTimeout(() => {
+          this.router.navigate(['/visit/new-visit']);
+        }, 2000);
       }
     );
   }
-
   getUserById() {
     this.appointmentsService.getUser().subscribe(user => {
       this.userList = user;
+      this.balanceValue = user.balance;
     });
   }
 }

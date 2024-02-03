@@ -75,4 +75,16 @@ $user-button-color: var(--primary-green);
     margin-bottom: 1rem;
     color: red;
   }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    &-balance {
+      color: black;
+      font-weight: 500;
+    }
+  }
 }

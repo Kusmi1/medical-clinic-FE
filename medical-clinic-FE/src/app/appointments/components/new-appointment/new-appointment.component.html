@@ -40,8 +40,13 @@
           <p class="new-appointment__choose-visit-text">
             {{ visit.doctorName + ' ' + visit.doctorSurname }}
           </p>
+
           <span>{{ visit.date }}</span>
         </div>
+        <div class="new-appointment__price">
+          cena <span class="new-appointment__price-text">{{ visit.price }}</span>
+        </div>
+
         <div class="new-appointment__choose-doctor-hour">
           <mat-button-toggle-group
             formGroupName="chosenHour"

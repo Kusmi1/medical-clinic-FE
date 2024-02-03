@@ -33,7 +33,7 @@
     "confirm": "Potwierdzenie",
     "delete-visit": "Chcesz usunąć tę wizytę?",
     "delete-user": "Chcesz usunąć tego użytkownika?",
-    "deleted-correctly": "Wizyta usunieta Poprawnie",
+    "deleted-correctly": "Wizyta usunieta Poprawnie, w przypadku płatnej wizyty srodki zostaną zwrocone na konto",
     "added-correctly": "Wizyta dodana poprawnie",
     "added-data-correctly": "Dane zmieniono poprawnie",
     "deleted-user-correctly": "Użytkownik został usunięty",
@@ -43,7 +43,10 @@
     "register-correctly": "Użytkownik zarejestrowany poprawnie",
     "register-wrong": "Błąd, Użytkownik nie został zarejestrowany",
     "undefined": " ",
-    "set-balance": "Wprowadź kwote"
+    "set-balance": "Wprowadź kwote",
+    "error-409": "Nie masz wystarczająco środków na koncie skontaktuj się z przychodnią",
+    "paid-visit": "wizyta jest płatna, czy chcesz kontynuować?",
+    "avilable-funds": "Na twoim koncie pozostało: "
 
   },
   "nav": {
@@ -75,7 +78,8 @@
     "city": "miasto",
     "street": "ulica",
     "button": "Zmień dane",
-    "delete-button": "Usuń użytkownika"
+    "delete-button": "Usuń użytkownika",
+    "price": "Środki na koncie"
   },
   "register": {
     "email": "Email",
@@ -134,7 +138,8 @@
     "hour": "Godzina",
     "correct-data": "Czy dane są poprawne?",
     "book-again": "Nie, Umów nową wizytę",
-    "correct-book": "Tak, umawiam wizytę"
+    "correct-book": "Tak, umawiam wizytę",
+    "price": "cena"
   },
   "specialization": {
     "Chirurg": "Chirurg",

@@ -7,4 +7,5 @@ export interface UserModel {
   email: string;
   pesel: string;
   password: string;
+  balance: number;
 }
