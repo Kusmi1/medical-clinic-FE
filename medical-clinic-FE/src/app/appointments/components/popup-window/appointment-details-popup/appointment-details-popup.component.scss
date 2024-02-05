@@ -24,4 +24,16 @@
     overflow-y: scroll;
     white-space: pre-wrap;
   }
+
+  &__text {
+    display: flex;
+    //justify-content: space-between;
+    font-size: 1rem;
+    padding: 0 1rem;
+
+    &-pin {
+      padding-left: 0.5rem;
+      font-weight: 500;
+    }
+  }
 }

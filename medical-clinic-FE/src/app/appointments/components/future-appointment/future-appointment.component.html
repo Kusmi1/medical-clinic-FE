@@ -1,4 +1,7 @@
 <h2>{{ 'headers.future-visit' | translate }}</h2>
+<span class="future-appointments__row-money" *ngIf="balanceAvailable">
+  {{ 'headers.avilable-funds' | translate }} {{ balanceValue }}zł</span
+>
 <div class="future-appointments" *ngFor="let visit of futureVisits">
   <app-appointments-card
     [specialization]="'specialization.' + visit.specialization | translate"

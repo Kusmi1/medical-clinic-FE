@@ -50,6 +50,16 @@
           'nav.new-role' | translate
         }}</a>
       </li>
+      <li *ngIf="showNurseBoard">
+        <a href="visit/add-balance" class="nav-link" routerLink="visit/add-balance">{{
+          'nav.add-balance' | translate
+        }}</a>
+      </li>
+      <li *ngIf="showNurseBoard">
+        <a href="visit/today-visits" class="nav-link" routerLink="visit/today-visits">{{
+          'nav.today-added' | translate
+        }}</a>
+      </li>
       <li class="nav-item">
         <a href="user" class="nav-link"
           >{{ 'headers.' + this.userRole | translate }} {{ userList?.name }}

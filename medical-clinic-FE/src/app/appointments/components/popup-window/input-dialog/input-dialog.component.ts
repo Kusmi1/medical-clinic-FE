@@ -9,9 +9,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class InputDialogComponent {
   medicines = '';
   description = '';
+  pin: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.medicines = data.medicines;
     this.description = data.description;
+    this.pin = data.pin;
   }
 }

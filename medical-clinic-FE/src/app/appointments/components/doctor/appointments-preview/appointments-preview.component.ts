@@ -34,7 +34,7 @@ import { TokenStorageService } from '../../../../services/auth/token-storage.ser
 export class AppointmentsPreviewComponent implements OnInit {
   futureVisits: VisitModel[] | undefined;
   visitForm: FormGroup;
-  userList: UserModel[] = [];
+  userList: UserModel | undefined;
   filteredUsersByTerm: UserModel[] = [];
   userSearchControl = new FormControl();
 
@@ -65,6 +65,9 @@ export class AppointmentsPreviewComponent implements OnInit {
   ngOnInit(): void {
     this.allUsers();
     this.loadFutureVisits();
+    this.getUserById();
+    const doctorId = this.tokenStorageService.getUserId();
+    this.visitForm.get('doctor.id')?.setValue(doctorId);
     this.userSearchControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(searchTerm => {
@@ -188,14 +191,13 @@ export class AppointmentsPreviewComponent implements OnInit {
         data: {
           medicines: visitDetails.medicines,
           description: visitDetails.description,
+          pin: visitDetails.pin,
         },
       });
 
       dialogRef.afterClosed().subscribe(result => {
         if (result !== undefined) {
           this.addDetailsToVisit(visitId, result as VisitDetails);
-        } else {
-          console.log('Dialog was cancelled');
         }
       });
     });
@@ -213,11 +215,18 @@ export class AppointmentsPreviewComponent implements OnInit {
 
   getDetailsOfVisit(visitId: string): Observable<VisitDetails> {
     return this.appointmentsService.getVisitDetailsByVisitId(visitId).pipe(
-      tap(visitDetails => console.log('Visit Details retrieved successfully', visitDetails)),
       catchError(error => {
         console.error('There was an error retrieving the visit details', error);
         return throwError(error);
       })
     );
+  }
+
+  getUserById() {
+    this.appointmentsService.getUser().subscribe(user => {
+      this.visitForm.get('doctor.id')?.setValue(user.id);
+      this.visitForm.get('doctor.name')?.setValue(user.name);
+      this.visitForm.get('doctor.surname')?.setValue(user.lastname);
+    });
   }
 }

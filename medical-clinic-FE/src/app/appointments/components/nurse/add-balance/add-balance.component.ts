@@ -1,29 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../../../models/user.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Observable, startWith } from 'rxjs';
+import { SpecializationModel } from '../../../../models/specialization.model';
+import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { AppointmentsService } from '../../../../services/appointments-services/appointments.service';
 import { SnackbarService } from '../../../../guard/snackbar.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { SpecializationModel } from '../../../../models/specialization.model';
-import { UserRole } from '../../../../models/doctor.model';
 
 @Component({
-  selector: 'app-add-doctor-nurse',
-  templateUrl: './add-doctor-nurse.component.html',
-  styleUrls: ['./add-doctor-nurse.component.scss'],
+  selector: 'app-add-balance',
+  templateUrl: './add-balance.component.html',
+  styleUrls: ['./add-balance.component.scss'],
 })
-export class AddDoctorNurseComponent implements OnInit {
+export class AddBalanceComponent implements OnInit {
   userList: UserModel[] = [];
   userSearchControl = new FormControl();
-  roleForm: FormGroup;
+  balanceForm: FormGroup;
   filteredUsersByTerm: UserModel[] = [];
-  // filteredUsersByTerm: UserModel[] = [];
   options: SpecializationModel[] = [];
-  filteredOptions: Observable<SpecializationModel[]> | undefined;
-  userRole = ['ROLE_USER', 'ROLE_NURSE', 'ROLE_DOCTOR'];
 
   constructor(
     private appointmentsService: AppointmentsService,
@@ -33,10 +29,9 @@ export class AddDoctorNurseComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog
   ) {
-    this.roleForm = this.fb.group({
+    this.balanceForm = this.fb.group({
       userSearchControl: new FormControl(),
-      role: [''],
-      specialization: [''],
+      balance: ['', Validators.required],
       userSearch: [''],
       user: this.fb.group({
         id: [''],
@@ -45,8 +40,8 @@ export class AddDoctorNurseComponent implements OnInit {
       }),
     });
   }
+
   ngOnInit(): void {
-    this.loadSpecializations();
     this.allUsers();
 
     this.userSearchControl.valueChanges
@@ -68,7 +63,7 @@ export class AddDoctorNurseComponent implements OnInit {
   }
 
   allUsers() {
-    this.appointmentsService.getAllUsersByRole().subscribe(
+    this.appointmentsService.getAllUsers().subscribe(
       (users: UserModel[]) => {
         this.filteredUsersByTerm = users;
       },
@@ -77,19 +72,9 @@ export class AddDoctorNurseComponent implements OnInit {
       }
     );
   }
-  loadSpecializations() {
-    this.appointmentsService.getAllSpecializations().subscribe(
-      specializations => {
-        this.options = specializations;
-      },
-      error => {
-        console.error('Error fetching specializations', error);
-      }
-    );
-  }
 
   resetForm() {
-    this.roleForm.reset({
+    this.balanceForm.reset({
       specialization: '',
       userSearchControl: '',
       role: '',
@@ -103,28 +88,24 @@ export class AddDoctorNurseComponent implements OnInit {
   }
 
   setUserId(selectedUser: UserModel) {
-    this.roleForm.get('user')?.patchValue({
+    this.balanceForm.get('user')?.patchValue({
       id: selectedUser.id,
       name: selectedUser.name,
       surname: selectedUser.lastname,
     });
   }
 
-  changeUserRole() {
-    const specializationIds = this.roleForm.get('specialization')?.value;
-    const newRole = this.roleForm.get('role')?.value;
-    const userId = this.roleForm.get('user.id')?.value;
-    this.appointmentsService
-      .changeUserRoleAndHandleDoctor(userId, newRole, specializationIds)
-      .subscribe(
-        response => {
-          this.snackBarService.snackMessage('role-changed-correctly');
-          window.location.reload();
-        },
-        error => {
-          this.snackBarService.snackMessage('role-changed-error');
-          console.error('Error:', error);
-        }
-      );
+  addBalance() {
+    const userId = this.balanceForm.get('user.id')?.value;
+    const balance = this.balanceForm.get('balance')?.value;
+    this.appointmentsService.addBalance(balance, userId).subscribe(
+      response => {
+        this.snackBarService.snackMessage('added-correctly');
+        window.location.reload();
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

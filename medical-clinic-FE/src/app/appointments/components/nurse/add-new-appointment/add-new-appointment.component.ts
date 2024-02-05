@@ -25,6 +25,7 @@ export class AddNewAppointmentComponent implements OnInit {
   startDate: Date = new Date();
   doctors: DoctorModel[] = [];
   doctorUnavailable = false;
+  steps: number[] = [10, 15, 30, 45, 60];
 
   constructor(
     private appointmentsService: AppointmentsService,
@@ -38,8 +39,10 @@ export class AddNewAppointmentComponent implements OnInit {
       specialization: ['', Validators.required],
 
       chosenDate: ['', Validators.required],
-      hour: ['', Validators.required],
-      price: [0],
+      hourStart: ['', Validators.required],
+      hourEnd: ['', Validators.required],
+      hourStep: ['', Validators.required],
+      balance: ['0'],
 
       doctor: this.fb.group({
         id: [null, Validators.required],
@@ -152,24 +155,28 @@ export class AddNewAppointmentComponent implements OnInit {
   addVisit(): void {
     const visitDate = formatDate(this.visitForm.get('chosenDate')?.value, 'yyy-MM-dd', 'pl');
     const doctorId = this.visitForm.get('doctor.id')?.value;
-    const hours = this.visitForm.get('hour')?.value;
-    const price = this.visitForm.get('price')?.value;
+    const hourStart = this.visitForm.get('hourStart')?.value;
+    const hourEnd = this.visitForm.get('hourEnd')?.value;
+    const hourStep = this.visitForm.get('hourStep')?.value;
+    const price = this.visitForm.get('balance')?.value;
     const clinicId = this.visitForm.get('medicalClinic.id')?.value;
 
-    this.appointmentsService.addVisit(visitDate, doctorId, hours, price, clinicId).subscribe(
-      () => {
-        this.snackBarService.snackMessage('added-correctly');
-        this.doctorUnavailable = false;
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      },
+    this.appointmentsService
+      .addVisit(visitDate, doctorId, hourStart, hourEnd, hourStep, price, clinicId)
+      .subscribe(
+        () => {
+          this.snackBarService.snackMessage('added-correctly');
+          this.doctorUnavailable = false;
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        },
 
-      error => {
-        console.error('Error adding visit:', error);
-        this.doctorUnavailable = true;
-      }
-    );
+        error => {
+          console.error('Error adding visit:', error);
+          this.doctorUnavailable = true;
+        }
+      );
   }
 
   cancelClicked() {
@@ -188,5 +195,9 @@ export class AddNewAppointmentComponent implements OnInit {
         surname: '',
       },
     });
+  }
+
+  setStep(choosenStep: number) {
+    this.visitForm.get('hourStep')?.setValue(choosenStep);
   }
 }

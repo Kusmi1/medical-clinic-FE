@@ -9,12 +9,17 @@
     "next": "Przechodzę dalej",
     "show-details": "Pokaż szczegóły",
     "all-visits": "Pokaż wszystkie wizyty",
-    "confirm": "Potwierdź"
+    "confirm": "Potwierdź",
+    "add-money": "Doładuj konto",
+    "have-pin": "Mam skierowanie do specialisty",
+    "add-visit": "Dodaj wizytę"
   },
   "headers": {
     "specialization": "Wybierz specjalizację",
     "date": "Wybierz datę",
-    "hour": "Godzina",
+    "hour-start": "Godzina rozpoczęcia wizyt",
+    "hour-end": "Godzina zakończenia wizyt",
+    "hour-step": "Czas trwania jednej wizyty",
     "price": "Cena",
     "clinic": "Wybierz Przychodnię",
     "doctor-unavailable": "Lekarz w tym dniu jest niedostępny",
@@ -30,8 +35,10 @@
     "confirm": "Potwierdzenie",
     "delete-visit": "Chcesz usunąć tę wizytę?",
     "delete-user": "Chcesz usunąć tego użytkownika?",
-    "deleted-correctly": "Wizyta usunieta Poprawnie",
+    "deleted-correctly": "Wizyta usunieta Poprawnie, w przypadku płatnej wizyty srodki zostaną zwrocone na konto",
     "added-correctly": "Wizyta dodana poprawnie",
+    "role-changed-correctly": "Poprawnie nadano uprawnienia",
+    "role-changed-error": "Błąd, nie  nadano uprawnień",
     "added-data-correctly": "Dane zmieniono poprawnie",
     "deleted-user-correctly": "Użytkownik został usunięty",
     "added-data-wrong": "Błąd, nie zmieniono danych",
@@ -39,8 +46,14 @@
     "made-appointment": "Wizyta umówiona poprawnie",
     "register-correctly": "Użytkownik zarejestrowany poprawnie",
     "register-wrong": "Błąd, Użytkownik nie został zarejestrowany",
+    "undefined": " ",
+    "set-balance": "Wprowadź kwote",
+    "error-409": "Nie masz wystarczająco środków na koncie skontaktuj się z przychodnią",
+    "paid-visit": "wizyta jest płatna, czy chcesz kontynuować?",
+    "avilable-funds": "Na twoim koncie pozostało: ",
+    "today-added":"Dzisiaj dodane wizyty",
+    "pin": "Wprowadź kod skierowania"
 
-    "undefined": " "
   },
   "nav": {
     "menu": "Login",
@@ -54,7 +67,9 @@
     "manage-appointments": "Zarządzaj wizytami",
     "show-appointments": "Podgląd wizyt",
     "signup": "Załóż konto",
-    "login": "Zaloguj"
+    "login": "Zaloguj",
+    "add-balance": "doładuj konto",
+    "today-added": "Ostatnio dodane wizyty"
   },
   "user": {
     "email": "Email",
@@ -70,7 +85,8 @@
     "city": "miasto",
     "street": "ulica",
     "button": "Zmień dane",
-    "delete-button": "Usuń użytkownika"
+    "delete-button": "Usuń użytkownika",
+    "price": "Środki na koncie"
   },
   "register": {
     "email": "Email",
@@ -115,7 +131,8 @@
     "description": "Opis:",
     "description-add": "Wprowadź opis",
     "close": "Zamknij",
-    "confirm": "zatwierdź"
+    "confirm": "zatwierdź",
+    "pin": "Kod skierowania: "
   },
   "patient": {
     "user-data": "Dane osobowe",
@@ -129,7 +146,8 @@
     "hour": "Godzina",
     "correct-data": "Czy dane są poprawne?",
     "book-again": "Nie, Umów nową wizytę",
-    "correct-book": "Tak, umawiam wizytę"
+    "correct-book": "Tak, umawiam wizytę",
+    "price": "cena"
   },
   "specialization": {
     "Chirurg": "Chirurg",
@@ -156,6 +174,7 @@
     "name": "name is ",
     "ID": "ID is ",
     "required": "required",
+    "no-visits-with-date": "Brak wizyt dla podanej daty, poniżej znajdziesz wszytskie wizyty u wybranego lekarza",
     "email": {
       "required": "Email jest wymagany",
       "minlength": "Email jest zbyt krótki, minimum znaków to 6",

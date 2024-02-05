@@ -24,7 +24,25 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
-
+    <div class="new-appointment__error-no-visits" *ngIf="errorValue === 404">
+      {{ 'errors.no-visits-with-date' | translate }}
+    </div>
+    <button *ngIf="!showPin" class="new-appointment__button" mat-button (click)="havePin()">
+      {{ 'button.have-pin' | translate }}
+    </button>
+    <mat-form-field *ngIf="showPin" class="register__field">
+      <mat-label class="register__label">
+        {{ 'headers.pin' | translate }}
+      </mat-label>
+      <input
+        matInput
+        type="number"
+        #input
+        OnlyNumberInput
+        formControlName="pin"
+        [maxlength]="4"
+        [minlength]="4" />
+    </mat-form-field>
     <div
       *ngIf="
         availableVisits &&
@@ -38,8 +56,13 @@
           <p class="new-appointment__choose-visit-text">
             {{ visit.doctorName + ' ' + visit.doctorSurname }}
           </p>
+
           <span>{{ visit.date }}</span>
         </div>
+        <div class="new-appointment__price">
+          cena <span class="new-appointment__price-text">{{ visit.price }}</span>
+        </div>
+
         <div class="new-appointment__choose-doctor-hour">
           <mat-button-toggle-group
             formGroupName="chosenHour"
@@ -66,7 +89,7 @@
         {{ visitForm.get('chosenDate')!.value | date: 'yyyy-MM-dd' }}
       </p>
       <ng-template #noData>
-        <p class="new-appointment__error">
+        <p *ngIf="visitForm.get('chosenDate')?.touched" class="new-appointment__error">
           {{ 'headers.doctor-unavailable' | translate }} {{ currentDate }}
         </p>
       </ng-template>

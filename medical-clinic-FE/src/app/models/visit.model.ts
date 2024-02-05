@@ -3,6 +3,7 @@ export interface VisitModel {
   specialization: string;
   doctorName: string;
   doctorSurname: string;
+  price: number;
   userName: string;
   userSurname: string;
   date: string;
@@ -41,4 +42,5 @@ export interface MedicalClinic {
 export interface VisitDetails {
   medicines: string;
   description: string;
+  pin: string;
 }

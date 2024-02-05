@@ -6,18 +6,13 @@ import { RecentAppointmentsComponent } from './components/recent-appointments/re
 import { AppointmentsCardComponent } from './components/appointments-card/appointments-card.component';
 import { AppointmentsComponent } from './appointments.component';
 import { SummaryComponent } from './components/summary/summary.component';
-
-import { NewAppointmentComponent } from './components/new-appointment/new-appointment.component';
-
+import { BookAppointmentComponent } from './components/book-appointment/book-appointment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
@@ -30,13 +25,17 @@ import { InputDialogComponent } from './components/popup-window/input-dialog/inp
 import { AppointmentDetailsPopupComponent } from './components/popup-window/appointment-details-popup/appointment-details-popup.component';
 import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
 import { MatSelectModule } from '@angular/material/select';
+import { AddBalanceComponent } from './components/nurse/add-balance/add-balance.component';
+import { TodayAddedVisitsComponent } from './components/nurse/today-added-visits/today-added-visits.component';
+import { OnlyNumberInputDirective } from '../directives/only-number-input.directive';
+import { DirectivesModule } from '../directives/directives.module';
 @NgModule({
   declarations: [
     RecentAppointmentsComponent,
     AppointmentsCardComponent,
     AppointmentsComponent,
     SummaryComponent,
-    NewAppointmentComponent,
+    BookAppointmentComponent,
     FutureAppointmentComponent,
     ManageAppointmentsComponent,
     ConfirmDialogComponent,
@@ -44,8 +43,10 @@ import { MatSelectModule } from '@angular/material/select';
     InputDialogComponent,
     AppointmentDetailsPopupComponent,
     AddDoctorNurseComponent,
+    AddBalanceComponent,
+    TodayAddedVisitsComponent,
   ],
-  exports: [NewAppointmentComponent],
+  exports: [BookAppointmentComponent],
   imports: [
     CommonModule,
     AppointmentsRoutingModule,
@@ -62,6 +63,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatRadioModule,
     MatDialogModule,
     MatSelectModule,
+    DirectivesModule,
   ],
 })
 export class AppointmentsModule {}

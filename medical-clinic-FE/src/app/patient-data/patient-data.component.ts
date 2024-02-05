@@ -60,6 +60,7 @@ export class PatientDataComponent implements OnInit {
       lastName: new FormControl('', Validators.compose([Validators.required])),
       userName: new FormControl({ value: '', disabled: true }),
       pesel: new FormControl({ value: '', disabled: true }),
+      balance: new FormControl({ value: '', disabled: true }),
 
       email: new FormControl(
         '',
@@ -104,6 +105,7 @@ export class PatientDataComponent implements OnInit {
     this.userForm.get('firstName')?.setValue(userData.name);
     this.userForm.get('email')?.setValue(userData.email);
     this.userForm.get('pesel')?.setValue(userData.pesel);
+    this.userForm.get('balance')?.setValue(userData.balance);
     this.userForm.get('userName')?.setValue(userData.userName);
     this.userForm.get('lastName')?.setValue(userData.lastname);
     this.userForm.get('password')?.setValue(userData.password);
@@ -134,25 +136,6 @@ export class PatientDataComponent implements OnInit {
       }
     );
   }
-
-  // deleteUser(): void {
-  //   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-  //     width: '300px',
-  //     data: { message: 'delete-visit' },
-  //   });
-  //   this.appointmentService.deleteUser().subscribe(
-  //     response => {
-  //       this.snackBar.snackMessage('deleted-user-correctly');
-  //       setTimeout(() => {
-  //         this.tokenStorageService.signOut();
-  //         this.router.navigate(['/login']);
-  //       }, 1000);
-  //     },
-  //     error => {
-  //       this.snackBar.snackMessage('deleted-user-wrong');
-  //     }
-  //   );
-  // }
 
   deleteUser() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

@@ -2,6 +2,10 @@
   <h2 class="form__header">
     {{ 'user.title' | translate }}
   </h2>
+  <div class="user__box">
+    <span> {{ 'user.price' | translate }}:</span
+    ><span class="user__box-balance">{{ userForm.get('balance')?.value }} zł</span>
+  </div>
   <div>
     <mat-form-field class="user__field">
       <mat-label class="user__label"> {{ 'user.fName' | translate }}</mat-label>
@@ -80,6 +84,7 @@
       <mat-label class="user__label">{{ 'user.pesel' | translate }}</mat-label>
       <input matInput formControlName="pesel" type="text" />
     </mat-form-field>
+
     <div>
       <button class="user__button" (click)="UpdateUserData()">
         {{ 'user.button' | translate }}
