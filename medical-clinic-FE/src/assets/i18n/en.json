@@ -10,7 +10,9 @@
     "show-details": "Show Details",
     "all-visits": "Show all visits",
     "confirm": "Confirmation",
-    "add-money": "Add money"
+    "add-money": "Add money",
+    "have-pin": "I have a referral to a specialist",
+    "add-visit": "Add appointment"
   },
   "headers": {
     "specialization": "Choose specialization",
@@ -35,6 +37,8 @@
     "delete-user": "Do you want to delete this user?",
     "deleted-correctly": "Appointment deleted Correct, in the case of a paid visit, the funds will be returned to the account",
     "added-correctly": "The appointment was added correctly",
+    "role-changed-correctly": "Permissions have been granted correctly",
+    "role-changed-error": "Error, permissions not granted",
     "made-appointment": "The appointment was scheduled correctly",
     "added-data-correctly": "Data changed correctly",
     "deleted-user-correctly": "User deleted correctly",
@@ -46,7 +50,10 @@
     "set-balance": "Enter amount",
     "error-409": "You do not have enough funds in your account, contact the medical clinic",
     "paid-visit": "there is a fee for the visit, do you want to continue?",
-    "avilable-funds": "Remaining on your account: "
+    "avilable-funds": "Remaining on your account: ",
+    "today-added":"Today added appointments",
+    "pin": "Enter your referral code"
+
   },
   "nav": {
     "menu": "Login",
@@ -63,7 +70,8 @@
     "failed": "Login failed:",
     "signup": "Sign Up",
     "login": "Login",
-    "add-balance": "add money"
+    "add-balance": "add money",
+    "today-added": "Recent added appointments"
   },
   "user": {
     "email": "Email",
@@ -115,7 +123,8 @@
     "description": "Description:",
     "description-add": "Add description",
     "close": "Close",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "pin": "referral code: "
   },
   "patient": {
     "user-data": "Personal data",

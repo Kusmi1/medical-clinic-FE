@@ -27,6 +27,22 @@
     <div class="new-appointment__error-no-visits" *ngIf="errorValue === 404">
       {{ 'errors.no-visits-with-date' | translate }}
     </div>
+    <button *ngIf="!showPin" class="new-appointment__button" mat-button (click)="havePin()">
+      {{ 'button.have-pin' | translate }}
+    </button>
+    <mat-form-field *ngIf="showPin" class="register__field">
+      <mat-label class="register__label">
+        {{ 'headers.pin' | translate }}
+      </mat-label>
+      <input
+        matInput
+        type="number"
+        #input
+        OnlyNumberInput
+        formControlName="pin"
+        [maxlength]="4"
+        [minlength]="4" />
+    </mat-form-field>
     <div
       *ngIf="
         availableVisits &&
@@ -73,7 +89,7 @@
         {{ visitForm.get('chosenDate')!.value | date: 'yyyy-MM-dd' }}
       </p>
       <ng-template #noData>
-        <p class="new-appointment__error">
+        <p *ngIf="visitForm.get('chosenDate')?.touched" class="new-appointment__error">
           {{ 'headers.doctor-unavailable' | translate }} {{ currentDate }}
         </p>
       </ng-template>

@@ -9,7 +9,6 @@ import {
   of,
   startWith,
   switchMap,
-  tap,
   throwError,
 } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,11 +19,11 @@ import { SpecializationModel } from '../../../models/specialization.model';
 import { specializationMapping } from '../../../shared/specialization-mapping';
 
 @Component({
-  selector: 'app-new-appointment',
-  templateUrl: './new-appointment.component.html',
-  styleUrls: ['./new-appointment.component.scss'],
+  selector: 'app-book-appointment',
+  templateUrl: './book-appointment.component.html',
+  styleUrls: ['./book-appointment.component.scss'],
 })
-export class NewAppointmentComponent implements OnInit {
+export class BookAppointmentComponent implements OnInit {
   visitForm: FormGroup;
   options: SpecializationModel[] = [];
   filteredOptions: Observable<SpecializationModel[]> | undefined;
@@ -33,6 +32,7 @@ export class NewAppointmentComponent implements OnInit {
   specializationFromRoute = '';
   currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'pl');
   errorValue: any = null;
+  showPin = false;
   constructor(
     private fb: FormBuilder,
     private readonly location: Location,
@@ -43,6 +43,10 @@ export class NewAppointmentComponent implements OnInit {
     this.visitForm = this.fb.group({
       specialization: ['', Validators.required],
       visit: [''],
+      pin: new FormControl(
+        '',
+        Validators.compose([Validators.minLength(4), Validators.maxLength(4)])
+      ),
       chosenDate: [''],
       chosenHour: this.fb.group({
         visitId: [null, Validators.required],
@@ -83,6 +87,7 @@ export class NewAppointmentComponent implements OnInit {
     if (visitId) {
       this.router.navigate(['visit', 'summary', visitId]);
     }
+    this.appointmentsService.pin = this.visitForm.get('pin')?.value;
   }
 
   clearResult() {
@@ -140,7 +145,6 @@ export class NewAppointmentComponent implements OnInit {
         }),
         catchError(error => {
           this.errorValue = error.status;
-          console.log('error2 ', this.errorValue);
           return throwError(error);
         })
       );
@@ -165,5 +169,9 @@ export class NewAppointmentComponent implements OnInit {
       hour: selectedHour.hour,
     });
     selectedHour.isSelected = true;
+  }
+
+  havePin() {
+    this.showPin = true;
   }
 }

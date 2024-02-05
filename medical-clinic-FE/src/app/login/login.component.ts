@@ -88,9 +88,9 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    window.location.reload();
+    this.router.navigate(['/visit/future-visit']);
     setTimeout(() => {
-      this.router.navigate(['/visit/future-visit']);
-    }, 2500);
+      window.location.reload();
+    }, 500);
   }
 }

@@ -44,6 +44,7 @@ export class RecentAppointmentsComponent implements OnInit {
         data: {
           medicines: visitDetails.medicines,
           description: visitDetails.description,
+          pin: visitDetails.pin,
         },
       });
     });

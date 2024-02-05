@@ -98,7 +98,6 @@ export class AddBalanceComponent implements OnInit {
   addBalance() {
     const userId = this.balanceForm.get('user.id')?.value;
     const balance = this.balanceForm.get('balance')?.value;
-    console.log('USERID ', userId, ' balance ', balance);
     this.appointmentsService.addBalance(balance, userId).subscribe(
       response => {
         this.snackBarService.snackMessage('added-correctly');

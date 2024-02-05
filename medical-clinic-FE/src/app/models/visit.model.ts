@@ -42,4 +42,5 @@ export interface MedicalClinic {
 export interface VisitDetails {
   medicines: string;
   description: string;
+  pin: string;
 }

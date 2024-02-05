@@ -10,7 +10,9 @@
     "show-details": "Pokaż szczegóły",
     "all-visits": "Pokaż wszystkie wizyty",
     "confirm": "Potwierdź",
-    "add-money": "Doładuj konto"
+    "add-money": "Doładuj konto",
+    "have-pin": "Mam skierowanie do specialisty",
+    "add-visit": "Dodaj wizytę"
   },
   "headers": {
     "specialization": "Wybierz specjalizację",
@@ -35,6 +37,8 @@
     "delete-user": "Chcesz usunąć tego użytkownika?",
     "deleted-correctly": "Wizyta usunieta Poprawnie, w przypadku płatnej wizyty srodki zostaną zwrocone na konto",
     "added-correctly": "Wizyta dodana poprawnie",
+    "role-changed-correctly": "Poprawnie nadano uprawnienia",
+    "role-changed-error": "Błąd, nie  nadano uprawnień",
     "added-data-correctly": "Dane zmieniono poprawnie",
     "deleted-user-correctly": "Użytkownik został usunięty",
     "added-data-wrong": "Błąd, nie zmieniono danych",
@@ -46,7 +50,9 @@
     "set-balance": "Wprowadź kwote",
     "error-409": "Nie masz wystarczająco środków na koncie skontaktuj się z przychodnią",
     "paid-visit": "wizyta jest płatna, czy chcesz kontynuować?",
-    "avilable-funds": "Na twoim koncie pozostało: "
+    "avilable-funds": "Na twoim koncie pozostało: ",
+    "today-added":"Dzisiaj dodane wizyty",
+    "pin": "Wprowadź kod skierowania"
 
   },
   "nav": {
@@ -62,7 +68,8 @@
     "show-appointments": "Podgląd wizyt",
     "signup": "Załóż konto",
     "login": "Zaloguj",
-    "add-balance": "doładuj konto"
+    "add-balance": "doładuj konto",
+    "today-added": "Ostatnio dodane wizyty"
   },
   "user": {
     "email": "Email",
@@ -124,7 +131,8 @@
     "description": "Opis:",
     "description-add": "Wprowadź opis",
     "close": "Zamknij",
-    "confirm": "zatwierdź"
+    "confirm": "zatwierdź",
+    "pin": "Kod skierowania: "
   },
   "patient": {
     "user-data": "Dane osobowe",

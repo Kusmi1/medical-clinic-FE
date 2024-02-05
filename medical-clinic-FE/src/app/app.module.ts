@@ -28,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { PatientDataComponent } from './patient-data/patient-data.component';
 import { OnlyNumberInputDirective } from './directives/only-number-input.directive';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DirectivesModule } from './directives/directives.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -42,10 +43,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavBarComponent,
     LanguagesComponent,
     PatientDataComponent,
-    OnlyNumberInputDirective,
   ],
   imports: [
     BrowserAnimationsModule,
+    DirectivesModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

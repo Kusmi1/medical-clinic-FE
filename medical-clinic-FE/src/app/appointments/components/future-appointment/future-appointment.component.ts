@@ -35,6 +35,11 @@ export class FutureAppointmentComponent {
     this.route.queryParams.subscribe(params => {
       this.balanceAvailable = params['balanceAvailable'] === 'true';
     });
+    const balanceFlag = localStorage.getItem('balanceAvailable');
+    if (balanceFlag === 'true') {
+      this.balanceAvailable = true;
+      localStorage.removeItem('balanceAvailable');
+    }
   }
 
   private loadFutureVisits(): void {
@@ -57,11 +62,10 @@ export class FutureAppointmentComponent {
           () => {
             this.snackBarService.snackMessage('deleted-correctly');
 
-            console.log('visit.price ', visit.price);
-            window.location.reload();
             setTimeout(() => {
-              this.loadFutureVisits();
-            }, 1500);
+              localStorage.setItem('balanceAvailable', 'true');
+              window.location.reload();
+            }, 2000);
           },
           error => {
             console.error('Error:', error);

@@ -1,4 +1,7 @@
 <h2 mat-dialog-title>{{ 'popup.insert-value' | translate }}</h2>
+<span *ngIf="pin" class="dialog__text"
+  >{{ 'popup.pin' | translate }}<span class="dialog__text-pin">{{ pin }}</span>
+</span>
 <mat-dialog-content class="dialog">
   <mat-form-field class="dialog__input">
     <mat-label>{{ 'popup.medicines-add' | translate }}</mat-label>

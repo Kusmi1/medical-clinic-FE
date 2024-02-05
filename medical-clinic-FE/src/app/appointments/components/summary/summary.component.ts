@@ -32,7 +32,6 @@ export class SummaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('user list balance onInit ', this.balanceValue);
     this.route.paramMap.subscribe(params => {
       this.visitIdString = params.get('visitId')!;
       if (this.visitIdString) {
@@ -75,7 +74,7 @@ export class SummaryComponent implements OnInit {
   }
 
   private bookVisitRequest() {
-    this.appointmentsService.bookVisit(this.visitIdString).subscribe(
+    this.appointmentsService.bookVisit(this.visitIdString, this.appointmentsService.pin).subscribe(
       response => {
         this.snackBarService.snackMessage('made-appointment');
         setTimeout(() => {
@@ -86,7 +85,7 @@ export class SummaryComponent implements OnInit {
       },
       error => {
         this.errorValue = error.status;
-        this.snackBarService.snackMessage('error-' + error.status);
+        this.snackBarService.snackMessage('error-409');
         setTimeout(() => {
           this.router.navigate(['/visit/new-visit']);
         }, 2000);

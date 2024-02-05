@@ -1,0 +1,26 @@
+.today-added {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  min-width: 600px;
+  max-width: 70%;
+
+  &__empty-list {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  &__row-money {
+    font-size: 1.1rem;
+    color: black;
+    margin-bottom: 1.5rem;
+  }
+
+  &__button-clear {
+    background-color: var(--primary-color);
+    //margin: 1rem 0;
+    padding: 1rem;
+    max-width: 220px;
+  }
+}

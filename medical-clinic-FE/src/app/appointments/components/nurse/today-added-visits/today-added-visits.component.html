@@ -1,0 +1,37 @@
+<h2>{{ 'headers.today-added' | translate }}</h2>
+<div class="today-added" [formGroup]="visitForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>{{ 'headers.specialization' | translate }}</mat-label>
+    <input
+      type="text"
+      placeholder="{{ 'headers.specialization' | translate }}"
+      matInput
+      formControlName="specialization"
+      [matAutocomplete]="auto"
+      (click)="clearResult()" />
+    <mat-autocomplete class="new-appointment" #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="'specialization.' + option.name | translate">
+        {{ 'specialization.' + option.name | translate }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button class="today-added__button-clear" mat-button (click)="clearForm()">
+    {{ 'button.all-visits' | translate }}
+  </button>
+  <div class="today-added" *ngFor="let visit of todayVisits">
+    <app-appointments-card
+      [specialization]="'specialization.' + visit.specialization | translate"
+      [doctorName]="visit.doctorName"
+      [doctorSurname]="visit.doctorSurname"
+      [date]="visit.date"
+      [hour]="visit.hour"
+      [isFutureDate]="true"
+      [clinic]="visit.medicalClinic"
+      (clickCancelButton)="deleteVisit(visit)"></app-appointments-card>
+  </div>
+  <div *ngIf="todayVisits?.length === 0">
+    <span class="today-added__empty-list">{{ 'appointment.no-visit' | translate }} </span>
+  </div>
+</div>

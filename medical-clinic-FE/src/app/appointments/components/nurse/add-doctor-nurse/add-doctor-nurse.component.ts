@@ -118,10 +118,11 @@ export class AddDoctorNurseComponent implements OnInit {
       .changeUserRoleAndHandleDoctor(userId, newRole, specializationIds)
       .subscribe(
         response => {
-          this.snackBarService.snackMessage('added-correctly');
+          this.snackBarService.snackMessage('role-changed-correctly');
           window.location.reload();
         },
         error => {
+          this.snackBarService.snackMessage('role-changed-error');
           console.error('Error:', error);
         }
       );

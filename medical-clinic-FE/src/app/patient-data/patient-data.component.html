@@ -6,10 +6,6 @@
     <span> {{ 'user.price' | translate }}:</span
     ><span class="user__box-balance">{{ userForm.get('balance')?.value }} zł</span>
   </div>
-  <mat-form-field class="user__field">
-    <mat-label class="user__label"></mat-label>
-    <input class="user__input-balance" matInput formControlName="balance" type="text" />
-  </mat-form-field>
   <div>
     <mat-form-field class="user__field">
       <mat-label class="user__label"> {{ 'user.fName' | translate }}</mat-label>

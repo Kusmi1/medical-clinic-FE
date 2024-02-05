@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppointmentsComponent } from './appointments.component';
 import { RecentAppointmentsComponent } from './components/recent-appointments/recent-appointments.component';
-import { NewAppointmentComponent } from './components/new-appointment/new-appointment.component';
+import { BookAppointmentComponent } from './components/book-appointment/book-appointment.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { FutureAppointmentComponent } from './components/future-appointment/future-appointment.component';
 import { AddNewAppointmentComponent } from './components/nurse/add-new-appointment/add-new-appointment.component';
@@ -11,6 +11,7 @@ import { AppointmentsPreviewComponent } from './components/doctor/appointments-p
 import { AddDoctorNurseComponent } from './components/nurse/add-doctor-nurse/add-doctor-nurse.component';
 import { AuthenticationGuard as AuthGuard } from '../guard/authentication.guard';
 import { AddBalanceComponent } from './components/nurse/add-balance/add-balance.component';
+import { TodayAddedVisitsComponent } from './components/nurse/today-added-visits/today-added-visits.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
       {
         path: 'new-visit',
         canActivate: [AuthGuard],
-        component: NewAppointmentComponent,
+        component: BookAppointmentComponent,
         data: { title: 'New Visit' },
       },
       {
@@ -59,6 +60,11 @@ const routes: Routes = [
         path: 'add-balance',
         canActivate: [AuthGuard],
         component: AddBalanceComponent,
+      },
+      {
+        path: 'today-visits',
+        canActivate: [AuthGuard],
+        component: TodayAddedVisitsComponent,
       },
     ],
   },

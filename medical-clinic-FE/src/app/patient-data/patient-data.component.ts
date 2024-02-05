@@ -109,7 +109,6 @@ export class PatientDataComponent implements OnInit {
     this.userForm.get('userName')?.setValue(userData.userName);
     this.userForm.get('lastName')?.setValue(userData.lastname);
     this.userForm.get('password')?.setValue(userData.password);
-    console.log('balance', this.userForm.get('balance')?.value);
   }
 
   get f() {
